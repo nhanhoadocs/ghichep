@@ -273,6 +273,38 @@ Advance setting => Windows firewall with advance => Properties => Public profile
 
 - Active Key cho windows
 
+**Buoc 9**: Cài đặt cloud-init
+
+https://cloudbase.it/cloudbase-init/
+
+![](images/win10image67.png)
+
+![](images/win10image68.png)
+
+![](images/win10image69.png)
+
+![](images/win10image70.png)
+
+![](images/win10image71.png)
+
+![](images/win10image76.jpg)
+
+![](images/win10image73.png)
+
+Trước khi "Finish" cài đặt, sửa lại file C:\Program Files\Cloudbase Solutions\Cloudbase-Init\conf\cloudbase-init.conf
+
+Edit 
+
+username=Administrators
+
+Them 
+
+first_logon_behaviour=no
+
+![](images/win10image74.png)
+
+
+![](images/win10image75.png)
 
 
 
