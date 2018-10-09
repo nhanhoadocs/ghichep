@@ -222,3 +222,57 @@ PS C:\amd6>. \blnsvr.exe –i
 ![](images/win10image54.png)
 
 ![](images/win10image55.png)
+
+Vào "Device Manager", chọn update driver cho PCI Simple Communication Controller. Browse : D:\vioserial\win10\amd64
+
+![](images/win10image56.png)
+
++ Cài đặt qemu-guest-agent cho Windows 10, vào CD ROM virio và cài đặt phiên bản qemu-ga (ở đây là qemu-ga-x64)
+
+![](images/win10image57.png)
+
++ Kiểm tra lại version của qemu-guest-agent & status (phải đảm bảo version >= 7.3.2)
+
+![](images/win10image59.png)
+
+
+**Buoc 8**: Chỉnh sửa tham số trên Windows
+
+Chỉnh sửa Firewall, enable remote desktop, chỉnh sửa timezone và Active key
+
+- Chỉnh sửa remote 
+
+![](images/win10image60.png)
+
+- Chỉnh sửa firewall
+
+Mở port port firewall  : Advance setting => Windows firewall with advance => Inbound rules 
+Port 80 : Windows remote management service
+Port 443 : Secure Socket Tunneling Protocol 
+ICMP : File and Printer Sharing
+Allow Public network : 
+Allow remote service : Allow an app or feature
+
+Chuot phai vao service -> enable
+
+![](images/win10image61.png)
+
+![](images/win10image62.png)
+
+![](images/win10image63.png)
+
+Advance setting => Windows firewall with advance => Properties => Public profile => Inbound connection : Allow
+
+![](images/win10image64.png)
+
+![](images/win10image65.png)
+
+- Chỉnh về zone UTC +07:00
+
+![](images/win10image66.png)
+
+- Active Key cho windows
+
+
+
+
