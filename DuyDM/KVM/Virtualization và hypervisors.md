@@ -90,3 +90,5 @@ Snapshot và khôi phục lại trạng thái máy ảo hiệu quả.
 	+ Tính khả dụng cho có cấu hình máy ảo phụ thuộc khá nhiều vào phần cứng.
 	+ Chi phí khá cao.
 	+ Khả năng tương thích phần cứng, tương thích ứng dụng.
+
+	
