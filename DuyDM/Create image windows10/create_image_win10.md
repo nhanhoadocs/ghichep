@@ -80,11 +80,145 @@ Lựa chọn dải mạng mà bridge cho VM khi tạo ra để ra internet
 
 **Bước 5**: Chinh sua channel
 
-- Khi click begin -> force off may ao ngay lap tuc
+- Khi click begin -> force off máy ảo ngay lập tức
 
 ![](images/win10image17.png)
 
+- Chỉnh sửa file .xml của máy ảo, bổ sung thêm channel trong `<devices>` (để máy host giao tiếp với máy ảo sử dụng qemu-guest-agent). Với KVM host là centos 7, chỉnh sửa lại number của vnc là port 2.
 
-**Bước 2**
+```sh
+virsh list -all
 
-**Bước 2**
+virsh edit name_mayao
+
+```
+Tìm đến dòng 98
+
+```sh
+* Sửa dòng cấu hình sau, chuyển port ='2'
+ <channel type='spicevmc'>
+      <target type='virtio' name='com.redhat.spice.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='2'/>
+    </channel>
+
+* Thêm dòng cấu hình sau ở phía sau dòng cấu hình trên :
+    <channel type='unix'>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='1'/>
+    </channel>
+
+```
+![](images/win10image18.png)
+
+**Bước 6**: Cai OS
+
+Bật máy ảo lên
+
+![](images/win10image19.png)
+
+![](images/win10image20.png)
+
+![](images/win10image21.png)
+
+![](images/win10image22.png)
+
+![](images/win10image23.png)
+
+- Đến bước này sẽ không thấy disk để cài phải phai mount file VirtIO để load driver cài đặt . ( nên để file iso trong thư mục /var/lib/libvirt/image)
+
+![](images/win10image28.png)
+
+- Quay lại phần edit cấu hình để chỉnh sửa
+
+Chỉnh sửa CDROM add lúc trắng lúc đầu để mount file ISO vào đó.
+
+![](images/win10image24.png)
+
+![](images/win10image25.png)
+
+- Broswe tới file `virtio-win.iso` vừa đưa, chọn load driver tại thư mục
+
+![](images/win10image27.png)
+
+
+![](images/win10image29.png)
+
+![](images/win10image30.png)
+
+![](images/win10image31.png)
+
+![](images/win10image33.png)
+
+![](images/win10image35.png)
+
+![](images/win10image36.png)
+
+- Setup OS ok
+
+![](images/win10image37.png)
+
+- Sau khi cài xong OS, tắt VM và sửa lại Boot từ Hard Disk và bật máy ảo
+
+![](images/win10image38.png)
+
+Start VM
+
+**Bước 7**: Setup driver cho máy ảo
+
+- NIC Driver
+
+Vào "Device Manager" để update driver cho NIC, cài đặt Baloon network 
+driver để VM nhận card mạng. Browse 
+
+![](images/win10image39.png)
+
+![](images/win10image40.png)
+
+![](images/win10image41.png)
+
+![](images/win10image42.png)
+
+![](images/win10image43.png)
+
+![](images/win10image44.png)
+
+- Baloon service và driver
+
++ Copy /virtio-win-0.1.1/Baloon/Win10/amd64 từ CD Drive vào C:\
+
+![](images/win10image45.png)
+
++ Chạy CMD, trỏ về thư mục amd64 vừa copy và chạy 
+
+```sh
+PS C:\Users\Administrator> cd C:\amd64
+PS C:\amd6>. \blnsvr.exe –i
+```
+
+![](images/win10image46.png)
+
+![](images/win10image47.png)
+
++ Kiểm tra Ballon service
+
+![](images/win10image48.png)
+
++ Cài đặt Ballon driver
+
+![](images/win10image49.png)
+
+![](images/win10image50.png)
+
+![](images/win10image51.png)
+
+![](images/win10image52.png)
+
+![](images/win10image53.png)
+
+- QEMU-GA agent
+
++ Vào "Device Manager", chọn update driver cho PCI Simple Communication Controller. Browse : D:\vioserial\win10\amd64
+
+![](images/win10image54.png)
+
+![](images/win10image55.png)
