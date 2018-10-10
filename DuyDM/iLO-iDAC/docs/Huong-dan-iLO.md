@@ -3,6 +3,7 @@
 ### Mục lục
 
 [1, Tìm hiểu về iLO](#timhieuveilo)
+
 [2, Cài đặt iLO](#caidatilo)
 
 <a name="timhieuveilo"></a>

@@ -3,6 +3,7 @@
 ### Mục lục
 
 [1, Tìm hiểu về iDRAC](#timhieuveidrac)
+
 [2, Cài đặt iDRAC](#caidatidrac)
 
 <a name="timhieuveidrac"></a>
