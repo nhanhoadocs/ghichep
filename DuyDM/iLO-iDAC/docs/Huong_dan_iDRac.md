@@ -3,6 +3,7 @@
 ### Mục lục
 
 [1, Tìm hiểu về iDRAC](#timhieuveidrac)
+[2, Cài đặt iDRAC](#caidatidrac)
 
 <a name="timhieuveidrac"></a>
 ## 1, Tìm hiểu về iDRAC ##
@@ -13,6 +14,7 @@
 
 ![](https://i.imgur.com/vX1r6eq.png)
 
+<a name="caidatidrac"></a>
 ## 2, Cài đặt iDRAC ##
 
 - Khởi động server DELL -> F2 để vào "System Setup"
