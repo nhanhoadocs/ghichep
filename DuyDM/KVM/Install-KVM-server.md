@@ -1,6 +1,6 @@
-# Hướng dẫn cài đặt KVM server trên môi trường VMware ESXi #
+# Hướng dẫn cài đặt KVM server trên môi trường VMware ESXi
 
-## 1, Chuẩn bị ##
+## A, Môi trường thực hiện LAB
 
 Máy ảo trên node VMware ESXi có cấu hình:
 
@@ -14,7 +14,11 @@ Máy ảo trên node VMware ESXi có cấu hình:
 
 Cài đặt: Setup Ip tĩnh, disable firewall, selinux, update, kiểm tra kết nối internet
 
-## 2, Các bước cài đặt ##
+## B, Mô hình
+
+![](images/installkvm/mohinhkvm.png)
+
+## C, Các bước cài đặt
 
 **Bước 1**: Bật chế độ ảo hóa trong vm trên ESXi
 
@@ -130,8 +134,9 @@ Giao diện GUI cho phép tạo máy ảo được hiện lên.
 ![](images/installkvm/Screenshot_8.png)
 
 
-## 3. Link tham khảo ##
+## D. Link tham khảo
 
+https://github.com/uncelvel/create-images-openstack/blob/master/docs/Prepare.md
 
 
 

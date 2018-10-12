@@ -1,7 +1,12 @@
 # Tìm hiểu và cài đặt iDRAC trên server DELL #
 
-DUY UPDATE
+### Mục lục
 
+[1, Tìm hiểu về iDRAC](#timhieuveidrac)
+
+[2, Cài đặt iDRAC](#caidatidrac)
+
+<a name="timhieuveidrac"></a>
 ## 1, Tìm hiểu về iDRAC ##
 
 Đối với dòng server DELL thế hệ mới model Power Edge Server thế hệ thứ 12 của Dell thì đều có tích hợp iDRAC (Integrated Dell Remote Access Controller) cung cấp tính năng để quản lý các thông số hardware của server từ xa, troubleshoot, remote thông qua một giao diện.
@@ -10,6 +15,7 @@ DUY UPDATE
 
 ![](https://i.imgur.com/vX1r6eq.png)
 
+<a name="caidatidrac"></a>
 ## 2, Cài đặt iDRAC ##
 
 - Khởi động server DELL -> F2 để vào "System Setup"
