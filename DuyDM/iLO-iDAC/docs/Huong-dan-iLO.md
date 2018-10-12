@@ -1,5 +1,12 @@
 # Tìm hiểu và cài đặt iLO trên server #
 
+### Mục lục
+
+[1, Tìm hiểu về iLO](#timhieuveilo)
+
+[2, Cài đặt iLO](#caidatilo)
+
+<a name="timhieuveilo"></a>
 ## 1, Tìm hiểu về iLO ##
 
 Đối với dòng server HP thế hệ mới iLO (intergrated Lights Out) cung cấp tính năng để quản lý các thông số hardware của server từ xa, troubleshoot, remote thông qua một giao diện. iLO là một cổng riêng biệt trên server, có chương trình và phần cứng độc lập, giúp quản lý phần cứng server độc lập, nó có chương trình WebGUI để quản lý cũng như command line tương ứng.
@@ -8,6 +15,7 @@
 
 ![](https://i.imgur.com/JEUwNfU.jpg)
 
+<a name="caidatilo"></a>
 ## 2, Cài đặt iLO ##
 
 Khởi động server HP để server chạy khi thấy dòng Config iLO thì ấn phím chức năng tương ứng F8
