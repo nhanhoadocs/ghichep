@@ -6,7 +6,7 @@
 	
 ## B, Mô hình
 
-	![](images/createvmcli/mohinhkvm.png)
+	![](images/createvmcli/Screenshot_24.png)
 
 ## C, Các bước thực hiện
 
