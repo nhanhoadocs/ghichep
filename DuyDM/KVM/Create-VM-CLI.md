@@ -2,11 +2,11 @@
 
 ## A, Môi trường thực hiện LAB
 
-	- KVM server
+- KVM server
 	
 ## B, Mô hình
 
-	![](images/createvmcli/Screenshot_24.png)
+![](images/createvmcli/Screenshot_24.png)
 
 ## C, Các bước thực hiện
 
