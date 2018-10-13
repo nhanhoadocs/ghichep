@@ -20,9 +20,9 @@ Với thick Provisioning, dung lượng lưu trữ đĩa ảo hoàn chỉnh đư
 
 - Có 2 kiểu của thick-provisioned virtual disks
 
-+ Lazy zeroed disk: là một đĩa ảo dùng tất cả không gian của nó tại thời điểm tạo, nhưng không gian này có thể chứa một số dữ liệu cũ trên phương tiện vật lý. Dữ liệu cũ này không bị xóa hoặc ghi đè lên, do đó, nó cần phải được "zeroed out" trước khi dữ liệu mới có thể được ghi vào các khối. Loại disk này có thể được tạo nhanh hơn, nhưng hiệu suất của nó sẽ thấp hơn cho lần ghi đầu tiên do IOPS tăng cho các block mới.
+	+ Lazy zeroed disk: là một đĩa ảo dùng tất cả không gian của nó tại thời điểm tạo, nhưng không gian này có thể chứa một số dữ liệu cũ trên phương tiện vật lý. Dữ liệu cũ này không bị xóa hoặc ghi đè lên, do đó, nó cần phải được "zeroed out" trước khi dữ liệu mới có thể được ghi vào các khối. Loại disk này có thể được tạo nhanh hơn, nhưng hiệu suất của nó sẽ thấp hơn cho lần ghi đầu tiên do IOPS tăng cho các block mới.
 
-+ Eager zeroed disk: là một đĩa ảo có được tất cả các không gian cần thiết vẫn còn tại thời điểm tạo ra nó, và không gian bị xóa sạch mọi dữ liệu trước đó trên phương tiện vật lý. Việc tạo đĩa không mong muốn mất nhiều thời gian hơn vì các số 0 được ghi vào toàn bộ đĩa, nhưng hiệu suất của chúng nhanh hơn trong lần viết đầu tiên. Đây là loại phụ của đĩa ảo cung cấp dày hỗ trợ các tính năng phân cụm, chẳng hạn như khả năng chịu lỗi.
+	+ Eager zeroed disk: là một đĩa ảo có được tất cả các không gian cần thiết vẫn còn tại thời điểm tạo ra nó, và không gian bị xóa sạch mọi dữ liệu trước đó trên phương tiện vật lý. Việc tạo đĩa không mong muốn mất nhiều thời gian hơn vì các số 0 được ghi vào toàn bộ đĩa, nhưng hiệu suất của chúng nhanh hơn trong lần viết đầu tiên. Đây là loại phụ của đĩa ảo cung cấp dày hỗ trợ các tính năng phân cụm, chẳng hạn như khả năng chịu lỗi.
 
 Thick Provisioned Eager Zeroed cũng giống như Full Format định dạng này thực hiện việc ghi giá trị 0 lên tất cả sector, đồng nghĩa việc sao chép dữ liệu vào sẽ chỉ việc ghi thêm giá trị 1 lên. 
 Thick Provisioned Lazy Zeroe thì như Quick Format, sao chép dự liệu đến đâu sẽ ghi đến đó.
