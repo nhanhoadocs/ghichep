@@ -49,6 +49,8 @@ osinfo-query os
 --location: Đường dẫn tới file cài đặt
 
 --extra-args: Set tham số cho kernel
+
+Ở đây tìm hiểu một số tham số cơ bản, ngoài ra virst-install còn nhiều tham số khá `virt-install --help` để sử dụng các tham số khác.
 	
 Ví dụ: Với tham số cơ bản của một máy ảo
 
@@ -70,5 +72,11 @@ virt-install \
 ![](images/createvmcli/Screenshot_26.png)
 	
 ![](images/createvmcli/Screenshot_27.png)
+
+## C, GuestOS to HostOS
+
+Hệ điều hành chủ (host operating system): là hệ điều hành chạy trên máy chủ.
+
+Hệ điều hành khách (guest operating system): là hệ điều hành chạy trên một VM
 	
 	
