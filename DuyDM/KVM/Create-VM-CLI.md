@@ -37,3 +37,24 @@ Bước 2: Sử dụng lệnh `virt-install` với các tham số + giá trị t
 	--location: Đường dẫn tới file cài đặt
 	--extra-args: Set tham số cho kernel
 	
+Ví dụ: Với tham số cơ bản của một máy ảo
+	```sh
+	virt-install \
+	--name centos7 \
+	--ram 2048 \
+	--disk path=/var/kvm/images/duydmcentos7.img,size=30 \
+	--network bridge=br0 \
+	--graphics vnc,listen=0.0.0.0 \
+	--noautoconsole \
+	--os-type=linux \
+	--os-variant=rhel7 \   
+	--location=/var/lib/libvirt/images/CentOS-7-x86_64-Minimal-1804.iso
+	```
+	
+	![](images/createvmcli/Screenshot_25.png)
+	
+	![](images/createvmcli/Screenshot_26.png)
+	
+	![](images/createvmcli/Screenshot_27.png)
+	
+	
