@@ -42,7 +42,7 @@ virsh autostart --disable <name_máy_ảo>
 ```sh
 virsh list --all
 ```
-![](images/virshcommand/Screenshot_31.png)
+![](../images/virshcommand/Screenshot_31.png)
 
 ### 5, 	Chuyển chế độ console GuestOS <-> HostOS
 

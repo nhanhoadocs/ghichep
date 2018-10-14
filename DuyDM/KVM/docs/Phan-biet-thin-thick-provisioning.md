@@ -13,7 +13,7 @@ Khi khởi tạo VM (Virtual Machine) có bước lựa chọn định dạng ph
 <a name="thickprovisioning"></a>
 ## 1. Thick provisioning
 
-![](images/thickthinprovision/thick-provisioning.png)
+![](../images/thickthinprovision/thick-provisioning.png)
 
 Với thick Provisioning, dung lượng lưu trữ đĩa ảo hoàn chỉnh được phân bổ trước trên bộ nhớ vật lý khi đĩa ảo được tạo.
 Đĩa ảo được cấp thick Provisioning tiêu thụ tất cả không gian được phân bổ cho nó trong kho dữ liệu ngay từ đầu, do đó không gian không có sẵn để sử dụng bởi các máy ảo khác.
@@ -35,7 +35,7 @@ Vì lý do bảo mật dữ liệu, eager zeroing là phổ biến hơn so với
 Thin provisioning là một loại phân bổ trước bộ nhớ khác. Đĩa ảo được tạo kiểu thin provisioning chỉ tiêu thụ không gian cần thiết ban đầu và tăng theo thời gian theo nhu cầu.
 Ví dụ: Nếu tạo một đĩa ảo 30GB mới thin provisioning và sao chép 10 GB tệp, kích thước của tệp VMDK kết quả sẽ là 10 GB, trong khi bạn sẽ có tệp VMDK 30 GB nếu đã chọn sử dụng đĩa được tạo thick provisioning.
 
-![](images/thickthinprovision/thin-provisioning.png)
+![](../images/thickthinprovision/thin-provisioning.png)
 
 Các đĩa ảo thin provisioning nhanh chóng tạo và hữu ích để tiết kiệm dung lượng lưu trữ. Hiệu suất của một đĩa được cấp thin provisioning không cao hơn ổ đĩa lazy zeroed thick-provisioned  bởi vì đối với cả hai loại đĩa này, các số 0 phải được ghi trước khi ghi dữ liệu vào một khối mới. Lưu ý rằng khi xóa dữ liệu của mình khỏi ổ đĩa ảo được cấp thin provisioning, kích thước đĩa sẽ không tự động giảm. Điều này là do hệ điều hành chỉ xóa các chỉ mục từ bảng tệp tham chiếu đến phần thân tệp trong hệ thống tệp; nó đánh dấu các khối thuộc về các tệp "đã xóa" là free và có thể truy cập được để ghi dữ liệu mới. 
 

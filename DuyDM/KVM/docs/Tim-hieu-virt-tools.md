@@ -13,7 +13,7 @@ yum -y install libguestfs-tools virt-top
 virt-ls -l -d <name_máy_ảo> /root 
 ```
 
-![](images/virttool/Screenshot_32.png)
+![](../images/virttool/Screenshot_32.png)
 
 - Cat nội dung file trong vm
 
@@ -21,7 +21,7 @@ virt-ls -l -d <name_máy_ảo> /root
 virt-cat -d <name_máy_ảo> /etc/passwd 
 ```
 
-![](images/virttool/Screenshot_33.png)
+![](../images/virttool/Screenshot_33.png)
 
 - Edit file trong vm
 
@@ -34,14 +34,14 @@ virt-edit -d <name_máy_ảo> /etc/fstab
 ```sh
 virt-df -d <name_máy_ảo>
 ```
-![](images/virttool/Screenshot_34.png)
+![](../images/virttool/Screenshot_34.png)
 
 - Hiển thị status một vm
 
 ```sh
 virt-top
 ```
-![](images/virttool/Screenshot_35.png)
+![](../images/virttool/Screenshot_35.png)
 
 
 
