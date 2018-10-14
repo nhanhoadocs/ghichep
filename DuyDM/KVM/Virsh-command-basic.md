@@ -78,19 +78,19 @@ virsh vcpuinfo <name_máy_ảo>
 virsh suspend <name_máy_ảo>
 ```
 
-10, Cho máy ảo tiếp tục hoạt động
+### 10, Cho máy ảo tiếp tục hoạt động
 
 ```sh
 virsh resume <name_máy_ảo>
 ```
 
-11, Hiển thị thông tin io disk
+### 11, Hiển thị thông tin io disk
 
 ```sh
 virsh blkiotune <name_máy_ảo>
 ```
 
-12, Hiển thị cpu statistic
+### 12, Hiển thị cpu statistic
 
 ```sh
 virsh cpu-stats <name_máy_ảo>
@@ -142,7 +142,7 @@ virsh dommemstat <name_máy_ảo>
 virsh domstate <name_máy_ảo>
 ```
 
-## Hiển thị thông tin về node KVM
+## C, Hiển thị thông tin về node KVM
 
 - Hiển thị thông tin về dung lượng node
 
@@ -153,6 +153,7 @@ virsh capabilities
 
 ```sh
 virsh freecell
+```
 
 - Hiển thị hostname
 
