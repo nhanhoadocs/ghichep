@@ -71,20 +71,10 @@
 	
 	+ [ ] Từ internet
 
-- Thao tác đối với máy ảo
-	
-GUI
+- Thao tác đối với máy ảo (GUI, CLI)
 
-	+ [x] Tạo - xóa - sửa
-	
-	+ [ ] Clone
-	
-	+ [x] Snapshot
-		
-CLI
-	
 	+ [ ] Tạo - xóa - sửa
-
+	
 	+ [ ] Clone
 	
 	+ [ ] Snapshot
