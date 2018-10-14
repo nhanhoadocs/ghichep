@@ -44,7 +44,7 @@ File -> Virtual Machine
 
 - Tìm và lựa chọn file ISO
 
-![](images/createvmgui/Screenshot_24.png)
+![](images/createvmgui/Screenshot_25.png)
 
 - Set thông số RAM, vCPU
 
