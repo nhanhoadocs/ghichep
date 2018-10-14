@@ -64,4 +64,6 @@ File -> Virtual Machine
 
 - Tiến hành cài đặt OS bình thường.
 
+![](images/createvmgui/Screenshot_30.png)
 
+- Hoàn tất tạo VM bằng GUI
