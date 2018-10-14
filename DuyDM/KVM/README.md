@@ -73,21 +73,21 @@
 
 - Thao tác đối với máy ảo
 	
-	GUI
+GUI
 
-		+ [x] Tạo - xóa - sửa
+	+ [x] Tạo - xóa - sửa
 	
-		+ [ ] Clone
+	+ [ ] Clone
 	
-		+ [x] Snapshot
+	+ [x] Snapshot
 		
-	CLI
+CLI
 	
-		+ [ ] Tạo - xóa - sửa
+	+ [ ] Tạo - xóa - sửa
 
-		+ [ ] Clone
+	+ [ ] Clone
 	
-		+ [ ] Snapshot
+	+ [ ] Snapshot
 
 - [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
 
