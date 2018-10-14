@@ -1,25 +1,41 @@
-### Check list tìm hiểu và LAB về KVM
+## Check list tìm hiểu và LAB về KVM
+
+### A, Lý thuyết
 
 - [x] Tìm hiểu về các công nghệ ảo hóa
 
 - [x] Tìm hiểu về virtualization-hypervisors
 
-- [x] Tìm hiểu về công nghệ ảo óa KVM
+- Tìm hiểu về công nghệ ảo óa KVM
 
 	+ [x] Đặc điểm
 	+ [x] Kiến trúc và sự hoạt động
 
 - [x] Phân biệt thick-thin provisioning
 
-- [ ] File image trong KVM
+- File image trong KVM
 	+ [x] Tìm hiểu chung
 	+ [x] Định dạng file image phổ biến (raw, qcow, iso)
 	+ [ ] Chuyển đổi giữa raw và qcow
 	+ [ ] Test performance raw và qcow
 	
+- [ ] Card mạng ảo trong VM
+
+- Giao tiếp máy ảo Linux Bridge và OpenVSwitch
+
+	+ [ ] Linux Bridge
+	+ [ ] OpenVSwitch
+	
+- Template và Snapshot trong KVM
+
+	+ [] Template
+	+ [] Snapshot
+	
+### B, LAB
+	
 - [x] Cài đặt KVM server
 
-- [x] Tạo máy ảo bằng CLI
+- Tạo máy ảo bằng CLI (virt-install)
 
 	+ [ ] Từ image có sẵn
 	
@@ -27,7 +43,7 @@
 	
 	+ [ ] Từ internet
 
-- [ ] Tạo máy ảo bằng GUI
+- Tạo máy ảo bằng GUI (virt-manager)
 
 	+ [ ] Từ image có sẵn
 	
@@ -35,9 +51,19 @@
 	
 	+ [ ] Từ internet
 	
-- [ ] Cài đặt giao diện web KVM
+- [ ] Cài đặt giao diện web KVM (webvirt)
 
-- [ ] Tạo máy ảo trên giao diện web KVM
+- Tạo máy ảo trên giao diện web KVM
 
-- [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
+	+ [ ] Từ image có sẵn
+	
+	+ [ ] Từ file ISO
+	
+	+ [ ] Từ internet
+
+- [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo (NAT, Public Bridge, Private Bridge)
+
+
+
+
 
