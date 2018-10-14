@@ -71,6 +71,16 @@
 	
 	+ [ ] Từ internet
 
+- Thao tác đối với máy ảo
+
+	+ [ ] Tạo - xóa - sửa
+	
+	+ [ ] Backup
+	
+	+ [ ] Clone
+	
+	+ [ ] Snapshot
+
 - [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
 
 - [x] Tìm hiểu và sử dụng virt-tools
