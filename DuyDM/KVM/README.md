@@ -11,8 +11,12 @@
 
 - [x] Phân biệt thick-thin provisioning
 
-- [ ] Phân biệt định dạng raw, qcow, iso
-
+- [ ] File image trong KVM
+	+ [ ] Tìm hiểu chung
+	+ [ ] Định dạng file image phổ biến (raw, qcow, iso)
+	+ [ ] Chuyển đổi giữa raw và qcow
+	+ [ ] Test performance raw và qcow
+	
 - [x] Cài đặt KVM server
 
 - [x] Tạo máy ảo bằng CLI
