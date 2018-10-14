@@ -73,6 +73,8 @@ virt-install \
 	
 ![](images/createvmcli/Screenshot_27.png)
 
+Tiến hành cài đặt các bước như bình thường.
+
 ## C, GuestOS to HostOS
 
 Hệ điều hành chủ (host operating system): là hệ điều hành chạy trên máy chủ.
