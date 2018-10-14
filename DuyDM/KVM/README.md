@@ -72,14 +72,22 @@
 	+ [ ] Từ internet
 
 - Thao tác đối với máy ảo
+	
+	GUI
 
-	+ [ ] Tạo - xóa - sửa
+		+ [x] Tạo - xóa - sửa
 	
-	+ [ ] Backup
+		+ [ ] Clone
 	
-	+ [ ] Clone
+		+ [x] Snapshot
+		
+	CLI
 	
-	+ [ ] Snapshot
+		+ [ ] Tạo - xóa - sửa
+
+		+ [ ] Clone
+	
+		+ [ ] Snapshot
 
 - [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
 
