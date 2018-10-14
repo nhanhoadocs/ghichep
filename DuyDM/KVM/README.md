@@ -12,8 +12,8 @@
 - [x] Phân biệt thick-thin provisioning
 
 - [ ] File image trong KVM
-	+ [ ] Tìm hiểu chung
-	+ [ ] Định dạng file image phổ biến (raw, qcow, iso)
+	+ [x] Tìm hiểu chung
+	+ [x] Định dạng file image phổ biến (raw, qcow, iso)
 	+ [ ] Chuyển đổi giữa raw và qcow
 	+ [ ] Test performance raw và qcow
 	
