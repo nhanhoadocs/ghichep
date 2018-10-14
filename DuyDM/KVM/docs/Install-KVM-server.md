@@ -16,7 +16,7 @@ Cài đặt: Setup Ip tĩnh, disable firewall, selinux, update, kiểm tra kết
 
 ## B, Mô hình
 
-![](../../images/installkvm/mohinhkvm.png)
+![](../images/installkvm/mohinhkvm.png)
 
 ## C, Các bước cài đặt
 
@@ -33,7 +33,7 @@ Sau khi SSH vào node vmware di chuyển tới thư mục: `/vmfs/volumes/device
 cd /vmfs/volumes/devices/Name_VMVKM
 ```
 
-![](../../images/installkvm/Screenshot_1.png)
+![](../images/installkvm/Screenshot_1.png)
 
 Edit VM-name.vmx
 
