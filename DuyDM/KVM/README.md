@@ -17,23 +17,23 @@
 
 - [x] Tạo máy ảo bằng CLI
 
-	+ [] Từ image có sẵn
+	+ [ ] Từ image có sẵn
 	
 	+ [x] Từ file ISO
 	
 	+ [] Từ internet
 
-- [] Tạo máy ảo bằng GUI
+- [ ] Tạo máy ảo bằng GUI
 
-	+ [] Từ image có sẵn
+	+ [ ] Từ image có sẵn
 	
 	+ [x] Từ file ISO
 	
-	+ [] Từ internet
+	+ [ ] Từ internet
 	
-- [] Cài đặt giao diện web KVM
+- [ ] Cài đặt giao diện web KVM
 
-- [] Tạo máy ảo trên giao diện web KVM
+- [ ] Tạo máy ảo trên giao diện web KVM
 
 - [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
 
