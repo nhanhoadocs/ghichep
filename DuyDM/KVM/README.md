@@ -11,7 +11,7 @@
 
 - [x] Phân biệt thick-thin provisioning
 
-- [] Phân biệt định dạng raw, qcow, iso
+- [ ] Phân biệt định dạng raw, qcow, iso
 
 - [x] Cài đặt KVM server
 
@@ -21,7 +21,7 @@
 	
 	+ [x] Từ file ISO
 	
-	+ [] Từ internet
+	+ [ ] Từ internet
 
 - [ ] Tạo máy ảo bằng GUI
 
