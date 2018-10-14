@@ -99,33 +99,48 @@ virsh cpu-stats <name_máy_ảo>
 ## B, Lệnh giám sát một số thông tin máy ảo
 
 - Thông tin chung của máy ảo
+
 ```sh
 virsh dominfo <name_máy_ảo>
+```
 
 - Thông tin về disk máy ảo
+
 ```sh
 virsh domblklist <name_máy_ảo>
+```
 
 - Thông tin I/O disk
+
 ```sh
 virsh domblkstat  <name_máy_ảo>
+```
 
 - Thông tin về interface
+
 ```sh
 virsh domcontrol <name_máy_ảo>
 
 virsh domif-getlink <name_máy_ảo>
+```
+
 - List all interface máy ảo
+
 ```sh
 virsh domiflist <name_máy_ảo>
+```
 
 - Hiển thị thông tin về RAM máy ảo
+
 ```sh
 virsh dommemstat <name_máy_ảo>
+```
 
 - Hiển thị thông tin trạng thái máy ảo
+
 ```sh
 virsh domstate <name_máy_ảo>
+```
 
 ## Hiển thị thông tin về node KVM
 
