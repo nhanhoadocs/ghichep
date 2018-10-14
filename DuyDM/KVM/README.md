@@ -19,7 +19,7 @@
 	+ [ ] Chuyển đổi giữa raw và qcow
 	+ [ ] Test performance raw và qcow
 	
-- [ ] Card mạng ảo trong VM
+- [ ] Card mạng ảo trong VM (NAT, Public Bridge, Private Bridge)
 
 - Giao tiếp máy ảo Linux Bridge và OpenVSwitch
 
@@ -28,8 +28,14 @@
 	
 - Template và Snapshot trong KVM
 
-	+ [] Template
-	+ [] Snapshot
+	+ [ ] Template
+	+ [ ] Snapshot
+	
+- Tìm hiểu file xml
+
+	+ [ ] Thành phần trong file domain XML
+	+ [ ] Tạo máy ảo bằng file XML
+	+ [ ] File network XML
 	
 ### B, LAB
 	
@@ -61,7 +67,15 @@
 	
 	+ [ ] Từ internet
 
-- [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo (NAT, Public Bridge, Private Bridge)
+- [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
+
+- [x] Tìm hiểu và sử dụng virt-tools
+
+- [ ] Live Migration
+
+
+
+
 
 
 

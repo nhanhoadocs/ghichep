@@ -94,7 +94,7 @@ nmcli c modify br0 ipv4.dns 8.8.8.8
 
 nmcli c delete ens160
 
-Lưu ý: Khi delete card mạng thì phải ssh lại
+Lưu ý: Khi delete card mạng thì phải vào máy ảo vào restart lại service networok `systemctl restart network` và ssh lại
 
 nmcli c add type bridge-slave autoconnect yes con-name ens160 ifname ens160 master br0
 ```
@@ -120,6 +120,8 @@ AddressFamily inet
 
 + Restart service ssh
 
+systemctl restart sshd
+
 ```
 
 ![](images/installkvm/Screenshot_7.png)
@@ -127,7 +129,7 @@ AddressFamily inet
 **Bước 6**: Thực thi lệnh chạy KVM hiển thị GUI
 
 ```sh
-virt-manger
+virt-manager
 ```
 Giao diện GUI cho phép tạo máy ảo được hiện lên.
 
