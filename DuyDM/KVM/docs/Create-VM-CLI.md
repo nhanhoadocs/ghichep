@@ -144,7 +144,7 @@ virt-install \
 
 ![](../images/createvmcli/Screenshot_36.png)
 
-
+![](../images/createvmcli/Screenshot_37.png)
 
 ## 3, GuestOS to HostOS
 
