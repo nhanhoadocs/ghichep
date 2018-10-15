@@ -8,7 +8,7 @@
 
 [3, Các bước thực hiện](#step)
 
-[4, GuestOS to HostOS](os)
+[4, GuestOS to HostOS](#os)
 
 <a name="moitruong"></a>
 ## 1. Môi trường thực hiện LAB
