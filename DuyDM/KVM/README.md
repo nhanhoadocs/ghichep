@@ -17,7 +17,7 @@
 - File image trong KVM
 	+ [x] Tìm hiểu chung
 	+ [x] Định dạng file image phổ biến (raw, qcow, iso)
-	+ [ ] Chuyển đổi giữa raw và qcow
+	+ [x] Chuyển đổi giữa raw và qcow
 	+ [ ] Test performance raw và qcow
 	
 - Tìm hiểu file xml
