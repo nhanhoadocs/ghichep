@@ -1,14 +1,24 @@
 # Create virtual machine (CLI)
 
+### Mục lục
+
+[1, Môi trường thực hiện LAB](#moitruong)
+[2, Mô hình](#mohinh)
+[3, Các bước thực hiện](#step)
+[4, GuestOS to HostOS](os)
+
+<a name="moitruong"></a>
 ## 1. Môi trường thực hiện LAB
 
 - KVM server
-	
-## B, Mô hình
+
+<a name="mohinh"></a>
+## 2, Mô hình
 
 ![](../images/createvmcli/Screenshot_24.png)
 
-## 2. Các bước thực hiện
+<a name="step"></a>
+## 3. Các bước thực hiện
 
 - virt-install là công cụ command line dùng cho việc tạo máy ảo trên KVM sử dụng thư viện quản lí "libvirt".
 
@@ -18,7 +28,7 @@
 
 - Chỉ cần nhập đúng những dòng lệnh, virt-install sẽ tự động cài đặt máy ảo mà không cần sự giám sát. Nó cũng có chế độ tương tác với option --prompt nhưng virt-install sẽ chỉ yêu cầu những tùy chọn tối thiểu.
 
-### 2.1. Tạo từ file ISO
+### 3.1. Tạo từ file ISO
  
 Bước 1: Tạo một thư mục (pool) để lưu trữ máy ảo
 	```sh
@@ -94,7 +104,7 @@ virt-install \
 
 Tiến hành cài đặt các bước như bình thường.
 
-### 2.2. Tạo từ file image
+### 3.2. Tạo từ file image
 
 ```sh
 virt-install \
@@ -111,7 +121,7 @@ virt-install \
 
 ![](../images/createvmcli/Screenshot_28.png)
 
-### 2.3. Tạo từ internet
+### 3.3. Tạo từ internet
 
 ```sh
 virt-install \
@@ -146,7 +156,8 @@ virt-install \
 
 ![](../images/createvmcli/Screenshot_37.png)
 
-## 3, GuestOS to HostOS
+<a name="os"></a>
+## 4, GuestOS to HostOS
 
 Hệ điều hành chủ (host operating system): là hệ điều hành chạy trên máy chủ.
 
