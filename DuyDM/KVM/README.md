@@ -2,7 +2,7 @@
 
 ### A, Lý thuyết
 
-[Tìm hiểu về các công nghệ ảo hóa](#createcli)
+[Tìm hiểu về các công nghệ ảo hóa](#https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Create-VM-CLI.md)
 - [x] Tìm hiểu về các công nghệ ảo hóa
 
 - [x] Tìm hiểu về virtualization-hypervisors
