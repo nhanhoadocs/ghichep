@@ -3,8 +3,11 @@
 ### Mục lục
 
 [1, Môi trường thực hiện LAB](#moitruong)
+
 [2, Mô hình](#mohinh)
+
 [3, Các bước thực hiện](#step)
+
 [4, GuestOS to HostOS](os)
 
 <a name="moitruong"></a>
