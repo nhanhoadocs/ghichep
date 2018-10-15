@@ -1,5 +1,11 @@
 # Virtualization và hypervisors #
 
+### Mục lục
+
+[1. Virtualization](#virtualization)
+[2. Hypervisors](#hypervisors)
+
+<a name="virtualization"></a>
 ## 1. Virtualization ##
 Virtualization cho phép nhiều phiên bản hệ điều hành chạy đồng thời trên một máy tính, đơn giản có thể hiểu là tách phần cứng khỏi một hệ điều hành duy nhất.
 
@@ -38,6 +44,7 @@ Ngoài ảo hóa CPU việc chia sẻ bộ nhớ hệ thống vật lý và phâ
 Thành phần cuối cùng cần thiết ảo hóa sau sự ảo hóa của CPU và bộ nhớ là ảo hóa thiết bị và Input / Output. Điều này liên quan đến việc quản lý việc định tuyến các yêu cầu I / O giữa các thiết bị ảo và phần cứng vật lý dùng chung
 Các hypervisor ảo hóa phần cứng vật lý và phân phối mỗi máy ảo với một bộ tiêu chuẩn của các thiết bị ảo.
 
+<a name="hypervisors"></a>
 ## 2. Hypervisors ##
 
 A hypervisor hay virtual machine  monitor(VMM) là một phần mềm hoặc phần cứng tạo và chạy các máy ảo.

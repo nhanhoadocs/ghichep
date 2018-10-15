@@ -16,7 +16,7 @@ Cài đặt: Setup Ip tĩnh, disable firewall, selinux, update, kiểm tra kết
 
 ## B, Mô hình
 
-![](images/installkvm/mohinhkvm.png)
+![](../images/installkvm/mohinhkvm.png)
 
 ## C, Các bước cài đặt
 
@@ -33,7 +33,7 @@ Sau khi SSH vào node vmware di chuyển tới thư mục: `/vmfs/volumes/device
 cd /vmfs/volumes/devices/Name_VMVKM
 ```
 
-![](images/installkvm/Screenshot_1.png)
+![](../images/installkvm/Screenshot_1.png)
 
 Edit VM-name.vmx
 
@@ -44,7 +44,7 @@ Add thêm dòng sau vào cuối file
 
 vhv.enable = "TRUE"
 ```
-![](images/installkvm/Screenshot_2.png)
+![](../images/installkvm/Screenshot_2.png)
 
 + Kiểm tra ID của VM và reload lại VM vừa sửa file VM-name.vmx
 
@@ -53,13 +53,13 @@ vim-cmd vmsvc/getallvms | grep -i <name>
 vim-cmd vmsvc/reload <id>
 ```
 
-![](images/installkvm/Screenshot_3.png)
+![](../images/installkvm/Screenshot_3.png)
 
 **Bước 2**: Kiểm tra chế độ ảo hóa của VM
 
 Bật máy ảo KVM lên và kiểm tra
 
-![](images/installkvm/Screenshot_4.png)
+![](../images/installkvm/Screenshot_4.png)
 
 Nếu OUTPUT câu lệnh trên >0 thì đã enable vmx OK
 
@@ -79,7 +79,7 @@ lsmod | grep kvm
 yum install dejavu-lgc-sans-fonts -y
 
 ```
-**Bước 4:** Tạo Bridge br0 cho KVM host để đóng Images thay vì sử dụng NAT trên virtbr0 có sẵn.
+**Bước 4:** Tạo Bridge br0 cho KVM host để đóng ../images thay vì sử dụng NAT trên virtbr0 có sẵn.
 
 ```sh
 nmcli c add type bridge autoconnect yes con-name br0 ifname br0
@@ -94,11 +94,11 @@ nmcli c modify br0 ipv4.dns 8.8.8.8
 
 nmcli c delete ens160
 
-Lưu ý: Khi delete card mạng thì phải ssh lại
+Lưu ý: Khi delete card mạng thì phải vào máy ảo vào restart lại service networok `systemctl restart network` và ssh lại
 
 nmcli c add type bridge-slave autoconnect yes con-name ens160 ifname ens160 master br0
 ```
-![](images/installkvm/Screenshot_5.png)
+![](../images/installkvm/Screenshot_5.png)
 
 ```sh
 echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
@@ -120,23 +120,25 @@ AddressFamily inet
 
 + Restart service ssh
 
+systemctl restart sshd
+
 ```
 
-![](images/installkvm/Screenshot_7.png)
+![](../images/installkvm/Screenshot_7.png)
 
 **Bước 6**: Thực thi lệnh chạy KVM hiển thị GUI
 
 ```sh
-virt-manger
+virt-manager
 ```
 Giao diện GUI cho phép tạo máy ảo được hiện lên.
 
-![](images/installkvm/Screenshot_8.png)
+![](../images/installkvm/Screenshot_8.png)
 
 
 ## D. Link tham khảo
 
-https://github.com/uncelvel/create-images-openstack/blob/master/docs/Prepare.md
+https://github.com/uncelvel/create-../images-openstack/blob/master/docs/Prepare.md
 
 
 
