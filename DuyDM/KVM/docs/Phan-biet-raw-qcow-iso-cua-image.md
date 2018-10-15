@@ -70,6 +70,19 @@ Mặc định khi tạo máy ảo với virt-manager hoặc không khai báo khi
 <a name="exchangerawqcow"></a>
 ## 3. Chuyển đổi giữa raw và qcow2
 
+- Chuyển đổi từ định dạng qcow2 sang raw
+
+```sh
+qemu-img convert -f qcow2 -O raw /var/lib/libvirt/images/mduydcentos7.qcow2 /var/lib/libvirt/images/mduydcentos7.raw
+```
+
+![](../images/imageformart/Screenshot_38.png)
+
+- Chuyển đổi từ định dạng raw sang qcow
+
+
+
+
 
 
 

@@ -48,11 +48,11 @@
 
 - Tạo máy ảo bằng CLI (virt-install)
 
-	+ [ ] Từ image có sẵn
+	+ [x] Từ image có sẵn
 	
 	+ [x] Từ file ISO
 	
-	+ [ ] Từ internet
+	+ [x] Từ internet
 
 - Tạo máy ảo bằng GUI (virt-manager)
 
@@ -74,11 +74,11 @@
 
 - Thao tác đối với máy ảo (GUI, CLI)
 
-	+ [ ] Tạo - xóa - sửa
+	+ [x] Tạo - xóa - sửa (GUI)
 	
 	+ [ ] Clone
 	
-	+ [ ] Snapshot
+	+ [x] Snapshot (GUI)
 
 - [x] Tìm hiểu và thao tác một số lệnh Virsh cơ bản trên máy ảo
 
