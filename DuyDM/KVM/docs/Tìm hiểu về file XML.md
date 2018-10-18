@@ -84,7 +84,7 @@ vcpu có một số tham số:
 
 + `placement` : vị trí của cpu, giá trị bao gồm static và dynamic, trong đó static là giá trị mặc định.
 
-- Block OS: Chứa các thông tin về hệ điều hành của máy ảo
+-Block OS: Chứa các thông tin về hệ điều hành của máy ảo
 
 ```sh
 <os>
@@ -121,15 +121,15 @@ vcpu có một số tham số:
 
 Những hành động được phép thực thi:
 
-+ destroy : Chấm dứt và giải phóng tài nguyên
++destroy : Chấm dứt và giải phóng tài nguyên
 
-+ restart : Chấm dứt rồi khởi động lại giữ nguyên cấu hình
++restart : Chấm dứt rồi khởi động lại giữ nguyên cấu hình
 
-+ preserve : Chấm dứt nhưng dữ liệu vẫn được lưu lại
++preserve : Chấm dứt nhưng dữ liệu vẫn được lưu lại
 
-+ rename-restart : Khởi động lại với tên mới
++rename-restart : Khởi động lại với tên mới
 
-+ destroy và restart được hỗ trợ trong cả on_poweroff và on_reboot. preserve dùng trong on_reboot, rename-restart dùng trong on_poweroff
++destroy và restart được hỗ trợ trong cả on_poweroff và on_reboot. preserve dùng trong on_reboot, rename-restart dùng trong on_poweroff
 
 - on_crash hỗ trợ 2 hành động:
 
@@ -169,11 +169,11 @@ cpu là chứa mô tả các yêu cầu của guest CPU. Thuộc tính `match` c
 
 Một số giá trị có thể có cho thuộc tính `match` là:
 
-+ minimum: 
++minimum: 
 
-+ exact: 
++exact: 
 
-+ strict:
++strict:
 
 - clock: Thiết lập về thời gian
 
