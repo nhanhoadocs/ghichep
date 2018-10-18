@@ -56,7 +56,7 @@
 
 - [Tạo máy ảo bằng GUI (virt-manager)](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Create-VM-GUI.md)
 
-	+ [ ] Từ image có sẵn
+	+ [x] Từ image có sẵn
 	
 	+ [x] Từ file ISO
 	
