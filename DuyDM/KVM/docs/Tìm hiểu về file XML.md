@@ -8,6 +8,8 @@
 
 [3. Tạo máy ảo từ file XML](#vmxml)
 
+<a name="tongquan"></a>
+
 ## 1, Tổng quan về file XML
 
 - VM trong KVM có hai thành phần chính đó là VM's definition được lưu dưới dạng file XML mặc định ở thư mục /etc/libvirt/qemu và VM's storage lưu dưới dạng file image.
@@ -22,4 +24,29 @@
 
 ![](../images/filexml/xml1.png)
 
+
+<a name="thanhphan"></a>
+## 2, Các thành phần của file XML
+
+File xml nhìn cơ bản có thể thấy tổ chức theo khối lệnh, có nhiều khối lệnh cùng trong 1 khối lệnh tổng quan, cú pháp giống HTML có thẻ đóng, thẻ mở.
+
+![](../images/filexml/Screenshot_50.png)
+
+Thẻ quan trọng không thể thiếu trong file domain xml là `domain`
+
++ Tham số `type` cho biết hypervisor đang sử dụng của VM.
+
+- Các tham số bên trong có ý nghĩa như sau:
+
+`name` thông tin về tên VM
+
+```sh
+<name>centos7</name>
+```
+
+- `uuid` : Mã nhận dạng quốc tế duy nhất cho máy ảo. Format theo RFC 4122. Nếu thiếu trường uuid khi khởi tạo, mã này sẽ được tự động generate.
+
+```sh
+<uuid>0b343e4f-fac7-4944-85cc-eee71389a297</uuid>
+```
 
