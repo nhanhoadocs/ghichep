@@ -228,9 +228,9 @@ Một số giá trị có thể có cho thuộc tính `match` là:
 ...
 ```
 
-+pae
++pae: Chế độ địa chỉ vật lsy mở rộng cho phép 32 bit và lớn hơn 4GB RAM.
 
-+acpi
++acpi: Sử dụng trong việc quản lý máy ảo, ví dụ bắt buộc tắt máy ảo.
 
 +apic
 
@@ -262,15 +262,41 @@ Một số giá trị có thể có cho thuộc tính `match` là:
 
 +htm
 
+- Block device: Khai báo thông tin về thành phần của máy ảo như disk, network...
 
+`emulator`: Khai báo đường dẫn tới thư viện ảo hóa các device
 
+`device='disk'`: Khai báo thông tin về disk của máy ảo
 
+```sh
+<disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/> : định dạng disk
+      <source file='/var/lib/libvirt/images/centos6.9.img'/>: Đường dẫn chứa disk
+      <target dev='vda' bus='virtio'/>: Tên ổ, kiểu ảo hóa
+      <boot order='2'/>: Thứ tự ưu tiên boot của ổ.
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+</disk>
+```
 
+`device='cdrom'`: Thông tin về ổ đĩa CDROM
 
+```sh
+<disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <target dev='hda' bus='ide'/>
+      <readonly/>
+      <boot order='1'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+</disk>
+```
+- Interface:  Khai bao thông tin về Network
 
-
-
-
+<interface type='bridge'>
+      <mac address='52:54:00:0e:2b:07'/>
+      <source bridge='br0'/>: Phần tử khai báo để kết nối tới interface host KVM để re internet
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+</interface>
 
 ## 3, So sánh file xml máy ảo trên KVM và máy ảo trên Openstack
 
@@ -303,10 +329,6 @@ Nhìn vào hai ảnh trên ta thấy khác nhau cơ bản giữa máy ảo tạo
 ```
 
 `instance` chứa các thông tin về về cấu hình của instance như tên máy ảo, thời gian khởi tạo, thông tin chi tiết gói cấu hình flavor, máy ảo thuộc project nào.
-
-
-
-
 
 
 
