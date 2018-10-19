@@ -1,5 +1,14 @@
 # Hướng dẫn tạo image windows 10 #
 
+### Mục lục
+
+[1. Chuẩn bị](#chuanbi)
+
+[2. Các bước cài đặt](#stepsetup)
+
+[3. Thực hiện trên Host KVM](#stepkvm)
+
+<a name="chuanbi"></a>
 ## 1. Chuẩn bị ## 
 
 - Một server KVM để tạo image
@@ -10,6 +19,7 @@
 
 Lưu ý:  Máy ảo KVM nên có cấu hình cao, dung lượng Disk size lớn và RAM cao để việc đóng image được nhanh.
 
+<a name="stepsetup"></a>
 ## 2. Các bước cài đặt ##
 
 **Bước 1:** Thực hiện trên host KVM, tạo file có định dạng `qcow2` cho máy ảo và lưu tại thư mục /var/lib/libvirt/images/ (áp dụng minsize 15Gb)
@@ -273,7 +283,7 @@ Advance setting => Windows firewall with advance => Properties => Public profile
 
 - Active Key cho windows
 
-**Buoc 9**: Cài đặt cloud-init
+**Bước 9**: Cài đặt cloud-init
 
 https://cloudbase.it/cloudbase-init/
 
@@ -305,6 +315,58 @@ first_logon_behaviour=no
 
 
 ![](images/win10image75.png)
+
+![](images/Screenshot_28.png)
+
+Máy ảo sẽ tự tắt
+
+<a name="stepkvm"></a>
+## 3. Thực hiện trên Host KVM
+
+### 3.1. Tối ưu kích thước image
+
+```sh
+virt-sparsify --compress /var/lib/libvirt/images/duywindows10.img /var/lib/libvirt/images/duywindows10ok.img
+```
+![](images/Screenshot_29.png)
+
+### 3.2. Upload image lên controller Openstack và tạo image
+
+- Chuyển file .img đã đóng lên server controller và tạo image
+
+```sh
+glance image-create --name duywindows10ok \
+--disk-format qcow2 \
+--container-format bare \
+--file /root/duywindows10ok.img \
+--visibility=public \
+--property hw_qemu_guest_agent=yes \
+--progress
+```
+
+![](images/Screenshot_30.png)
+
+- Kiểm tra trên dashboard Openstack
+
+![](images/Screenshot_31.png)
+
+
+### 3.3. Chỉnh sửa metadata của image upload
+
+![](images/Screenshot_32.png)
+
+Thêm 2 metadata là 'hw_qemu_guest_agent' và 'os_type', với giá trị tương ứng là true và windows, sau đó save lại.
+
+![](images/Screenshot_33.png)
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,14 +1,27 @@
 # Create virtual machine (CLI)
 
-## A, Môi trường thực hiện LAB
+### Mục lục
+
+[1, Môi trường thực hiện LAB](#moitruong)
+
+[2, Mô hình](#mohinh)
+
+[3, Các bước thực hiện](#step)
+
+[4, GuestOS to HostOS](#os)
+
+<a name="moitruong"></a>
+## 1. Môi trường thực hiện LAB
 
 - KVM server
-	
-## B, Mô hình
+
+<a name="mohinh"></a>
+## 2, Mô hình
 
 ![](../images/createvmcli/Screenshot_24.png)
 
-## C, Các bước thực hiện
+<a name="step"></a>
+## 3. Các bước thực hiện
 
 - virt-install là công cụ command line dùng cho việc tạo máy ảo trên KVM sử dụng thư viện quản lí "libvirt".
 
@@ -18,6 +31,8 @@
 
 - Chỉ cần nhập đúng những dòng lệnh, virt-install sẽ tự động cài đặt máy ảo mà không cần sự giám sát. Nó cũng có chế độ tương tác với option --prompt nhưng virt-install sẽ chỉ yêu cầu những tùy chọn tối thiểu.
 
+### 3.1. Tạo từ file ISO
+ 
 Bước 1: Tạo một thư mục (pool) để lưu trữ máy ảo
 	```sh
 	mkdir -p /var/kvm/../images
@@ -75,13 +90,13 @@ Ví dụ: Với tham số cơ bản của một máy ảo
 virt-install \
 --name centos7 \
 --ram 2048 \
---disk path=/var/kvm/../images/duydmcentos7.img,size=30 \
+--disk path=/var/kvm/images/duydmcentos7.img,size=30 \
 --network bridge=br0 \
 --graphics vnc,listen=0.0.0.0 \
 --noautoconsole \
 --os-type=linux \
 --os-variant=rhel7 \   
---location=/var/lib/libvirt/../images/CentOS-7-x86_64-Minimal-1804.iso
+--location=/var/lib/libvirt/images/CentOS-7-x86_64-Minimal-1804.iso
 ```
 	
 ![](../images/createvmcli/Screenshot_25.png)
@@ -92,7 +107,60 @@ virt-install \
 
 Tiến hành cài đặt các bước như bình thường.
 
-## C, GuestOS to HostOS
+### 3.2. Tạo từ file image
+
+```sh
+virt-install \
+    --name VMduy \
+    --ram 1024 \
+	--vcpus 1 \
+    --os-variant=rhel7 \
+    --disk path=/var/lib/libvirt/images/CentOS7Duy-64bit-2018.img,format=qcow2,bus=virtio,cache=none \
+    --network bridge=br0 \
+    --hvm --virt-type kvm \
+    --vnc --noautoconsole \
+    --import
+```
+
+![](../images/createvmcli/Screenshot_28.png)
+
+### 3.3. Tạo từ internet
+
+```sh
+virt-install \
+  --name duydm1 \
+  --ram 2048 \
+  --disk path=/var/kvm/images/duydm1.img,size=30 \
+  --vcpus 2 \
+  --os-type linux \
+  --os-variant rhel7  \
+  --network bridge=br0 \
+  --graphics none \
+  --console pty,target_type=serial \
+  --location 'http://ftp.iij.ad.jp/pub/linux/centos/7/os/x86_64/' \
+  --extra-args 'console=ttyS0,115200n8 serial'
+```
+
+![](../images/createvmcli/Screenshot_29.png)
+
+![](../images/createvmcli/Screenshot_30.png)
+
+![](../images/createvmcli/Screenshot_31.png)
+
+![](../images/createvmcli/Screenshot_32.png)
+
+![](../images/createvmcli/Screenshot_33.png)
+
+![](../images/createvmcli/Screenshot_34.png)
+
+![](../images/createvmcli/Screenshot_35.png)
+
+![](../images/createvmcli/Screenshot_36.png)
+
+![](../images/createvmcli/Screenshot_37.png)
+
+<a name="os"></a>
+## 4, GuestOS to HostOS
 
 Hệ điều hành chủ (host operating system): là hệ điều hành chạy trên máy chủ.
 
