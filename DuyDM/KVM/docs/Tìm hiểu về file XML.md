@@ -332,7 +332,7 @@ Nhìn vào hai ảnh trên ta thấy khác nhau cơ bản giữa máy ảo tạo
 
 
 
-Link
+Link tham khảo:
 
 https://libvirt.org/formatdomain.html#elementsDevices
 
