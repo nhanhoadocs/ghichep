@@ -187,6 +187,124 @@ Một số giá trị có thể có cho thuộc tính `match` là:
 
 `offset` : giá trị utc, localtime, timezone, variable
 
+- feature: là hypervisors cho phép thao tác một số tính năng như bật/tắt
+
+```sh
+...
+<features>
+  <pae/>
+  <acpi/>
+  <apic/>
+  <hap/>
+  <privnet/>
+  <hyperv>
+    <relaxed state='on'/>
+    <vapic state='on'/>
+    <spinlocks state='on' retries='4096'/>
+    <vpindex state='on'/>
+    <runtime state='on'/>
+    <synic state='on'/>
+    <reset state='on'/>
+    <vendor_id state='on' value='KVM Hv'/>
+    <frequencies state='on'/>
+    <reenlightenment state='on'/>
+    <tlbflush state='on'/>
+  </hyperv>
+  <kvm>
+    <hidden state='on'/>
+  </kvm>
+  <pvspinlock state='on'/>
+  <gic version='2'/>
+  <ioapic driver='qemu'/>
+  <hpt resizing='required'>
+    <maxpagesize unit='MiB'>16</maxpagesize>
+  </hpt>
+  <vmcoreinfo state='on'/>
+  <smm state='on'>
+    <tseg unit='MiB'>48</tseg>
+  </smm>
+  <htm state='on'/>
+</features>
+...
+```
+
++pae
+
++acpi
+
++apic
+
++hap
+
++viridian
+
++privnet
+
++hyperv
+
++pvspinlock
+
++kvm
+
++pmu
+
++vmport
+
++gic
+
++smm
+
++ioapic
+
++hpt
+
++vmcoreinfo
+
++htm
+
+
+
+
+
+
+
+
+
+
+
+## 3, So sánh file xml máy ảo trên KVM và máy ảo trên Openstack
+
+![](../images/filexml/Screenshot_36.png)
+
+![](../images/filexml/Screenshot_37.png)
+
+
+Nhìn vào hai ảnh trên ta thấy khác nhau cơ bản giữa máy ảo tạo từ KVM và máy ảo tạo từ Openstack chính là block metadata, khai báo chỉ mục dữ liệu ta có thể tùy chỉnh các tham số.
+
+```sh
+<metadata>
+    <nova:instance xmlns:nova="http://openstack.org/xmlns/libvirt/nova/1.0">
+      <nova:package version="17.0.5-1.el7"/>
+      <nova:name>duydm_centos7</nova:name>
+      <nova:creationTime>2018-10-19 03:06:30</nova:creationTime>
+      <nova:flavor name="CLOUD_SSD_B_KM">
+        <nova:memory>2048</nova:memory>
+        <nova:disk>0</nova:disk>
+        <nova:swap>0</nova:swap>
+        <nova:ephemeral>0</nova:ephemeral>
+        <nova:vcpus>2</nova:vcpus>
+      </nova:flavor>
+      <nova:owner>
+        <nova:user uuid="9b99af80b2914729b33734be1785fe77">kythuat_duydm</nova:user>
+        <nova:project uuid="f327394d6e8047ca959e42359a22724a">kythuat_duydm</nova:project>
+      </nova:owner>
+    </nova:instance>
+</metadata>
+```
+
+`instance` chứa các thông tin về về cấu hình của instance như tên máy ảo, thời gian khởi tạo, thông tin chi tiết gói cấu hình flavor, máy ảo thuộc project nào.
+
+
 
 
 
