@@ -22,13 +22,13 @@
 	
 - Tìm hiểu file xml
 
-	+ [ ] Thành phần trong file domain XML
+	+ [x] Thành phần trong file domain XML
 	+ [ ] Tạo máy ảo bằng file XML
 	+ [ ] File network XML
 	
 		[ ] Tạo virtual network từ file xml
 		
-- [ ] Card mạng ảo trong VM (NAT, Public Bridge, Private Bridge)
+- [x] Card mạng ảo trong VM (NAT, Public Bridge, Private Bridge)
 
 - Giao tiếp máy ảo Linux Bridge và OpenVSwitch
 
