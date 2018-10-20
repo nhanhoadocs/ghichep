@@ -11,7 +11,7 @@
 [4, Link tham khảo](#thamkhao)
 
 <a name="chuanbi"></a>
-1, Chuẩn bị
+## 1, Chuẩn bị
 
 - Server: Cài đặt OS CentOS 7
 
@@ -27,11 +27,11 @@ Server ra được internet, disable firewall, selinux, hostaname...
 
 
 <a name="mohinh"></a>
-2, Mô hình
+## 2, Mô hình
 
 
 <a name="setup"></a>
-3, Các bước cài đặt
+## 3, Các bước cài đặt
 
 Bước 1: Cài đặt các gói cần thiết
 
