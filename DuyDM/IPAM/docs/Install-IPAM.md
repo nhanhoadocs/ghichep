@@ -48,7 +48,7 @@ rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 yum -y update
 ```
 
-![](../images/imageformart/Screenshot_51.png)
+![](../images/Screenshot_51.png)
 
 Bước 3: Cài đặt PHP modules
 
@@ -56,12 +56,12 @@ Bước 3: Cài đặt PHP modules
 yum -y install php71w php71w-cli php71w-session php71w-sockets php71w-gmp php71w-mcrypt php71w-simplexml php71w-json php71w-gettext php71w-filter php71w-pcntl php71w-mbstring php71w-gd php71w-common php71w-ldap php71w-pdo php71w-pear php71w-snmp php71w-xml php71w-mysql git
 ```
 
-![](../images/imageformart/Screenshot_52.png)
+![](../images/Screenshot_52.png)
 
 
 - Kiểm tra version PHP
 
-![](../images/imageformart/Screenshot_53.png)
+![](../images/Screenshot_53.png)
 
 Bước 4: Chỉnh sửa time zone trong file php.ini
 
@@ -75,7 +75,7 @@ Asia/Ho_Chi_Minh
 
 ```
 
-![](../images/imageformart/Screenshot_54.png)
+![](../images/Screenshot_54.png)
 
 Bước 5: Khởi động service httpd, mariadb
 
@@ -86,13 +86,13 @@ systemctl start mariadb
 systemctl enable mariadb
 ```
 
-![](../images/imageformart/Screenshot_55.png)
+![](../images/Screenshot_55.png)
 
 Bước 6: Cài đặt thông tin về SQL
 
 - Thiết lập thông tin cho mysql
 
-![](../images/imageformart/Screenshot_56.png)
+![](../images/Screenshot_56.png)
 
 ```sh
 mysql -u root -p
@@ -101,7 +101,7 @@ CREATE USER 'phpipam_user'@'localhost' IDENTIFIED BY 'datpasstuyy';
 GRANT ALL PRIVILEGES ON phpipam_data.* TO 'phpipam_user'@'localhost';
 FLUSH PRIVILEGES;
 ```
-![](../images/imageformart/Screenshot_58.png)
+![](../images/Screenshot_58.png)
 
 Bước 7: Tải các package của IPAM
 
@@ -116,14 +116,14 @@ cd phpipam
 git checkout 1.3
 ```
 
-![](../images/imageformart/Screenshot_59.png)
+![](../images/Screenshot_59.png)
 
 Bước 7: Set quyền cho IPAM
 
 ```sh
 chown -R apache:apache /var/www/phpipam
 ```
-![](../images/imageformart/Screenshot_60.png)
+![](../images/Screenshot_60.png)
 
 Bước 8: Chỉnh sửa file config ipam
 
@@ -132,9 +132,9 @@ cd /var/www/phpipam
 cp config.dist.php config.php
 ```
 
-![](../images/imageformart/Screenshot_61.png)
+![](../images/Screenshot_61.png)
 
-![](../images/imageformart/Screenshot_62.png)
+![](../images/Screenshot_62.png)
 
 Cài đặt với đúng thông tin database đã thiết lập.
 
@@ -175,21 +175,21 @@ http://ip_server_ipam
 
 - Lựa chọn 1 để hệ thống tự detect sqp ipam
 
-![](../images/imageformart/Screenshot_63.png)
+![](../images/Screenshot_63.png)
 
 - Thiết lập thông số database: Click "Show advance option" bỏ hết tích
 
-![](../images/imageformart/Screenshot_64.png)
+![](../images/Screenshot_64.png)
 
 - Thiết lập config admin cho ipam
 
-![](../images/imageformart/Screenshot_66.png)
+![](../images/Screenshot_66.png)
 
 - Login thành công
 
-![](../images/imageformart/Screenshot_67.png)
+![](../images/Screenshot_67.png)
 
-![](../images/imageformart/Screenshot_68.png)
+![](../images/Screenshot_68.png)
 
 <a name="thamkhao"></a>
 ## 4, Link tham khảo
