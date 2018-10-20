@@ -187,8 +187,148 @@ Một số giá trị có thể có cho thuộc tính `match` là:
 
 `offset` : giá trị utc, localtime, timezone, variable
 
+- feature: là hypervisors cho phép thao tác một số tính năng như bật/tắt
+
+```sh
+...
+<features>
+  <pae/>
+  <acpi/>
+  <apic/>
+  <hap/>
+  <privnet/>
+  <hyperv>
+    <relaxed state='on'/>
+    <vapic state='on'/>
+    <spinlocks state='on' retries='4096'/>
+    <vpindex state='on'/>
+    <runtime state='on'/>
+    <synic state='on'/>
+    <reset state='on'/>
+    <vendor_id state='on' value='KVM Hv'/>
+    <frequencies state='on'/>
+    <reenlightenment state='on'/>
+    <tlbflush state='on'/>
+  </hyperv>
+  <kvm>
+    <hidden state='on'/>
+  </kvm>
+  <pvspinlock state='on'/>
+  <gic version='2'/>
+  <ioapic driver='qemu'/>
+  <hpt resizing='required'>
+    <maxpagesize unit='MiB'>16</maxpagesize>
+  </hpt>
+  <vmcoreinfo state='on'/>
+  <smm state='on'>
+    <tseg unit='MiB'>48</tseg>
+  </smm>
+  <htm state='on'/>
+</features>
+...
+```
+
++pae: Chế độ địa chỉ vật lsy mở rộng cho phép 32 bit và lớn hơn 4GB RAM.
+
++acpi: Sử dụng trong việc quản lý máy ảo, ví dụ bắt buộc tắt máy ảo.
+
++apic
+
++hap
+
++viridian
+
++privnet
+
++hyperv
+
++pvspinlock
+
++kvm
+
++pmu
+
++vmport
+
++gic
+
++smm
+
++ioapic
+
++hpt
+
++vmcoreinfo
+
++htm
+
+- Block device: Khai báo thông tin về thành phần của máy ảo như disk, network...
+
+`emulator`: Khai báo đường dẫn tới thư viện ảo hóa các device
+
+`device='disk'`: Khai báo thông tin về disk của máy ảo
+
+```sh
+<disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/> : định dạng disk
+      <source file='/var/lib/libvirt/images/centos6.9.img'/>: Đường dẫn chứa disk
+      <target dev='vda' bus='virtio'/>: Tên ổ, kiểu ảo hóa
+      <boot order='2'/>: Thứ tự ưu tiên boot của ổ.
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+</disk>
+```
+
+`device='cdrom'`: Thông tin về ổ đĩa CDROM
+
+```sh
+<disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <target dev='hda' bus='ide'/>
+      <readonly/>
+      <boot order='1'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+</disk>
+```
+- Interface:  Khai bao thông tin về Network
+
+<interface type='bridge'>
+      <mac address='52:54:00:0e:2b:07'/>
+      <source bridge='br0'/>: Phần tử khai báo để kết nối tới interface host KVM để re internet
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+</interface>
+
+## 3, So sánh file xml máy ảo trên KVM và máy ảo trên Openstack
+
+![](../images/filexml/Screenshot_36.png)
+
+![](../images/filexml/Screenshot_37.png)
 
 
+Nhìn vào hai ảnh trên ta thấy khác nhau cơ bản giữa máy ảo tạo từ KVM và máy ảo tạo từ Openstack chính là block metadata, khai báo chỉ mục dữ liệu ta có thể tùy chỉnh các tham số.
+
+```sh
+<metadata>
+    <nova:instance xmlns:nova="http://openstack.org/xmlns/libvirt/nova/1.0">
+      <nova:package version="17.0.5-1.el7"/>
+      <nova:name>duydm_centos7</nova:name>
+      <nova:creationTime>2018-10-19 03:06:30</nova:creationTime>
+      <nova:flavor name="CLOUD_SSD_B_KM">
+        <nova:memory>2048</nova:memory>
+        <nova:disk>0</nova:disk>
+        <nova:swap>0</nova:swap>
+        <nova:ephemeral>0</nova:ephemeral>
+        <nova:vcpus>2</nova:vcpus>
+      </nova:flavor>
+      <nova:owner>
+        <nova:user uuid="9b99af80b2914729b33734be1785fe77">kythuat_duydm</nova:user>
+        <nova:project uuid="f327394d6e8047ca959e42359a22724a">kythuat_duydm</nova:project>
+      </nova:owner>
+    </nova:instance>
+</metadata>
+```
+
+`instance` chứa các thông tin về về cấu hình của instance như tên máy ảo, thời gian khởi tạo, thông tin chi tiết gói cấu hình flavor, máy ảo thuộc project nào.
 
 
 
