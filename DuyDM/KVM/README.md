@@ -62,7 +62,7 @@
 	
 	+ [ ] Từ internet
 	
-- [ ] Cài đặt giao diện web KVM (webvirt)
+- [x] Cài đặt giao diện web KVM (webvirt)
 
 - Tạo máy ảo trên giao diện web KVM
 
