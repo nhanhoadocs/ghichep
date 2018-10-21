@@ -68,7 +68,7 @@
 
 	+ [ ] Từ image có sẵn
 	
-	+ [ ] Từ file ISO
+	+ [x] Từ file ISO
 	
 	+ [ ] Từ internet
 
