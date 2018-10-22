@@ -271,7 +271,7 @@ http://ip_server_webvirt
 Ở đây có thể thao tác add host KVM vào để quản lý qua giao diện web.
 
 <a name="addkvm"></a>
-4, Cài đặt add node KVM vào webvirt
+## 4, Cài đặt add node KVM vào webvirt
 
 Bước 1: Kiểm chế độ ảo hóa của KVM 
 
