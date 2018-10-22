@@ -328,6 +328,7 @@ Bước 3: Add host ở giao diện webvirt
 ![](../images/installwebvirt/Screenshot_58.png)
 
 
+
 <a name="thamkhao"></a>
 ## 5, Link tham khảo
 
