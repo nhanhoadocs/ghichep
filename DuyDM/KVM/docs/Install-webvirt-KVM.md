@@ -8,7 +8,9 @@
 
 [3, Các bước cài đặt](#setup)
 
-[4, Link tham khảo](#thamkhao)
+[4, Link tham khảo](#addkvm)
+
+[5, Link tham khảo](#thamkhao)
 
 <a name="chuanbi"></a>
 ## 1, Chuẩn bị
@@ -268,10 +270,13 @@ http://ip_server_webvirt
 
 Ở đây có thể thao tác add host KVM vào để quản lý qua giao diện web.
 
+<a name="addkvm"></a>
+4, Cài đặt add node KVM vào webvirt
+
 
 
 <a name="thamkhao"></a>
-## 4, Link tham khảo
+## 5, Link tham khảo
 
 https://github.com/retspen/webvirtmgr/wiki/Install-WebVirtMgr
 
