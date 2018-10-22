@@ -273,6 +273,59 @@ http://ip_server_webvirt
 <a name="addkvm"></a>
 4, Cài đặt add node KVM vào webvirt
 
+Bước 1: Kiểm chế độ ảo hóa của KVM 
+
+```sh
+cat /proc/cpuinfo| egrep -c "vmx|svm"
+```
+Giá trị trả về khác 0 là ok
+
+![](../images/installwebvirt/Screenshot_52.png)
+
+Bước 2: Chỉnh sửa cấu hình libvirt
+
+```sh
+vi /etc/libvirt/libvirtd.conf
+```
+Sửa các thông tin giống như sau
+
+```sh
+listen_tls = 0
+listen_tcp = 1
+listen_addr = "0.0.0.0"
+tcp_port = "16509"
+auth_tcp = "none"
+```
+
+![](../images/installwebvirt/Screenshot_53.png)
+
+```sh
+vi /etc/sysconfig/libvirtd
+
+edit như sau
+
+LIBVIRTD_ARGS="--listen"
+```
+
+![](../images/installwebvirt/Screenshot_54.png)
+
+- Kiểm tra lại cài đặt
+
+```sh
+systemctl restart libvirtd
+ps ax | grep libvirtd
+ss -antup | grep libvirtd
+virsh -c qemu+tcp://127.0.0.1/system
+```
+
+![](../images/installwebvirt/Screenshot_55.png)
+
+
+Bước 3: Add host ở giao diện webvirt
+
+![](../images/installwebvirt/Screenshot_56.png)
+![](../images/installwebvirt/Screenshot_57.png)
+![](../images/installwebvirt/Screenshot_58.png)
 
 
 <a name="thamkhao"></a>
