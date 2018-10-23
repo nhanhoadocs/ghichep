@@ -25,6 +25,8 @@ Bước 1: Tạo key
 ssh-keygen -t rsa
 ```
 
+Trong trường hợp nhập passphrase, thì dù người khác có copy được cặp key của bạn cũng không thể dùng được vì phải biết mật khẩu nữa. Có thể lựa chọn passphrase là empty.
+
 ![](../images/Screenshot_105.png)
 
 - Cặp key được tạo ra
