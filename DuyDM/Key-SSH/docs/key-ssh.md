@@ -27,6 +27,38 @@ ssh-keygen -t rsa
 
 ![](../images/Screenshot_105.png)
 
+- Cặp key được tạo ra
+
+![](../images/Screenshot_106.png)
+
+Bước 2: Copy public key sang server muốn remote
+
+```sh
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.10.10.104
+
+```
+
+![](../images/Screenshot_107.png)
+
+Bước 3: Kiểm tra key được copy sang server remote
+
+![](../images/Screenshot_108.png)
+
+
+![](../images/Screenshot_109.png)
+
+Public key được copy sang server remote ok .
+
+Bước 3: SSH sang server không cân nhập password
+
+
+![](../images/Screenshot_110.png)
+
+Lúc này ta ssh không cần nhập pass.
+
+
+
+
 
 
 
