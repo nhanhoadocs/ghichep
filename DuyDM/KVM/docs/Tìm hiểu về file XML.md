@@ -331,8 +331,7 @@ Nhìn vào hai ảnh trên ta thấy khác nhau cơ bản giữa máy ảo tạo
 `instance` chứa các thông tin về về cấu hình của instance như tên máy ảo, thời gian khởi tạo, thông tin chi tiết gói cấu hình flavor, máy ảo thuộc project nào.
 
 
-
-Link
+Link tham khảo:
 
 https://libvirt.org/formatdomain.html#elementsDevices
 

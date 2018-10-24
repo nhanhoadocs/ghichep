@@ -31,3 +31,5 @@ Chế độ này sẽ cho phép các máy ảo có cùng dải mạng vật lí 
 3. Private Bridge
 
 Chế độ này sẽ sử dụng một bridge riêng biệt để các VM giao tiếp với nhau mà không ảnh hưởng tới địa chỉ của KVM host.
+
+

@@ -22,13 +22,13 @@
 	
 - Tìm hiểu file xml
 
-	+ [ ] Thành phần trong file domain XML
+	+ [x] [Thành phần trong file domain XML](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/T%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20file%20XML.md)
 	+ [ ] Tạo máy ảo bằng file XML
 	+ [ ] File network XML
 	
 		[ ] Tạo virtual network từ file xml
 		
-- [ ] Card mạng ảo trong VM (NAT, Public Bridge, Private Bridge)
+- [x] Card mạng ảo trong VM (NAT, Public Bridge, Private Bridge)
 
 - Giao tiếp máy ảo Linux Bridge và OpenVSwitch
 
@@ -62,13 +62,13 @@
 	
 	+ [ ] Từ internet
 	
-- [ ] Cài đặt giao diện web KVM (webvirt)
+- [x] [Cài đặt giao diện web KVM - webvirt](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Install-webvirt-KVM.md)
 
 - Tạo máy ảo trên giao diện web KVM
 
 	+ [ ] Từ image có sẵn
 	
-	+ [ ] Từ file ISO
+	+ [x] Từ file ISO
 	
 	+ [ ] Từ internet
 
