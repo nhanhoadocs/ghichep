@@ -87,8 +87,11 @@ Mặc định khi sử dụng lệnh này để copy key thì nội dung public 
 
 Bước 3: Kiểm tra key được copy sang server remote
 
+Trên SRV1
+
 ![](../images/Screenshot_108.png)
 
+Trên SRV2
 
 ![](../images/Screenshot_109.png)
 
