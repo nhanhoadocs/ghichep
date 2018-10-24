@@ -2,7 +2,7 @@
 #Swap Ubuntu 16.04
 
 # Tao swapfile
-echo "Nhap swap can tao VD: 2"
+echo "Nhap dung luong swap can tao GB (VD: 4)"
 read swap
 fallocate -l "$swap"G /swapfile
 chmod 600 /swapfile
@@ -17,4 +17,4 @@ echo "vm.swappiness=10" >> /etc/sysctl.conf
 echo "vm.vfs_cache_pressure = 50" >> /etc/sysctl.conf
 free -m
 
-
+echo "DONE"
