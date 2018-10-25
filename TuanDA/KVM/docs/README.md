@@ -35,6 +35,13 @@
 ## 6. Network trong KVM
 
 ## 7. Tạo VM
+#### [1. Tạo máy ảo bằng virt-install]()
+
+#### [2. Tạo máy ảo bằng virt-manager]()
+
+#### [3. Tạo máy ảo bằng file XML]()
+
+#### [4. Tạo máy ảo bằng Webvirt](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/7.%20Tao%20VM%20trong%20KVM.md#webvirt)
 
 ## 8. Template + snapshot
 #### [1. Template ](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/8.%20Snapshot%20-%20Template.md#template)
