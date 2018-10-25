@@ -41,6 +41,6 @@
 
 #### [2. Hướng dẫn tạo Snapshot](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/8.%20Snapshot%20-%20Template.md#snapshot)
 
-## 9. Mỉgrate
+## 9. Migrate
 
 ## 10. Cheat sheet
