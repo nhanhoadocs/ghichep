@@ -364,7 +364,7 @@ Bước 1: Thay đổi tham số cần thiết
 + Card mạng: Sử dụng Linux Bridge br0
 ```
 
-![](../images/filexml/Screenshot_104.png)
+![](../images/filexml/Screenshot_108.png)
 
 Bước 2: Tạo disk
 
