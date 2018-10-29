@@ -520,7 +520,7 @@ virsh create manhduy.xml
 
 
 
-
+![](../images/filexml/Screenshot_107.png)
 
 
 
