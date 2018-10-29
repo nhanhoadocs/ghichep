@@ -23,7 +23,7 @@
 - Tìm hiểu file xml
 
 	+ [x] [Thành phần trong file domain XML](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/T%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20file%20XML.md)
-	+ [ ] Tạo máy ảo bằng file XML
+	+ [x] [Tạo máy ảo bằng file XML](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/T%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20file%20XML.md#vmxml)
 	+ [ ] File network XML
 	
 		[ ] Tạo virtual network từ file xml
