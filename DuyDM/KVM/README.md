@@ -69,8 +69,6 @@
 	+ [x] [Từ image có sẵn](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Install-webvirt-KVM.md#vmxml)
 	
 	+ [x] Từ file ISO
-	
-	+ [ ] Từ internet
 
 - Thao tác đối với máy ảo (GUI, CLI)
 
