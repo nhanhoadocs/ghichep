@@ -333,7 +333,7 @@ Bước 3: Add host ở giao diện webvirt
 
 
 <a name="vmxml"></a>
-5, Tạo máy ảo bằng file XML trên webvirt
+## 5, Tạo máy ảo bằng file XML trên webvirt
 
 Bước 1: Tạo một ổ đĩa cho máy ảo khai báo dung lượng và định dạng là raw
 
