@@ -3,7 +3,7 @@
 #Install agent Centos7
 
 rpm -Uvh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum install zabbix-agent
+yum install zabbix-agent -y
 cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bk
 echo "Nhap IP server zabbix"
 read ipserver
