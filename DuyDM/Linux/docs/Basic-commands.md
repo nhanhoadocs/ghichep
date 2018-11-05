@@ -96,7 +96,7 @@ Các chương trình thực thi nên ở các thư mục:
 /opt
 ```
 
-![](../images/basic-commands/Screenshot_233.jpg)
+![](../images/basic-commands/Screenshot_233.png)
 
 +Xác định chương trình thực thi trong file hệ thống sử dụng lệnh
 
@@ -104,7 +104,7 @@ Các chương trình thực thi nên ở các thư mục:
 which <ten_chuong_trinh>
 ```
 
-![](../images/basic-commands/Screenshot_234.jpg)
+![](../images/basic-commands/Screenshot_234.png)
 
 +Tìm kiếm chính xác hơn trong toàn bộ hệ thống file
 
@@ -112,7 +112,7 @@ which <ten_chuong_trinh>
 whereis <ten_chuong_trinh>
 ```
 
-![](../images/basic-commands/Screenshot_235.jpg)
+![](../images/basic-commands/Screenshot_235.png)
 
 - Thao tác chuyển đổi cấp bậc trong cây thư mục.
 
@@ -126,7 +126,7 @@ cd /	Chuyển đến thư mục root(/)
 cd /home/	Chuyển đến thư mục /home/
 ```
 
-![](../images/basic-commands/Screenshot_236.jpg)
+![](../images/basic-commands/Screenshot_236.png)
 
 - Thao tác hiển thị cây thư mục hiện hành
 
@@ -136,7 +136,7 @@ ls -a	Liệt kê thêm các file ẩn
 ls -la	Hiển thị thêm các thông tin chi tiết của file và thư mục
 ```
 
-![](../images/basic-commands/Screenshot_237.jpg)
+![](../images/basic-commands/Screenshot_237.png)
 
 ```
 yum install tree -y
@@ -144,7 +144,7 @@ tree	Hiển thị cây thư mục của toàn bộ hệ thống filesystem
 tree -d	Chỉ hiện thị cây các thư mục mà bỏ qua danh sách các file
 ```
 
-![](../images/basic-commands/Screenshot_238.jpg)
+![](../images/basic-commands/Screenshot_238.png)
 
 - Hard link và Symbolic link
 
@@ -181,11 +181,11 @@ Command `ln`  sử dụng để tạo hard link hoặc soft link, cũng như sym
 +Hard link
 Có duy1.txt tạo hard link là file duy2.txt
 
-![](../images/basic-commands/Screenshot_239.jpg)
+![](../images/basic-commands/Screenshot_239.png)
 
 Thay đổi nội dung file duy1.txt thì file duy2.txt cũng thay đổi nội dung
 
-![](../images/basic-commands/Screenshot_240.jpg)
+![](../images/basic-commands/Screenshot_240.png)
 
 
 Xóa file cũ duy1.txt đi thì file duy2.txt không bị tác động.
@@ -197,17 +197,17 @@ ln -s filegoc filelink
 ```
 Có 1 file duy1.txt thực hiện soft link
 
-![](../images/basic-commands/Screenshot_243.jpg)
+![](../images/basic-commands/Screenshot_243.png)
 
 2 file tham chiếu tới 2 vùng nhớ khác nhau và quyền của file tạo ra luôn là `lrwxrwxrwx `
 
 Thay đổi nội dung một file thì file kia cũng thay đổi
 
-![](../images/basic-commands/Screenshot_244.jpg)
+![](../images/basic-commands/Screenshot_244.png)
 
 Xóa file cũ thì file mới không còn truy cập được.
 
-![](../images/basic-commands/Screenshot_245.jpg)
+![](../images/basic-commands/Screenshot_245.png)
 
 
 
