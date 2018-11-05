@@ -74,5 +74,137 @@ Thư mục tạm này chứa các thiết bị như CdRom /media/cdrom. floppy /
 Chứa dữ liệu liên quan đến các dịch vụ máy chủ như /srv/svs, chứa các dữ liệu liên quan đến CVS.
 
 
+## 2. Một số command basic
+
+- Chường trình thực thi các gói cài đặt (tương tự nơi cài đặt các gói phần mềm trong windows)
+
+Các chương trình thực thi nên ở các thư mục:
+
+```
+/bin
+/usr/bin
+/sbin
+/usr/sbin
+/opt
+```
+
+![](../images/basic-commands/Screenshot_233.jpg)
+
++Xác định chương trình thực thi trong file hệ thống sử dụng lệnh
+
+```
+which <ten_chuong_trinh>
+```
+
+![](../images/basic-commands/Screenshot_234.jpg)
+
++Tìm kiếm chính xác hơn trong toàn bộ hệ thống file
+
+```
+whereis <ten_chuong_trinh>
+```
+
+![](../images/basic-commands/Screenshot_235.jpg)
+
+- Thao tác chuyển đổi cấp bậc trong cây thư mục.
+
+Ở vị trí dấu nhắc hiện tại ta có thể chuyển tới một vị trí hay thư mục khác, lùi về thư mục cha...
+
+```
+cd		Chuyển về thư mục home
+cd ..	Chuyển về thư mục cha
+cd -	Chuyển về thư mục vừa rời đi trước đó
+cd /	Chuyển đến thư mục root(/)
+cd /home/	Chuyển đến thư mục /home/
+```
+
+![](../images/basic-commands/Screenshot_236.jpg)
+
+- Thao tác hiển thị cây thư mục hiện hành
+
+```
+ls	Liệt kê nội dung của thư mục đang hiện tại làm việc
+ls -a	Liệt kê thêm các file ẩn
+ls -la	Hiển thị thêm các thông tin chi tiết của file và thư mục
+```
+
+![](../images/basic-commands/Screenshot_237.jpg)
+
+```
+yum install tree -y
+tree	Hiển thị cây thư mục của toàn bộ hệ thống filesystem
+tree -d	Chỉ hiện thị cây các thư mục mà bỏ qua danh sách các file
+```
+
+![](../images/basic-commands/Screenshot_238.jpg)
+
+- Hard link và Symbolic link
+
+Khác nhau giữa hard link và soft link
+
+*)Hard link: Khi tạo ra một file mới hard link đến file cũ thì hai file này sẽ cùng tham chiếu tới 1 vùng nhớ chứa địa chỉ của data, nên khi thay đổi nội dung từ 1 file thì file kia cũng thay đổi theo và khi xóa file cũ đi thì file mới đó không ảnh hưởng.
+
+![](../images/basic-commands/hard.png)
+
+
++Hard link là một liên kết (link) trỏ đến vị trí lưu một file trên ổ cứng:
+
+Nếu đổi tên, xóa hoặc di chuyển file gốc sang thư mục khác, hard link vẫn mở được file đó vì nó vẫn trỏ đến vị trí lưu file cố định trên ổ cứng.
+
+Tên hard link có thể khác tên file gốc, hard link có thể nằm trong một thư mục khác với thư mục của file gốc. Vì vậy một file có thể có nhiều tên file nằm ở các thư mục khác nhau. Khi truy cập vào hard link (ví dụ nhấn chuột) sẽ truy cập đến file (mở hoặc chạy).
+
+Nếu đồng thời mở một file từ các hard link và tên file gốc, khi sửa ở một bản, các bản khác cũng sẽ thay đổi theo sau khi refresh hoặc reload vì thực chất là sửa trên cùng một file.
+
+Nếu xóa hard link hoặc xóa tên file gốc nhưng còn một hard link, file vẫn không bị xóa. File chỉ bị xóa khi không còn cái gì trỏ đến vị trí lưu nó. Như vậy muốn xóa một file, phải xóa tên file và tất cả các hard link của nó.
+
+Hard link không tạo được với thư mục và không tạo được với file nằm trên một partition khác.
+
+Hard link được tạo bởi lệnh ln: ln <path/tên file> <tên hard link>.
+
+
+*)Soft link: Khi tạo 2 file soft link tới nhau thì file mới sẽ trỏ tới vùng địa chỉ của file mới, nên khi xóa file cũ đi, file mới sẽ không thể truy cập đến dữ liệu được nữa. Đơn giản soft link là một liên kết tạo một đường dẫn khác đến thư mục hoặc file gốc.
+
+Softlink tạo được với thư mục, file nằm trên partition khác.
+
+![](../images/basic-commands/soft.png)
+
+Command `ln`  sử dụng để tạo hard link hoặc soft link, cũng như symnolic link hoặc symlink.
+
++Hard link
+Có duy1.txt tạo hard link là file duy2.txt
+
+![](../images/basic-commands/Screenshot_239.jpg)
+
+Thay đổi nội dung file duy1.txt thì file duy2.txt cũng thay đổi nội dung
+
+![](../images/basic-commands/Screenshot_240.jpg)
+
+
+Xóa file cũ duy1.txt đi thì file duy2.txt không bị tác động.
+
++Soft link
+
+```
+ln -s filegoc filelink
+```
+Có 1 file duy1.txt thực hiện soft link
+
+![](../images/basic-commands/Screenshot_243.jpg)
+
+2 file tham chiếu tới 2 vùng nhớ khác nhau và quyền của file tạo ra luôn là `lrwxrwxrwx `
+
+Thay đổi nội dung một file thì file kia cũng thay đổi
+
+![](../images/basic-commands/Screenshot_244.jpg)
+
+Xóa file cũ thì file mới không còn truy cập được.
+
+![](../images/basic-commands/Screenshot_245.jpg)
+
+
+
+
+
+
 
 
