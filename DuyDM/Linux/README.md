@@ -1,5 +1,5 @@
 
-1. Basic_commands
+[1. Basic_commands](https://github.com/domanhduy/ghichep/blob/master/DuyDM/Linux/docs/Basic-commands.md)
 
 10. Processes
 
