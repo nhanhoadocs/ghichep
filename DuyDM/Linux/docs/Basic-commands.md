@@ -1,5 +1,13 @@
 # Một số lệnh cơ bản nhất trong Linux
 
+### Mục lục
+
+[1. Cấu trúc thư mục của Linux](#cautruc)
+
+[2. Một số command basic](#commandbasic)
+
+
+<a name="cautruc"></a>
 ## 1. Cấu trúc thư mục của Linux
 
 Nhìn chung cấu trúc chung của một hệ điều hành nhân Linux thường có cấu trúc thư mục như sau
@@ -73,7 +81,7 @@ Thư mục tạm này chứa các thiết bị như CdRom /media/cdrom. floppy /
 
 Chứa dữ liệu liên quan đến các dịch vụ máy chủ như /srv/svs, chứa các dữ liệu liên quan đến CVS.
 
-
+<a name="commandbasic"></a>
 ## 2. Một số command basic
 
 - Chường trình thực thi các gói cài đặt (tương tự nơi cài đặt các gói phần mềm trong windows)
