@@ -6,7 +6,9 @@
 
 [2. Các thành phần của file XML](#thanhphan)
 
-[3. Tạo máy ảo từ file XML](#vmxml)
+[3, So sánh file xml máy ảo trên KVM và máy ảo trên Openstack](#sosanh)
+
+[4. Tạo máy ảo từ file XML](#vmxml)
 
 <a name="tongquan"></a>
 
@@ -298,6 +300,7 @@ Một số giá trị có thể có cho thuộc tính `match` là:
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
 </interface>
 
+<a name="sosanh"></a>
 ## 3, So sánh file xml máy ảo trên KVM và máy ảo trên Openstack
 
 ![](../images/filexml/Screenshot_36.png)
@@ -329,6 +332,197 @@ Nhìn vào hai ảnh trên ta thấy khác nhau cơ bản giữa máy ảo tạo
 ```
 
 `instance` chứa các thông tin về về cấu hình của instance như tên máy ảo, thời gian khởi tạo, thông tin chi tiết gói cấu hình flavor, máy ảo thuộc project nào.
+
+<a name="vmxml"></a>
+4. Tạo máy ảo từ file XML
+
+- Ta phải có một file XML khai báo đầy đủ các thông số của máy ảo. Có thể thực hiện theo 2 cách
+
+	+ Cách 1: Khai báo file xml đúng cấu trúc
+	
+	+ Cách 2: dump 1 máy ảo hiện có hoặc copy file xml máy ảo hiện có ra sử dụng cấu trúc máy ảo đó và thay thế tham số cần thiết.
+	
+- Ở đây ta sử dụng cách copy file xml của một máy ảo hiện có và chỉnh sửa tham số cần thiết
+
+![](../images/filexml/Screenshot_100.png)
+
+![](../images/filexml/Screenshot_101.png)
+
+Bước 1: Thay đổi tham số cần thiết
+
+- Những tham số cần thay đổi
+
++ Thông tin về cấu hình
+
+```sh
++ Thông tin RAM, vCPU, disk
+
++ Đường dẫn tới disk: /var/lib/libvirt/images/manhduy.img
+
++ Máy ảo được boot từ CDROM (/var/lib/libvirt/images/CentOS-7-x86_64-Minimal-1804.iso)
+
++ Card mạng: Sử dụng Linux Bridge br0
+```
+
+![](../images/filexml/Screenshot_108.png)
+
+Bước 2: Tạo disk
+
++ Tạo một ổ đĩa cho máy ảo khai báo dung lượng và định dạng là raw
+
+```sh
+qemu-img create -f raw /var/lib/libvirt/images/manhduy.img 15G
+```
+![](../images/filexml/Screenshot_102.png)
+
+Bước 3: Tạo uuid
+
++ Tạo mã uuid, cài đặt gói uuid và generate đoạn mã uuid
+
+```sh
+yum install uuid -y
+
+uuid
+```
+![](../images/filexml/Screenshot_103.png)
+
+Bước 4: Khởi tạo máy ảo
+
+Copy file xml đã chỉnh sửa vào node KVM
+
+![](../images/filexml/Screenshot_105.png)
+
+```sh
+<domain type='kvm'>
+  <name>manhduy</name>
+  <uuid>d9cd9b52-db2c-11e8-a3ba-000c29863449</uuid>
+  <memory unit='KiB'>2097152</memory>
+  <currentMemory unit='KiB'>1048576</currentMemory>
+  <vcpu placement='static'>5</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-rhel7.0.0'>hvm</type>
+    <boot dev='cdrom'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+  </features>
+  <cpu mode='custom' match='exact' check='partial'>
+    <model fallback='allow'>SandyBridge</model>
+  </cpu>
+  <clock offset='utc'>
+    <timer name='rtc' tickpolicy='catchup'/>
+    <timer name='pit' tickpolicy='delay'/>
+    <timer name='hpet' present='no'/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+  <devices>
+    <emulator>/usr/libexec/qemu-kvm</emulator>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='raw'/>
+      <source file='/var/lib/libvirt/images/manhduy.img'/>
+      <target dev='vda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+	  <source file="/var/lib/libvirt/images/CentOS-7-x86_64-Minimal-1804.iso"/>
+      <target dev='hda' bus='ide'/>
+      <readonly/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+    </disk>
+    <controller type='usb' index='0' model='ich9-ehci1'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x7'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci1'>
+      <master startport='0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci2'>
+      <master startport='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x1'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci3'>
+      <master startport='4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x2'/>
+    </controller>
+    <controller type='pci' index='0' model='pci-root'/>
+    <controller type='ide' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <controller type='virtio-serial' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </controller>
+    <interface type='bridge'>
+      <mac address='52:54:00:5d:bf:2f'/>
+      <source bridge='br0'/>
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </interface>
+    <serial type='pty'>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+    </serial>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+    <channel type='unix'>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='1'/>
+    </channel>
+    <channel type='spicevmc'>
+      <target type='virtio' name='com.redhat.spice.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='2'/>
+    </channel>
+    <input type='tablet' bus='usb'>
+      <address type='usb' bus='0' port='1'/>
+    </input>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
+      <image compression='off'/>
+    </graphics>
+    <sound model='ich6'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </sound>
+    <video>
+      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </video>
+    <redirdev bus='usb' type='spicevmc'>
+      <address type='usb' bus='0' port='2'/>
+    </redirdev>
+    <redirdev bus='usb' type='spicevmc'>
+      <address type='usb' bus='0' port='3'/>
+    </redirdev>
+    <memballoon model='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
+    </memballoon>
+  </devices>
+</domain>
+```
+
+Sử dụng lệnh virsh để tạo máy ảo từ file xml vừa chỉnh sửa -> Một máy ảo sẽ được tạo ra tiến hành cài đặt như bình thường.
+
+```sh
+virsh create manhduy.xml
+```
+
+![](../images/filexml/Screenshot_106.png)
+
+
+
+![](../images/filexml/Screenshot_109.png)
+
+
 
 
 Link tham khảo:
