@@ -30,7 +30,7 @@
 
 + Thực hiện cấu hình KVM server theo hướng dẫn sau: [Hướng dẫn cài đặt KVM](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Install-KVM-server.md)
 
-+ Thực hiện cấu hình NFS server làm store chung cho 2 host KVM.
++ Thực hiện cấu hình NFS server làm store chung cho 2 host KVM113, KVM114.
 
 Cài đặt NFS Server 10.10.10.115
 
@@ -99,6 +99,3 @@ virsh migrate --live duy1 --unsafe qemu+ssh://10.10.10.114/system
 
 ## 4. Tham khảo
 https://github.com/hocchudong/KVM-QEMU
-
-
-
