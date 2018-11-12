@@ -98,7 +98,6 @@ virsh migrate --live duy1 --unsafe qemu+ssh://10.10.10.114/system
 ![](../images/livemigration/Screenshot_257.png)
 
 ## 4. Tham khảo
-
 https://github.com/hocchudong/KVM-QEMU
 
 
