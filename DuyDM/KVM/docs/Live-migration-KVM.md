@@ -14,7 +14,7 @@
 ![](../images/livemigration/live-migrate.png)
 
 <a name="coche"></a>
-##2. Config server
+## 2. Config server
 
 - Cơ chế cơ bản của live-migrate: Về cơ bản cơ chế di chuyển vm khi vm vẫn đang hoạt động. Quá trình trao đổi diễn ra nhanh các phiên làm việc kết nối hầu như không cảm nhận được sự gián đoạn nào. Quá trình Live Migrate được diễn ra như sau: 
 
