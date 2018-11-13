@@ -82,7 +82,7 @@
 
 - [x] [Tìm hiểu và sử dụng virt-tools](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Tim-hieu-virt-tools.md)
 
-- [ ] Live Migration
+- [x] [Live Migration](https://github.com/domanhduy/ghichep/blob/master/DuyDM/KVM/docs/Live-migration-KVM.md)
 
 
 
