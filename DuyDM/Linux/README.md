@@ -7,4 +7,4 @@
 
 [4. File-permissions](https://github.com/domanhduy/ghichep/blob/master/DuyDM/Linux/docs/4.%20File-permissions.md)
 
-[5. Package-management]()
+[5. Package-management](https://github.com/domanhduy/ghichep/blob/master/DuyDM/Linux/docs/5.%20Package-management.md)
