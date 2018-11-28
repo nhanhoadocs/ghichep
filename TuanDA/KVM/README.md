@@ -35,11 +35,11 @@
 ## 6. Network trong KVM
 
 ## 7. Tạo VM
-#### [1. Tạo máy ảo bằng virt-install]()
+#### [1. Tạo máy ảo bằng virt-install](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/7.%20Tao%20VM%20trong%20KVM.md#virtinstall)
 
-#### [2. Tạo máy ảo bằng virt-manager]()
+#### [2. Tạo máy ảo bằng virt-manager](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/3.%20Cai%20dat%20KVM.md#b%C6%B0%E1%BB%9Bc-6-qu%E1%BA%A3n-l%C3%BD-vm-b%E1%BA%B1ng-virt-manager)
 
-#### [3. Tạo máy ảo bằng file XML]()
+#### [3. Tạo máy ảo bằng file XML](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/5.%20File%20XML%20trong%20KVM.md#create)
 
 #### [4. Tạo máy ảo bằng Webvirt](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/KVM/docs/7.%20Tao%20VM%20trong%20KVM.md#webvirt)
 
