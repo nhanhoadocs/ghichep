@@ -87,6 +87,12 @@
 
 
 
+sed -i 's/GRUB_CMDLINE_LINUX="crashkernel=auto rhgb quiet"/GRUB_CMDLINE_LINUX="crashkernel=auto console=tty0 console=ttyS0,115200n8"/g' /etc/default/grub
+
+
+virt-sparsify --compress /var/lib/libvirt/images/centOS72nic.qcow2 centOS72nic.img
+
+
 
 
 
