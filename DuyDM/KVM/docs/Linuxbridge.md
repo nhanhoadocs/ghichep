@@ -73,6 +73,8 @@ Tap interface sử dụng trong Linux bridge là để chuyến tiếp frame Eth
 
 + FDB (forwarding database): chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch. Database lưu các địa chỉ MAC mà nó học được. Khi gói tin Ethernet đến, bridge sẽ tìm kiếm trong database có chứa MAC address không. Nếu không, nó sẽ gửi gói tin đến tất cả các cổng.
 
+## 4. Công cụ và lệnh làm việc với Linux Bridge
+
 
 
 
