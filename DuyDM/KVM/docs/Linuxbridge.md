@@ -4,11 +4,11 @@
 
 [1. Giới thiệu về Linux Bridge](#gioithieu)
 
-[2. Tổng quan về Linux Bridge](#tongquan)
+[2. Một số khái niệm thường sử dụng trong Linux Bridge](#tongquan)
 
-[3. Cấu trúc và các thành phần](#cautruc)
+[3. Chức năng của một switch ảo do Linux bridge tạo ra](#cautruc)
 
-[4. Các tính năng của Linux bridge](#tinhnang)
+[4. Công cụ và lệnh làm việc với Linux Bridge](#tinhnang)
 
 <a name="gioithieu"></a>
 ## 1. Giới thiệu về Linux Bridge
@@ -74,6 +74,21 @@ Tap interface sử dụng trong Linux bridge là để chuyến tiếp frame Eth
 + FDB (forwarding database): chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch. Database lưu các địa chỉ MAC mà nó học được. Khi gói tin Ethernet đến, bridge sẽ tìm kiếm trong database có chứa MAC address không. Nếu không, nó sẽ gửi gói tin đến tất cả các cổng.
 
 ## 4. Công cụ và lệnh làm việc với Linux Bridge
+
+Linux bridge được hỗ trợ từ version nhân kernel từ 2.4 trở lên. Để sử dụng và quản lý các tính năng của linux birdge, cần cài đặt gói bridge-utilities (dùng các câu lệnh brctl để sử dụng linux bridge). Cài đặt dùng lệnh như sau:
+
+```
++ Ubuntu
+
+sudo apt-get install bridge-ultils -y
+
++ Centos
+
+sudo yum install bridge-ultils -y
+
+```
+
+### 4.1. Bridge management commandline
 
 
 
