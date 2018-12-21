@@ -6,7 +6,7 @@ echo "Nhap ip Check_Mk server"
 read ipserver
 
 yum install wget -y
-wget https://check.cloud365.vn/admin/check_mk/agents/check-mk-agent-1.5.0p5-1.noarch.rpm
+wget https://check.cloud365.vn/admin/check_mk/agents/check-mk-agent-1.5.0p9-1.noarch.rpm
 yum install xinetd -y
 systemctl start xinetd
 systemctl enable xinetd
