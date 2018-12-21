@@ -425,4 +425,44 @@ echo -e "\033[35m  ########## Cau hinh cmd log ########## \033[0m"
 wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh
 bash cmdlog.sh
 
+echo -e "\033[35m  ########## Cau hinh CollectD ########## \033[0m"
 
+yum -y install collectd collectd-virt
+cp /etc/collectd.conf /etc/collectd.conf.orig
+
+cd /etc
+rm -rf rm -rf collectd.conf
+
+cat << EOF > /etc/collectd.conf
+LoadPlugin network
+<Plugin "network">
+Server "192.168.70.114" "25826"
+</Plugin>
+LoadPlugin virt
+ <Plugin "virt">
+   RefreshInterval 10
+   Connection "qemu:///system"
+   BlockDeviceFormat "target"
+   HostnameFormat "uuid"
+   InterfaceFormat "address"
+   PluginInstanceFormat name
+   ExtraStats "cpu_util disk_err domain_state fs_info job_stats_background perf vcpupin"
+ </Plugin>
+LoadPlugin write_graphite
+<Plugin write_graphite>
+  <Node "compute4">
+    Host "192.168.70.114"
+    Port "2003"
+    Protocol "tcp"
+    LogSendErrors true
+    Prefix "collectd.compute3."
+    StoreRates true
+    AlwaysAppendDS false
+    EscapeCharacter "_"
+  </Node>
+</Plugin>
+Include "/etc/collectd.d"
+EOF
+
+systemctl restart collectd
+systemctl enable collectd
