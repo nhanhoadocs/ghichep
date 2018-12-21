@@ -334,7 +334,7 @@ echo -e "\033[35m  ########## Cau hinh Migrate ########## \033[0m"
 echo -e "\033[35m  ##### Cau hinh SSH key nova ##### \033[0m"
 mkdir -p /var/lib/nova/.ssh
 cat << EOF > /var/lib/nova/.ssh/authorized_keys
-AAAAB3NzaC1yc2EAAAADAQABAAABAQDYiz/tPlBUju/ZJ54KgP9Ub4adokiaxN9TIj+OQozX2tsDjg/Wm/ebNJ54e/ISUduGvDFlm7q/n4paD91iFrdn1ah7iAYtV8es9cjj7Gs0tWwuDKydg40d72/S8fAnxJMz3ZNGG/eHZ5u4uapEnSZmCbwx98YG/hbZwwIK5Cjb/92P2zD3Wb7DDGdgQJ3cAWBCs7LCe8kH0zu4nopAdGpEkcwesGBz3J9ZiyJKDUvnqzo1DjUl03gzy7otJ2XvaXKWwh0lByUS2u8I3hzYIhFOF9WZ31ktEPnCTmd+NoXi/mTmDRrtlHfSBokFoZq5QSHyQP7kDgsRpjROVqVGsUlB
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYiz/tPlBUju/ZJ54KgP9Ub4adokiaxN9TIj+OQozX2tsDjg/Wm/ebNJ54e/ISUduGvDFlm7q/n4paD91iFrdn1ah7iAYtV8es9cjj7Gs0tWwuDKydg40d72/S8fAnxJMz3ZNGG/eHZ5u4uapEnSZmCbwx98YG/hbZwwIK5Cjb/92P2zD3Wb7DDGdgQJ3cAWBCs7LCe8kH0zu4nopAdGpEkcwesGBz3J9ZiyJKDUvnqzo1DjUl03gzy7otJ2XvaXKWwh0lByUS2u8I3hzYIhFOF9WZ31ktEPnCTmd+NoXi/mTmDRrtlHfSBokFoZq5QSHyQP7kDgsRpjROVqVGsUlB nova@compute01
 EOF
 
 cat << EOF > /var/lib/nova/.ssh/id_rsa
@@ -372,6 +372,7 @@ echo -e "\033[35m  ##### Cau hinh cold-migrate ##### \033[0m"
 usermod -s /bin/bash nova
 echo 'StrictHostKeyChecking no' >> /var/lib/nova/.ssh/config
 chown nova:nova /var/lib/nova/.ssh/id_rsa
+chmod 600 /var/lib/nova/.ssh/id_rsa
 chown nova:nova /var/lib/nova/.ssh/authorized_keys
 chown nova:nova /var/lib/nova/.ssh/config
 
