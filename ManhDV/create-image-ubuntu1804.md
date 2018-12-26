@@ -224,8 +224,9 @@ virt-sysprep -d u18.qcow2
 ```
 
 ### 3.3. Dùng lệnh sau để tối ưu kích thước image:
-```
+```sh
 virt-sparsify --compress --convert qcow2 /var/lib/libvirt/images/u18-02.qcow2 /var/lib/libvirt/images/u18-02.img```
+```
 
 ### 3.4. Upload image lên glance và sử dụng
 ```
