@@ -25,28 +25,41 @@
 
 
 -   **Linux bridge** sử dụng chuẩn (IEEE 802.1D)
-• Sử dụng chế độ promiscuous mode cho phép nhận tất cả các gói tin
-• Bộ lọc NIC thông thường sẽ filter unicast có dst không phải là địa chỉ mac của nó
-không có chế độ promiscuous
-• Theo mặc định, nhiều NIC cũng lọc các gói được gắn thẻ multicast / vlan
+- Sử dụng chế độ promiscuous mode cho phép nhận tất cả các gói tin trong local 
 
 ![](bridge_1.png)
 
+- Bao gồm 4 thành phần chính:
 
-Khi sử dụng với KVM :
+    - Tập hợp các cổng mạng (interface): được sử dụng để chuyển tiếp lưu lượng giữa các switch đến các máy chủ khác trong mạng.
+    - Control plane: được sử dụng để chạy Spanning Tree Protocol (STP), ngăn chặn loop.
+    - Forwarding plane: được sử dụng để xử lý frames đến từ các port, chuyển tiếp chúng đến cổng mạng bằng cách đưa ra quyết định chuyển tiếp dựa trên MAC database.
+    - MAC learning database: được sử dụng để theo dõi các vị trí máy chủ trong mạng LAN.
+
+Đối với mỗi địa chỉ mac unicast, bridge quản lý cmac learning database để quyết định cổng nào chuyển tiếp dựa trên địa chỉ MAC và nếu không thể tìm thấy, nó sẽ broadcase cho tất cả các cổng trừ cổng nó nhận frame.
+
+**Có ba các cấu hình chính cho bride:**
+
+- `ioctl` (`brctl`): Giao diện này được sử dụng để create/destroy bridges add/remove interfaces to/from bridge.
+- `sysfs`: Quản lý các tham số cụ thể của bridge và port (thường dùng trong lập trình).
+- `netlink`: Giao tiếp dựa trên hàng đợi không đồng bộ sử dụng họ địa chỉ AF_NETLINK.
+Ví dụ:
+    - Adding bridge : `ip link add name br0 type bridge`
+    - Bringing bridge UP : `ip link set dev br0 up`
+    - Adding interface to bridge : `ip link set dev eth1 master br0`
+    - Bringing interface UP. : `ip link set dev eth1 up`
+    - Xem thêm ở:
+https://github.com/ebiken/doc-network/wiki/Linux-iproute2-:-ip-link-bridge-operations
+
+Mô hình Khi sử dụng với KVM :
 
 ![](bridge_2.png)
 
-\-	**Bridge**: tương đương với switch layer 2
-\-	**Tap**: hay **tap interface** có thể hiểu là giao diện mạng để các VM kết nối với bridge 
-\-	**fd**: forward data - chuyển tiếp dữ liệu từ máy ảo tới bridge.
-\-  **vfs**: 
+Khi sử dụng với Openstack :
+![](bridge_4.jpg)
 
-**Các tính năng**
+![](bridge_3.jpg)
 
-\- 	**STP**: Spanning Tree Protocol - giao thức chống loop gói tin trong mạng.
-\-	**VLAN**: chia switch (do linux bridge tạo ra) thành các mạng LAN ảo, cô lập traffic giữa các VM trên các VLAN khác nhau của cùng một switch.
-\-	**FDB**: chuyển tiếp các gói tin theo database để nâng cao hiệu năng switch.
 
 ##<a name = "3"></a>3. Các thao tác quản lý Linux Bridge
 
@@ -108,29 +121,11 @@ Linux bridge được hỗ trợ từ version nhân kernel từ 2.4 trở lên. 
 ***Lưu ý*** : Các ảnh hưởng của câu lệnh chỉ là tạm thời cho đến khi máy host khởi động lại, sau khi khởi động lại, toàn bộ thông tin sẽ bị mất. 
 
 
-## 4.2.	Uplink port
-
--	Uplink port là khái niệm chỉ điểm vào ra của lưu lượng trong một switch ra các mạng bên ngoài. Nó sẽ là nơi tập trung tất cả các lưu lượng trên switch nếu muốn ra mạng ngoài. 
-
-    ![img](../../images/1.1.png)
-
--	Khái niệm virtual uplink switch port được hiểu có chức năng tương đương, là điểm để các lưu lượng trên các máy guest ảo đi ra ngoài máy host thật, hoặc ra mạng ngoài. Khi thêm một interface trên máy thật vào bridge (tạo mạng bridging với interface máy thật và đi ra ngoài), thì interface trên máy thật chính là virtual uplink port.
-
-<a name = '4.3'></a>
-## 4.3.	Tap interface
-
-- Ethernet port trên máy ảo VM (mô phỏng pNIC) thường gọi là vNIC (Virtual NIC). Virtual port được mô phỏng với sự hỗ trợ  của KVM/QEMU.
-
-- Port trên máy ảo VM chỉ có thể xử lý các frame Ethernet. Trong môi trường thực tế (không ảo hóa) interface NIC vật lý sẽ nhận và xử lý các khung Ethernet. Nó sẽ bóc lớp header và chuyển tiếp payload (thường là gói tin IP) tới lên cho hệ điều hành. Tuy nhiên, với môi trường ảo hóa, nó sẽ không làm việc vì các virtual NIC sẽ mong đợi các khung Ethernet. 
-
-- Tap interface là một khái niệm về phần mềm được sử dụng để nói với Linux bridge là chuyến tiếp frame Ethernet vào nó. Hay nói cách khác, máy ảo kết nối tới tap interface sẽ có thể nhận được các khung frame Ethernet thô. Và do đó, máy ảo VM có thể tiếp tục được mô phỏng như là một máy vật lý ở trong mạng.
-
-- Nói chung, tap interface là một port trên switch dùng để kết nối với các máy ảo VM.
 
 <a name = '4.4'></a>
 ## 4.4.	Cấu hình linux bridge khởi động cùng hệ điều hành
 
-- Khi tạo bridge bằng command brctl addbr thì bridge là non-persistent bridge (tức là sẽ không có hiệu lực khi hệ thống khởi động lại).
+- Khi tạo bridge bằng command `brctl addbr thì bridge` là `non-persistent bridge` (tức là sẽ không có hiệu lực khi hệ thống khởi động lại).
 
     `brctl addbr br1 `
 
@@ -264,4 +259,4 @@ Kết quả: Máy kvm1 và kvm2 cùng nhận được IP cùng dải 10.10.10.0/
 
 [5] - https://github.com/hocchudong/thuctap012017/edit/master/TamNT/Virtualization/docs/Virtual_Switch/1.Linux-Bridge.md
 
-
+https://goyalankit.com/blog/linux-bridge
