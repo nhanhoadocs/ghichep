@@ -1,5 +1,5 @@
-icacls "%plesk_dir%\admin\plib\functions.php" /grant Administrator:D > nul
-icacls "%plesk_dir%\admin\plib\functions.php" /grant Administrators:D > nul
+icacls "%plesk_dir%\admin\plib\functions.php" /grant Administrator:D > nul\n
+icacls "%plesk_dir%\admin\plib\functions.php" /grant Administrators:D > nul\n
 plesk bin admin --set-admin-password -passwd "0435626533a@A"
 plesk sbin websrvmng --configure-plesk-website
 plesk repair --web -y
