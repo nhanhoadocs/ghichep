@@ -121,6 +121,8 @@ virsh blkdeviotune instance-0000001c vda --read_bytes_sec 300000 --live
 
 ![](../images/img-qos-bandwidth-io/Screenshot_344.png)
 
+![](../images/img-qos-bandwidth-io/Screenshot_345.png)
+
 Kết quả bandwidth read xấp xỉ 300000 B/s
 
 
