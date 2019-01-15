@@ -54,11 +54,45 @@ virsh blkdeviotune instance-0000001c vda
 
 Như trên hình là chưa có policy được áp dụng đối với VM này trên KVM.
 
+Ý nghĩa các tham số trên:
+
+total_bytes_sec: Giới hạn tổng throughput (lượng data truyền đi trong một khoảng thời gian), mặc định là bytes per second.
+
+read_bytes_sec : Giới hạn throughput đọc, mặc định là bytes per second
+
+write_bytes_sec: Giới hạn throughput ghi, mặc định là bytes per second
+total_iops_sec : Chỉ định giới hạn tổng I/O trên giây.
+read_iops_sec  : Chỉ định giới hạn đọc I/O trên giây.
+write_iops_sec : Chỉ định giới hạn ghi I/O trên giây.
+total_bytes_sec_max: Chỉ định giá trị max cho throughput, mặc định là bytes per.
+read_bytes_sec_max: Giới hạn throughput đọc max, mặc định là bytes per second.
+write_bytes_sec_max: Giới hạn throughput ghi max, mặc định là bytes per second.
+total_iops_sec_max: Chỉ định giới hạn max tổng I/O trên giây.
+read_iops_sec_max: Chỉ định giới hạn max đọc I/O trên giây.
+write_iops_sec_max: Chỉ định giới hạn max ghi I/O trên giây
+size_iops_sec  : Chỉ định giới hạn size iops, mặc định I/O trên giây.
+group_name     :
+total_bytes_sec_max_length: 0
+read_bytes_sec_max_length: 0
+write_bytes_sec_max_length: 0
+total_iops_sec_max_length: 0
+read_iops_sec_max_length: 0
+write_iops_sec_max_length: 0
+
+
 + Test thử VM đó.
 
 ```
 Read rand 4k
 sync; echo 3 > /proc/sys/vm/drop_caches && name=read-rand; fio --randrepeat=1 --rw=randread --ioengine=libaio --size=4G --filename=testfile --name=read-rand --direct=1 --gtod_reduce=1 --bs=4k --iodepth=64 --runtime=600 --time_based && rm -rf testfile
 ```
+
+![](../images/img-qos-bandwidth-io/Screenshot_336.png)
+
+bw=420274 B/s = 0,42 MB/s
+
++ Thực hiện limit Read với bandwidth 500 B/s
+
+
 
 
