@@ -72,10 +72,10 @@ read_iops_sec_max: Chỉ định giới hạn max đọc I/O trên giây.
 write_iops_sec_max: Chỉ định giới hạn max ghi I/O trên giây
 size_iops_sec  : Chỉ định giới hạn size iops, mặc định I/O trên giây.
 group_name     :
-total_bytes_sec_max_length: 0
+total_bytes_sec_max_length: Chỉ định thời lượng tính bằng giây cho phép giới hạn max tổng throughput.
 read_bytes_sec_max_length: 0
 write_bytes_sec_max_length: 0
-total_iops_sec_max_length: 0
+total_iops_sec_max_length: Chỉ định thời lượng tính bằng giây cho phép giới hạn max I/O
 read_iops_sec_max_length: 0
 write_iops_sec_max_length: 0
 
@@ -87,11 +87,22 @@ Read rand 4k
 sync; echo 3 > /proc/sys/vm/drop_caches && name=read-rand; fio --randrepeat=1 --rw=randread --ioengine=libaio --size=4G --filename=testfile --name=read-rand --direct=1 --gtod_reduce=1 --bs=4k --iodepth=64 --runtime=600 --time_based && rm -rf testfile
 ```
 
-![](../images/img-qos-bandwidth-io/Screenshot_336.png)
+![](../images/img-qos-bandwidth-io/Screenshot_337.png)
+
+![](../images/img-qos-bandwidth-io/Screenshot_338.png)
 
 bw=420274 B/s = 0,42 MB/s
 
-+ Thực hiện limit Read với bandwidth 500 B/s
++ Thực hiện limit bandwidth bead với bandwidth 500 B/s
+
+```
+virsh blkdeviotune instance-0000001c vda --read_bytes_sec 500 --live
+```
+![](../images/img-qos-bandwidth-io/Screenshot_343.png)
+
++ Test sau khi QoS
+
+
 
 
 
