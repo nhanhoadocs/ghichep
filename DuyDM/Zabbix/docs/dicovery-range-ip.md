@@ -16,3 +16,5 @@ python3.5 -V
 
 ![](../images/img-discovery-zabbix/Screenshot_744.png)
 
++ Tải script về zabbix server
+
