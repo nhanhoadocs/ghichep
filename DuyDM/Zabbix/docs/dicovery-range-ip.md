@@ -6,7 +6,7 @@ Kiểm tra trạng thái của các IP trong range IP và thiết lập cảnh b
 
 ## Thực hiện config trên zabbix server
 
-+ Cài đặt python 3.5
++ Bước 1: Cài đặt python 3.5
 
 ```
 yum -y install https://centos7.iuscommunity.org/ius-release.rpm
@@ -16,7 +16,7 @@ python3.5 -V
 
 ![](../images/img-discovery-zabbix/Screenshot_744.png)
 
-+ Tải script về zabbix server
++ Bước 2: Tải script về zabbix server
 
 ```
 cd /usr/local/bin/
@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/domanhduy/ghichep/master/DuyDM/Zabbix/scr
 chmod +x discovery_ip_range.py
 ```
 
-+ Test script
++ Bước 3: Test script
 
 ```
 python3.5 discovery_ip_range.py 192.168.70.40 192.168.70.50
@@ -37,6 +37,20 @@ python3.5 discovery_ip_range.py 192.168.70.40 192.168.70.50
 **Configuration -> Host -> Lựa chọn Zabbix server -> Dicovery**
 
 ![](../images/img-discovery-zabbix/Screenshot_746.png)
+
+
++ Bước 4: Tạo thêm rule mới
+
+![](../images/img-discovery-zabbix/Screenshot_754.png)
+
+![](../images/img-discovery-zabbix/Screenshot_755.png)
+
+++ Name: Tên rule
+
+++ key: Chú ý đúng cú phải và điền địa chỉ đầu và cuối của range IP
+
+![](../images/img-discovery-zabbix/Screenshot_756.png)
+
 
 + Tạo thêm item mới Discovery Network
 
@@ -66,17 +80,6 @@ Sử dụng icmp ping 30 gói trong khoảng thời gian interval trên.
 
 ![](../images/img-discovery-zabbix/Screenshot_752.png)
 
-+ Tạo thêm rule mới
-
-![](../images/img-discovery-zabbix/Screenshot_754.png)
-
-![](../images/img-discovery-zabbix/Screenshot_755.png)
-
-++ Name: Tên rule
-
-++ key: Chú ý đúng cú phải và điền địa chỉ đầu và cuối của range IP
-
-![](../images/img-discovery-zabbix/Screenshot_756.png)
 
 + Kiểm tra kết quả
 
