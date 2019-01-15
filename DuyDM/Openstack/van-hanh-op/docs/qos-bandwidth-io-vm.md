@@ -61,22 +61,39 @@ total_bytes_sec: Giới hạn tổng throughput (lượng data truyền đi tron
 read_bytes_sec : Giới hạn throughput đọc, mặc định là bytes per second
 
 write_bytes_sec: Giới hạn throughput ghi, mặc định là bytes per second
+
 total_iops_sec : Chỉ định giới hạn tổng I/O trên giây.
+
 read_iops_sec  : Chỉ định giới hạn đọc I/O trên giây.
+
 write_iops_sec : Chỉ định giới hạn ghi I/O trên giây.
+
 total_bytes_sec_max: Chỉ định giá trị max cho throughput, mặc định là bytes per.
+
 read_bytes_sec_max: Giới hạn throughput đọc max, mặc định là bytes per second.
+
 write_bytes_sec_max: Giới hạn throughput ghi max, mặc định là bytes per second.
+
 total_iops_sec_max: Chỉ định giới hạn max tổng I/O trên giây.
+
 read_iops_sec_max: Chỉ định giới hạn max đọc I/O trên giây.
-write_iops_sec_max: Chỉ định giới hạn max ghi I/O trên giây
+
+write_iops_sec_max: Chỉ định giới hạn max ghi I/O trên giây.
+
 size_iops_sec  : Chỉ định giới hạn size iops, mặc định I/O trên giây.
+
 group_name     :
+
 total_bytes_sec_max_length: Chỉ định thời lượng tính bằng giây cho phép giới hạn max tổng throughput.
+
 read_bytes_sec_max_length: 0
+
 write_bytes_sec_max_length: 0
+
 total_iops_sec_max_length: Chỉ định thời lượng tính bằng giây cho phép giới hạn max I/O
+
 read_iops_sec_max_length: 0
+
 write_iops_sec_max_length: 0
 
 
