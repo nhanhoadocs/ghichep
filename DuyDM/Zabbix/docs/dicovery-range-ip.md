@@ -54,13 +54,19 @@ python3.5 discovery_ip_range.py 192.168.70.40 192.168.70.50
 
 + Tạo thêm item mới Discovery Network
 
-![](../images/img-discovery-zabbix/Screenshot_748.png)
+![](../images/img-discovery-zabbix/Screenshot_757.png)
 
 ![](../images/img-discovery-zabbix/Screenshot_749.png)
 
 ![](../images/img-discovery-zabbix/Screenshot_750.png)
 
 ++ Name: Ping host  {#IP}
+
+![](../images/img-discovery-zabbix/Screenshot_758.png)
+
+Lưu ý: Item, key khai báo trong zabbix không được trùng nhau.
+
+
 
 ```
 #IP là biến quy định cho host
