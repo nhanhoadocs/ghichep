@@ -110,15 +110,18 @@ sync; echo 3 > /proc/sys/vm/drop_caches && name=read-rand; fio --randrepeat=1 --
 
 bw=420274 B/s = 0,42 MB/s
 
-+ Thực hiện limit bandwidth bead với bandwidth 500 B/s
++ Thực hiện limit bandwidth read với bandwidth 300000 B/s
 
 ```
-virsh blkdeviotune instance-0000001c vda --read_bytes_sec 500 --live
+virsh blkdeviotune instance-0000001c vda --read_bytes_sec 300000 --live
 ```
 ![](../images/img-qos-bandwidth-io/Screenshot_343.png)
 
 + Test sau khi QoS
 
+![](../images/img-qos-bandwidth-io/Screenshot_344.png)
+
+Kết quả bandwidth read xấp xỉ 300000 B/s
 
 
 
