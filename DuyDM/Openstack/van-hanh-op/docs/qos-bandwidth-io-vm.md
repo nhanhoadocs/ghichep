@@ -174,3 +174,9 @@ virsh blkdeviotune instance-0000180e vda --read_bytes_sec 30000000 --write_bytes
 
 ![](../images/img-qos-bandwidth-io/Screenshot_787.png)
 
+![](../images/img-qos-bandwidth-io/Screenshot_789.png)
+
+![](../images/img-qos-bandwidth-io/Screenshot_790.png)
+
+Test Read/Write Bandwidth IO bandwidth io xấp xỉ 29.1MB/s
+
