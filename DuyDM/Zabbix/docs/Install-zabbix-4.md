@@ -123,29 +123,34 @@ mysql -u root -p zabbix_db < create.sql
 
 ### Bước 5: Config DB
 
+```
 sed -i 's/# DBHost=localhost/DBHost=localhost/g' /etc/zabbix/zabbix_server.conf
 sed -i "s/DBName=zabbix/DBName=$nameDbZabbix/g" /etc/zabbix/zabbix_server.conf
 sed -i "s/DBUser=zabbix/DBUser=$userDbZabbix/g" /etc/zabbix/zabbix_server.conf
 sed -i "s/# DBPassword=/DBPassword=$passDbZabbix/g" /etc/zabbix/zabbix_server.conf
+```
 
 ### Bước 6: Configure PHP Setting
 
+```
 sed -i 's/max_execution_time = 30/max_execution_time = 600/g' /etc/php.ini
 sed -i 's/max_input_time = 60/max_input_time = 600/g' /etc/php.ini
 sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /etc/php.ini
 sed -i 's/post_max_size = 8M/post_max_size = 32M/g' /etc/php.ini
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 16M/g' /etc/php.ini
 echo "date.timezone = Asia/Ho_Chi_Minh" >> /etc/php.ini
+```
 
 ### Bước 7: Restart service
 
+```
 systemctl start zabbix-server
 systemctl enable zabbix-server
 systemctl start httpd
 systemctl enable httpd
-
 systemctl restart zabbix-server
 systemctl restart httpd
+```
 
 ### Bước 8: Truy cập config trên zabbix web-mysql
 
