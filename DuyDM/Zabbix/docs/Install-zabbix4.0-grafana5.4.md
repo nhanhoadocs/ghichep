@@ -1,5 +1,22 @@
 # Hướng dẫn triển khai Zabbix server 4.0, grafana server 5.4 trên CentOS 7
 
+### Mục lục
+
+[1. Chuẩn bị](#chuanbi)
+
+[2. Cài đặt zabbix server](#zabbixserver)
+
+[3. Cài đặt grafana server](#grafanaserver)
+
+[4. Cài đặt zabbix agent lên host client](#zabbixagent)
+
+[5. Thiết lập alert zabbix](zabbixalert)
+
+[6. Tùy biến item zabbix giám sát server Linux](#item)
+
+[7. Hướng dẫn set graph zabbix-grafana cơ bản](#graph)
+
+<a name="chuanbi"></a>
 ## 1. Chuẩn bị
 
 **Zabbix server**
@@ -33,6 +50,7 @@
 
 Hiện tại zabbix đã release bản Zabbix 4.0 LTS (1-10-2018) nên ở đay ta sử dụng cài đặt zabbix4.0
 
+<a name="zabbixserver"></a>
 ## 2. Cài đặt zabbix server
 
 ### Bước 1: Download repo zabbix và cài đặt một số package
@@ -192,6 +210,7 @@ Admin/zabbix
 ```
 ![](../images/img-install-zabbix4/Screenshot_358.png)
 
+<a name="grafanaserver"></a>
 ## 3. Cài đặt grafana server
 
 ### 3.1. Cài đặt
@@ -235,6 +254,7 @@ Vậy đã kết nối API zabbix với grafana
 
 ![](../images/img-install-zabbix4/Screenshot_364.png)
 
+<a name="zabbixagent"></a>
 ## 4. Cài đặt zabbix agent lên host client
 
 ```
@@ -249,12 +269,20 @@ Chú ý nhập IP server zabbix.
 
 ![](../images/img-install-zabbix4/Screenshot_365.png)
 
+<a name="zabbixalert"></a>
 ## 5. Thiết lập alert zabbix
 
 Thực hiện theo hướng dẫn:
 
 https://github.com/domanhduy/zabbix-monitor/tree/master/Alert
 
+Lưu ý: Setup alert qua telegram theo hướng dẫn `TelegramV1`
+
+<a name="item"></a>
+## 6. Tùy biến item zabbix giám sát server Linux
+
+<a name="graph"></a>
+## 7. Hướng dẫn set graph zabbix-grafana cơ bản
 
 
 
