@@ -237,7 +237,23 @@ Vậy đã kết nối API zabbix với grafana
 
 ## 4. Cài đặt zabbix agent lên host client
 
+```
+wget https://raw.githubusercontent.com/domanhduy/ghichep/master/DuyDM/Zabbix/scripts/install-agent-zabbix4-centos.sh
+```
 
+```
+bash install-agent-zabbix4-centos.sh
+```
+
+Chú ý nhập IP server zabbix.
+
+![](../images/img-install-zabbix4/Screenshot_365.png)
+
+## 5. Thiết lập alert zabbix
+
+Thực hiện theo hướng dẫn:
+
+https://github.com/domanhduy/zabbix-monitor/tree/master/Alert
 
 
 
