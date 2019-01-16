@@ -157,5 +157,18 @@ Test Read rand 4k 2 lần đều có bandwidth io xấp xỉ 48.7MB/s
 
 ![](../images/img-qos-bandwidth-io/Screenshot_782.png)
 
+```
+# Mix R/W 4k
+sync; echo 3 > /proc/sys/vm/drop_caches && name=mixrw; fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=mixrw--filename=testfile --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75 --runtime=600 --time_based && rm -rf testfile
+```
 
+![](../images/img-qos-bandwidth-io/Screenshot_785.png)
+
++ Thực hiện QoS Read/Write Bandwidth xuống mức 30MiB/s
+
+```
+virsh blkdeviotune instance-0000180e vda --read_bytes_sec 30000000 --write_bytes_sec 30000000 --live
+```
+
+![](../images/img-qos-bandwidth-io/Screenshot_787.png)
 
