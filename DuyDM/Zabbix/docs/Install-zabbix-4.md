@@ -109,7 +109,7 @@ https://github.com/domanhduy/ghichep/blob/master/DuyDM/Zabbix/docs/tunning-mysql
 
 Start lại service mysql
 
-``
+```
 systemctl start mariadb
 ```
 
