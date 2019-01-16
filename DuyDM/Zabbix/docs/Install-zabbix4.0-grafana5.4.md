@@ -2,19 +2,13 @@
 
 ### Mục lục
 
-[1. Chuẩn bị](#chuanbi)
-
-[2. Cài đặt zabbix server](#zabbixserver)
-
-[3. Cài đặt grafana server](#grafanaserver)
-
-[4. Cài đặt zabbix agent lên host client](#zabbixagent)
-
-[5. Thiết lập alert zabbix](zabbixalert)
-
-[6. Tùy biến item zabbix giám sát server Linux](#item)
-
-[7. Hướng dẫn set graph zabbix-grafana cơ bản](#graph)
+[1. Chuẩn bị](#chuanbi)<br>
+[2. Cài đặt zabbix server](#zabbixserver)<br>
+[3. Cài đặt grafana server](#grafanaserver)<br>
+[4. Cài đặt zabbix agent lên host client](#zabbixagent)<br>
+[5. Thiết lập alert zabbix](zabbixalert)<br>
+[6. Tùy biến item zabbix giám sát server Linux](#item)<br>
+[7. Hướng dẫn set graph zabbix-grafana cơ bản](#graph)<br>
 
 <a name="chuanbi"></a>
 ## 1. Chuẩn bị
