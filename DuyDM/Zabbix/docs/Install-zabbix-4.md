@@ -105,6 +105,12 @@ Thực hiện theo tài liệu:
 
 https://github.com/domanhduy/ghichep/blob/master/DuyDM/Zabbix/docs/tunning-mysql-tmp-tmps-zabbix.md
 
++ Khởi động lại zabbix database
+
+```
+systemctl restart mariadb
+```
+
 ### Bước 4: Import database zabbix
 
 Start lại service mysql
