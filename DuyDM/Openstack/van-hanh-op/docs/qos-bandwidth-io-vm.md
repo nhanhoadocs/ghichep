@@ -164,6 +164,8 @@ sync; echo 3 > /proc/sys/vm/drop_caches && name=mixrw; fio --randrepeat=1 --ioen
 
 ![](../images/img-qos-bandwidth-io/Screenshot_785.png)
 
+![](../images/img-qos-bandwidth-io/Screenshot_788.png)
+
 + Thực hiện QoS Read/Write Bandwidth xuống mức 30MiB/s
 
 ```
