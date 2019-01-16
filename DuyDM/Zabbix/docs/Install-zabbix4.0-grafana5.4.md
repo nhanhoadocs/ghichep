@@ -1,13 +1,22 @@
-# Hướng dẫn cài đặt Zabbix server trên CentOS 7
+# Hướng dẫn triển khai Zabbix server 4.0, grafana server 5.4 trên CentOS 7
 
 ## 1. Chuẩn bị
 
-- Một server CentOS 7 có cấu hình:
+**Zabbix server**
 
 + Ram: 8 GB
 + CPU: 4 core
 + Disk: 300GB
 + Interface: 1
++ OS : CentOS 7.5
+
+**Grafana server**
+
++ Ram: 6 GB
++ CPU: 6 core
++ Disk: 100GB
++ Interface: 1
++ OS : CentOS 7.5
 
 - Thao tác chuẩn bị cơ bản:
 
@@ -24,7 +33,7 @@
 
 Hiện tại zabbix đã release bản Zabbix 4.0 LTS (1-10-2018) nên ở đay ta sử dụng cài đặt zabbix4.0
 
-## 2. Cài đặt
+## 2. Cài đặt zabbix server
 
 ### Bước 1: Download repo zabbix và cài đặt một số package
 
@@ -182,6 +191,58 @@ Sử dụng tài khoản mặc định
 Admin/zabbix
 ```
 ![](../images/img-install-zabbix4/Screenshot_358.png)
+
+## 3. Cài đặt grafana server
+
+### 3.1. Cài đặt
+
+Thực hiện các bước cài đặt ở link dưới
+
+https://github.com/domanhduy/grafana/blob/master/docs/1.Install-grafana5.4-Centos7.md
+
+### 3.2. Kết nối API zabbix server - grafana
+
+Enable plugin zabbix - grafana (thực hiện trên grafana server)
+
+```
+grafana-cli plugins install alexanderzobnin-zabbix-app
+```
+![](../images/img-install-zabbix4/Screenshot_359.png)
+
+Kết nối API zabbix server
+
+![](../images/img-install-zabbix4/Screenshot_360.png)
+
++ Lựa chọn `Add Datasource`
+
+![](../images/img-install-zabbix4/Screenshot_361.png)
+
+Trường URL điền: 
+
+```
+http://ip-zabbix-server/zabbix/api_jsonrpc.php
+```
+
+Zabbix API details điền: Username/pasword login dashboard zabbix server.
+
+![](../images/img-install-zabbix4/Screenshot_362.png)
+
+Save & Test
+
+![](../images/img-install-zabbix4/Screenshot_363.png)
+
+Vậy đã kết nối API zabbix với grafana
+
+![](../images/img-install-zabbix4/Screenshot_364.png)
+
+## 4. Cài đặt zabbix agent lên host client
+
+
+
+
+
+
+
 
 
 
