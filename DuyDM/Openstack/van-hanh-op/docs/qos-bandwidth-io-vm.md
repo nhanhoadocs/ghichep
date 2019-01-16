@@ -125,7 +125,27 @@ virsh blkdeviotune instance-0000001c vda --read_bytes_sec 300000 --live
 
 Kết quả bandwidth read xấp xỉ 300000 B/s
 
+## Test QoS Bandwidth IO public
 
++ Show policy
 
+![](../images/img-qos-bandwidth-io/Screenshot_778.png)
 
++ Test dd
+
+![](../images/img-qos-bandwidth-io/Screenshot_779.png)
+
+Test Read rand 4k 2 lần đều có bandwidth io xấp xỉ 129MiB/s
+
+![](../images/img-qos-bandwidth-io/Screenshot_780.png)
+
++ Thực hiện QoS Read Bandwidth xuống mức 50MiB/s
+
+```
+virsh blkdeviotune instance-0000180e vda --read_bytes_sec 50000000 --live
+```
+
+![](../images/img-qos-bandwidth-io/Screenshot_781.png)
+
+Test Read rand 4k 2 lần đều có bandwidth io xấp xỉ 48.7MB/s
 
