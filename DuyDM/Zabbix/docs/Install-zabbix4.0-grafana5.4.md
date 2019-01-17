@@ -283,17 +283,14 @@ Khi giám sát các server Linux thường sử dụng template `Template OS Lin
 
 Điền các thông số sau:
 
+```
 Name: Used disk space on / (percentage)
-
 Type: Caculated
-
 Key: use.disk.root
-
 Formula: 100*last("vfs.fs.size[/,used]")/last("vfs.fs.size[/,total]")
-
 Update interval: 5m
-
 Applications: Filesystems
+```
 
 ![](../images/img-install-zabbix4/Screenshot_827.png)
 
@@ -310,72 +307,56 @@ Thực hiện tạo lần lượt các item sau cho memory
 + Tạo item RAM cache B (Byte)
 
 ![](../images/img-install-zabbix4/Screenshot_861.png)
- 
+
+``` 
 Name: RAM cache B
-
 Type: Zabbix agent
-
 Key: vm.memory.size[cached]
-
 Update interval: 1m
-
 Applications: Memory
+```
 
- 
 + Tạo item 	RAM cache %
 
 ![](../images/img-install-zabbix4/Screenshot_862.png)
 
+```
 Name: RAM cache %
-
 Type: Caculated
-
 Key: vm.memory.pcache
-
 Formula: 100*last("vm.memory.size[cached]")/last("vm.memory.size[total]")
-
 Update interval: 1m
-
 Applications: Memory
+```
 
 + Tạo item 	RAM pused (Ram used dạng %)
 
 ![](../images/img-install-zabbix4/Screenshot_863.png)
 
+```
 Name: RAM pused
-
 Type: Zabbix agent
-
 Key: vm.memory.size[pused]
-
 Update interval: 1m
-
 Applications: Memory
+```
 
 + Tạo RAM USED % Current
 
 ![](../images/img-install-zabbix4/Screenshot_864.png)
 
+```
 Name: RAM USED % Current
-
 Type: Caculated
-
 Key: vm.memory.pusedduy
-
 Formula: last("vm.memory.size[pused]")-last("vm.memory.pcache")
-
 Update interval: 1m
-
 Applications: Memory
+```
 
 + Lấy giá trị thành công.
 
 ![](../images/img-install-zabbix4/Screenshot_865.png)
-
-
-
-
-
 
 <a name="graph"></a>
 ## 7. Hướng dẫn set graph zabbix-grafana cơ bản
