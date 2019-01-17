@@ -275,6 +275,34 @@ Lưu ý: Setup alert qua telegram theo hướng dẫn `TelegramV1`
 <a name="item"></a>
 ## 6. Tùy biến item zabbix giám sát server Linux
 
+Khi giám sát các server Linux thường sử dụng template `Template OS Linux` có sẵn của zabbix. Về cơ bản template này đáp ứng tương đối đủ các item để lấy metric của server linux. Tuy nhiên ta phải tùy biến thêm item về disk, ram ...
+
+- Lấy phần trăm sử dụng định phân vùng root: 	Used disk space on / (percentage)
+
+![](../images/img-install-zabbix4/Screenshot_826.png)
+
+Điền các thông số sau:
+
+Name: Used disk space on / (percentage)
+
+Type: Caculated
+
+Key: 100*last("vfs.fs.size[/,used]")/last("vfs.fs.size[/,total]")
+
+Update interval: 5m
+
+Applications: Filesystems
+
+![](../images/img-install-zabbix4/Screenshot_827.png)
+
+![](../images/img-install-zabbix4/Screenshot_828.png)
+
+
+
+
+
+
+
 <a name="graph"></a>
 ## 7. Hướng dẫn set graph zabbix-grafana cơ bản
 
