@@ -389,9 +389,9 @@ Khi khai báo các biến ta có thể chọn động giá trị của biến đ
 
 `*` lấy tất cả.
 
-/^(abc.*)/  lấy tất cả các giá trị bắt đầu bằng abc.
+`/^(abc.*)/`  lấy tất cả các giá trị bắt đầu bằng abc.
 
-/^(?!abc)/ bỏ giá trị abc.
+`/^(?!abc)/` bỏ giá trị abc.
 
 
 
