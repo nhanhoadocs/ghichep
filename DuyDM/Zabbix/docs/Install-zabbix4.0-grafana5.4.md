@@ -29,7 +29,7 @@
 + Interface: 1
 + OS : CentOS 7.5
 
-- Thao tác chuẩn bị cơ bản:
+**Thao tác chuẩn bị cơ bản:**
 
 + Set hostname
 + Set địa chỉ IP tĩnh
