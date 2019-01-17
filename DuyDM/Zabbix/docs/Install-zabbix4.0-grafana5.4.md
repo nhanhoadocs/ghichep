@@ -371,19 +371,19 @@ Applications: Memory
 
 Lấy các group
 
-[](../images/img-install-zabbix4/Screenshot_867.png)
+![](../images/img-install-zabbix4/Screenshot_867.png)
 
 Lấy host trong group
 
-[](../images/img-install-zabbix4/Screenshot_868.png)
+![](../images/img-install-zabbix4/Screenshot_868.png)
 
 Lấp các `Applications` thể hiện trên zabbix
 
-[](../images/img-install-zabbix4/Screenshot_870.png)
+![](../images/img-install-zabbix4/Screenshot_870.png)
 
 Khi khai báo các biến ta có thể chọn động giá trị của biến đó trên graph grafana.
 
-[](../images/img-install-zabbix4/Screenshot_871.png)
+![](../images/img-install-zabbix4/Screenshot_871.png)
 
 + Một số kỹ thuật regex name
 
