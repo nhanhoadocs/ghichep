@@ -361,7 +361,37 @@ Applications: Memory
 <a name="graph"></a>
 ## 7. Hướng dẫn set graph zabbix-grafana cơ bản
 
++ Thao tác đặt tên host trên dashboard zabbix
 
+Để setup được các biểu đồ trên grafana được thuận tiện và nhanh chóng phải thống nhất cách đặt trên group, các host trong group phải đặt trên có tiền tố với cấu trúc cú pháp giống nhau.
+
+![](../images/img-install-zabbix4/Screenshot_866.png)
+
++ Trên grafana khi tạo một dashboard mới ta sẽ phải khai báo các biến như Grup, host, applications muốn lấy metric.
+
+Lấy các group
+
+[](../images/img-install-zabbix4/Screenshot_867.png)
+
+Lấy host trong group
+
+[](../images/img-install-zabbix4/Screenshot_868.png)
+
+Lấp các `Applications` thể hiện trên zabbix
+
+[](../images/img-install-zabbix4/Screenshot_870.png)
+
+Khi khai báo các biến ta có thể chọn động giá trị của biến đó trên graph grafana.
+
+[](../images/img-install-zabbix4/Screenshot_871.png)
+
++ Một số kỹ thuật regex name
+
+`*` lấy tất cả.
+
+/^(abc.*)/  lấy tất cả các giá trị bắt đầu bằng abc.
+
+/^(?!abc)/ bỏ giá trị abc.
 
 
 
