@@ -16,10 +16,10 @@ Bước 2: Thực hiện reset:
 
 - Tăt máy ảo:
 
-`
+```sh
 virsh list
 virsh shutdown test71
-`
+```
 
 - Kiểm tra vị trí file img:
 
