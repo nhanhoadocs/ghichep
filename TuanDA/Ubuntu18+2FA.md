@@ -7,7 +7,11 @@ sudo apt-get update
 sudo apt-get install libpam-google-authenticator
 ```
 
-Bước 2 : Cấu hình 
+Bước 2 : Cài đặt `Google Authenticator`:
+
+Vào APPSTORE tìm kiếm và cài đặt `Google Authenticator`. 
+
+Bước 3 : Cấu hình 
 
 ```sh
 google-authenticator
@@ -17,7 +21,7 @@ google-authenticator
 Do you want authentication tokens to be time-based (y/n) y
 ```
 
-- `QR code`: Sử dụng ứng dụng Google Authenticator để scan, và từ đó sẽ tạo ra mã , thay đổi 30s / lần. Có thể scan trực tiếp hoặc paste đường link vào trình duyệt (ví dụ: https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/root@ctrtest%3Fsecret%3DSZKDXYCAG7TBFNJ7UH75JNQ4DY%26issuer%3Dctrtest)
+- `QR code`: Sử dụng ứng dụng `Google Authenticator` để scan, và từ đó sẽ tạo ra mã , thay đổi 30s / lần. Có thể scan trực tiếp hoặc paste đường link vào trình duyệt (ví dụ: https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/root@ctrtest%3Fsecret%3DSZKDXYCAG7TBFNJ7UH75JNQ4DY%26issuer%3Dctrtest)
 
 - `Your new secret key`: phương thức dự phòng để nhập vào authentication app, nếu không support QR code
 
@@ -58,7 +62,7 @@ By default, this limits attackers to no more than 3 login attempts every 30s.
 Do you want to enable rate-limiting? (y/n) y
 ```
 
-Bước 3 : Activating 2FA
+Bước 4 : Activating 2FA
 
 - 2FA khi SSH:
 
@@ -84,3 +88,13 @@ Password:
 Verification code:
 ```
 
+- 2FA khi login và sử dụng sudo:
+
+Thêm vào `/etc/pam.d/common-auth`
+
+`auth required pam_google_authenticator.so nullok`
+
+- 2FA chỉ khi login:
+Thêm vào `/etc/pam.d/common-session`
+
+`auth required pam_google_authenticator.so nullok`
