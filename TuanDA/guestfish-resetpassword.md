@@ -32,8 +32,8 @@ Ví dụ:
 
 - Tạo pass mới:
 ```sh
-[root@nhmonlog01 ~]# openssl passwd -1 nhanhoa2019#@!
-$1$13clnCwI$PxFDBb.IEVVsyFRhIdO2y.
+[root@nhmonlog01 ~]# openssl passwd -1 P@ssW0rd#@!
+$1$q04gISKd$66JBcsHHUF1mXVWGSm4VX0
 ```
 
 - Sử dụng guestfish để sửa file img:
@@ -73,5 +73,5 @@ A note about virt-customize command
 If you find above method difficult try the following simple command:
 ```sh
 virsh shutdown test71
-virt-customize -a /var/lib/libvirt/images/testvlan71.img --root-password password:Nhanhoa2019@@ --uninstall cloud-init
+virt-customize -a /var/lib/libvirt/images/testvlan71.img --root-password password:P@ssW0rd@@ --uninstall cloud-init
 ```
