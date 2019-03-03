@@ -16,10 +16,10 @@ Bước 2: Thực hiện reset:
 
 - Tăt máy ảo:
 
-`
+```sh
 virsh list
 virsh shutdown test71
-`
+```
 
 - Kiểm tra vị trí file img:
 
@@ -32,8 +32,8 @@ Ví dụ:
 
 - Tạo pass mới:
 ```sh
-[root@nhmonlog01 ~]# openssl passwd -1 nhanhoa2019#@!
-$1$13clnCwI$PxFDBb.IEVVsyFRhIdO2y.
+[root@nhmonlog01 ~]# openssl passwd -1 P@ssW0rd#@!
+$1$q04gISKd$66JBcsHHUF1mXVWGSm4VX0
 ```
 
 - Sử dụng guestfish để sửa file img:
@@ -42,26 +42,33 @@ $1$13clnCwI$PxFDBb.IEVVsyFRhIdO2y.
 guestfish --rw -a /var/lib/libvirt/images/testvlan71.img
 ```
 
-`launch` or `run` để chạy backend
-
+`run` để chạy backend
+```sh
+><fs> run
+```
 `list-filesystems` list các phân vùng
+```sh
+><fs> list-filesystems
+/dev/sda1: ext4
+/dev/sda3: swap
+/dev/VolGroup00/LogVol01: xfs
+```
 
 `mount` mount disk 
+
+```sh
+><fs> mount /dev/VolGroup00/LogVol01 /
+```
 
 `vi /etc/shadow` edit file password để lưu lại password cũ hoặc thay thế bằng password đã hash ở trên
 (ví dụ: `root:$1$2FusLVIf$UiQyH5pLQ2c59bFeWyq2j0::0:99999:7:::` )
 
 ```sh
-><fs> run
-><fs> list-filesystems
-/dev/sda1: ext4
-/dev/sda3: swap
-/dev/VolGroup00/LogVol01: xfs
-><fs> mount /dev/VolGroup00/LogVol01 /
 ><fs> vi /etc/shadow
 ```
 
-Thay thế bằng password mới và `exit` 
+Thay thế bằng password mới và `exit` (password nằm phía sau dấu : sau user root)
+![](images/libquest.png)
 
 Bước 3: Thực hiện start máy ảo và kiểm tra lại:
 `
@@ -73,5 +80,5 @@ A note about virt-customize command
 If you find above method difficult try the following simple command:
 ```sh
 virsh shutdown test71
-virt-customize -a /var/lib/libvirt/images/testvlan71.img --root-password password:Nhanhoa2019@@ --uninstall cloud-init
+virt-customize -a /var/lib/libvirt/images/testvlan71.img --root-password password:P@ssW0rd@@ --uninstall cloud-init
 ```
