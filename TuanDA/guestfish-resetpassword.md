@@ -1,6 +1,6 @@
-# Reset password Linux KVM qcow2 image/vm bằng 
+# Reset password Linux KVM qcow2 image/vm bằng libguestfs
 
-Bước 1 ; Cài đặt:
+Bước 1 : Cài đặt:
 
 ```sh
 sudo yum install libguestfs-tools
@@ -32,7 +32,7 @@ Ví dụ:
 
 - Tạo pass mới:
 ```sh
-[root@nhmonlog01 ~]# openssl passwd -1 P@ssW0rd#@!
+openssl passwd -1 P@ssW0rd#@!
 $1$q04gISKd$66JBcsHHUF1mXVWGSm4VX0
 ```
 
