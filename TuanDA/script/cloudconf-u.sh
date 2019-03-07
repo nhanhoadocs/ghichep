@@ -1,10 +1,7 @@
 #!/bin/bash
 sudo ufw disable
 
-sudo -Hu root  timedatectl set-timezone Asia/Ho_Chi_Minh
-
-sudo -Hu root 
-
+sudo timedatectl set-timezone Asia/Ho_Chi_Minh
 
 sudo ufw disable
 timedatectl set-timezone Asia/Ho_Chi_Minh
@@ -17,6 +14,7 @@ sysctl -p
 
 sudo apt-get update -y 
 sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
 
 #xu ly wait 120s - u14
 sed -i 's/dowait 120/dowait 3/g' /etc/init/cloud-init-nonet.conf
@@ -41,6 +39,7 @@ add-apt-repository cloud-archive:mitaka -y
 apt-get update
 apt-get install qemu-guest-agent -y
 chkconfig service qemu-guest-agent on
+service qemu-guest-agent start
 
 #cai netplug
 apt-get install netplug -y
