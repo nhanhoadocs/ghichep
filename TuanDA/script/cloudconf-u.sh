@@ -52,11 +52,11 @@ fi
 
 #cau hinh log console 
 if [ $VER == '18' ]; then
-    sed -i 's|GRUB_CMDLINE_LINUX=""|GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 console=tty1 console=ttyS0"|g' /etc/default/grub
-    update-grub;
+sed -i 's|GRUB_CMDLINE_LINUX=""|GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 console=tty1 console=ttyS0"|g' /etc/default/grub
+update-grub;
 elif [ $VER == '14' ]||[ $VER == '16' ]; then
-    sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT=""|GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"|g' /etc/default/grub
-    update-grub;
+sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT=""|GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"|g' /etc/default/grub
+update-grub;
 fi
 
 # config datasource cloudinit 14 16 18
@@ -85,3 +85,22 @@ sed -i 's|link-local 169.254.0.0|#link-local 169.254.0.0|g' /etc/networks
 #xoa mac chung 14 16 18
 echo > /lib/udev/rules.d/75-persistent-net-generator.rules
 echo > /etc/udev/rules.d/70-persistent-net.rules
+
+if [ $VER == '18' ]; then
+apt-get install ifupdown
+cat << EOF > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+network: {config: disabled}
+EOF
+
+rm -rf /etc/netplan50-cloud-init.yaml
+
+cat << EOF > /etc/network/interfaces
+auto lo
+iface lo inet loopback
+auto eth0
+iface eth0 inet dhcp
+EOF
+
+cloud-init clean
+systemctl restart cloud-init;
+fi
