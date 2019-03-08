@@ -42,25 +42,22 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 
+#cai cloudinit + growpart 14 16 18
+apt-get install cloud-utils cloud-initramfs-growroot cloud-init -y
+
 #xu ly wait 120s 14
-if [ $VER == '14' ]; then  sed -i 's/dowait 120/dowait 3/g' /etc/init/cloud-init-nonet.conf ; fi
+if [ $VER == '14' ]; then  
+sed -i 's/dowait 120/dowait 3/g' /etc/init/cloud-init-nonet.conf ; 
+fi
 
-#cau hinh log console 14 16
-sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT=""|GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"|g' /etc/default/grub
-update-grub
-
+#cau hinh log console 
 if [ $VER == '18' ]; then
-    #cau hinh log console 18
     sed -i 's|GRUB_CMDLINE_LINUX=""|GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 console=tty1 console=ttyS0"|g' /etc/default/grub
     update-grub;
 elif [ $VER == '14' ]||[ $VER == '16' ]; then
     sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT=""|GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8"|g' /etc/default/grub
     update-grub;
 fi
-
-#cai cloudinit + growpart 14 16 18
-apt-get install cloud-utils cloud-initramfs-growroot cloud-init -y
-
 
 # config datasource cloudinit 14 16 18
 cat << EOF >/etc/cloud/cloud.cfg.d/90_dpkg.cfg
