@@ -70,8 +70,11 @@ apt-get install software-properties-common -y
 add-apt-repository cloud-archive:mitaka -y
 apt-get update
 apt-get install qemu-guest-agent -y
-chkconfig service qemu-guest-agent on
 service qemu-guest-agent start
+
+#14 16
+chkconfig service qemu-guest-agent on
+
 
 #cai netplug chung 14 16 18
 apt-get install netplug -y

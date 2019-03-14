@@ -44,14 +44,26 @@ lis image
 docker images
 
 - tim kiem image
+
+`
 docker search images
+`
 - down image ve
+
+`
 docker pull centos
+`
 - chay container
-docker run -itd centos
+
+`
+docker run -itd centos`
 - chay bash trong CT
-docker exec -it 5ae53dede04d bash
-cat /etc/centos-release
+
+`docker exec -it 5ae53dede04d bash
+cat /etc/centos-release`
+
+docker stop my_container
+docker restart my_container
 
 Như vậy là mình đã thực hiện chạy một container với image được pull về (nằm trên Docker host rồi). Trong trường hợp các bạn biết tên image cần chạy thì chỉ cần chạy container luôn và ngay thôi.
 
