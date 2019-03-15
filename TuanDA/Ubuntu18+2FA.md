@@ -14,7 +14,6 @@ Vào APPSTORE tìm kiếm và cài đặt `Google Authenticator`.
 <div style="width:50%">
 
 ![](/images/2fa-ubuntu-3.PNG)
-
 </div>
 
 
