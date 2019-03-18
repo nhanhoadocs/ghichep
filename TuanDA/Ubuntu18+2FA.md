@@ -12,10 +12,12 @@ Bước 2 : Cài đặt `Google Authenticator`:
 Vào APPSTORE tìm kiếm và cài đặt `Google Authenticator`. 
 
 <div style="width:50%">
-
 ![](/images/2fa-ubuntu-3.PNG)
 </div>
 
+<p align="center">
+<img width="400" height="800" src="/images/2fa-ubuntu-3.PNG">
+</p>
 
 Bước 3 : Cấu hình 
 
