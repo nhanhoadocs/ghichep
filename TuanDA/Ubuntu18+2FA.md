@@ -11,17 +11,36 @@ Bước 2 : Cài đặt `Google Authenticator`:
 
 Vào APPSTORE tìm kiếm và cài đặt `Google Authenticator`. 
 
+<div style="width:50%">
+![](/images/2fa-ubuntu-3.PNG)
+</div>
+
+<p align="center">
+<img width="400" height="800" src="/images/2fa-ubuntu-3.PNG">
+</p>
+
 Bước 3 : Cấu hình 
 
 ```sh
 google-authenticator
 ```
 
+
 ```sh
 Do you want authentication tokens to be time-based (y/n) y
 ```
 
 - `QR code`: Sử dụng ứng dụng `Google Authenticator` để scan, và từ đó sẽ tạo ra mã , thay đổi 30s / lần. Có thể scan trực tiếp hoặc paste đường link vào trình duyệt (ví dụ: https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/root@ctrtest%3Fsecret%3DSZKDXYCAG7TBFNJ7UH75JNQ4DY%26issuer%3Dctrtest)
+
+- Sử dụng ứng dụng Google Authen đã cài đặt vào điện thoại và scan Barcode:
+
+<div style="width:50%">
+
+![](/images/2fa-ubuntu-1.PNG)
+
+![](/images/2fa-ubuntu-2.PNG)
+
+</div>
 
 - `Your new secret key`: phương thức dự phòng để nhập vào authentication app, nếu không support QR code
 
@@ -62,7 +81,7 @@ By default, this limits attackers to no more than 3 login attempts every 30s.
 Do you want to enable rate-limiting? (y/n) y
 ```
 
-Bước 4 : Activating 2FA
+Bước 3 : Activating 2FA
 
 - 2FA khi SSH:
 
@@ -83,10 +102,11 @@ service ssh restart
 
 SSH vào kiểm tra bảo mật 2 lớp:
 ```sh
-[root@localhost ~]# ssh root@103.101.163.158
+ssh root@103.101.x.x
 Password: 
 Verification code:
 ```
+
 
 - 2FA khi login và sử dụng sudo:
 
