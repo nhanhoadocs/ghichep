@@ -42,32 +42,35 @@ Kiểm tra ping đến gateway:
 [root@Centos6 ~]# ping6 2405:4800:200:5005::1
 PING 2405:4800:200:5005::1(2405:4800:200:5005::1) 56 data bytes
 64 bytes from 2405:4800:200:5005::1: icmp_seq=1 ttl=64 time=1.54 ms
-64 bytes from 2405:4800:200:5005::1: icmp_seq=2 ttl=64 time=13.5 ms
-^C
 --- 2405:4800:200:5005::1 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1398ms
 rtt min/avg/max/mdev = 1.546/7.550/13.555/6.005 ms
 ```
 
-cat /proc/net/if_inet6
-
+- Kiểm tra route của IPv6
+```sh
 route -A inet6
-
-command check 
+```
+- command check hệ thống đã hỗ trợ IPv6 chưa:
 
 ```sh
 [ -f /proc/net/if_inet6 ] && echo 'IPv6 ready system!' || echo 'No IPv6 support found! Compile the kernel!!'
 ```
 
+```sh
+cat /proc/net/if_inet6
+lsmod|grep ipv6
+```
+
 # CENTOS 7
 
-Thêm cấu hình sau vào file :
+Tương tự thêm cấu hình sau vào file :
 `/etc/sysconfig/network-scripts/ifcfg-eth0`
 
 ```sh
 IPV6INIT=yes
 NETWORKING_IPV6=yes
-IPV6ADDR="2405:4800:200:5005::3"
+IPV6ADDR="2405:4800:200:5005::4"
 IPV6_DEFAULTGW="2405:4800:200:5005::1"
 ```
 

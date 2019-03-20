@@ -16,7 +16,12 @@ Thông tin về hiện trạng tài nguyên toàn cầu (IPv4/IPv6).
 
 - Công nghệ chuyển đổi IPv4-IPv6: đường hầm, tunnel broker
 
-- Cấu hình thực tế của IPv6 trên các hệ điều hành WindowXP, window2003, Window2008, WindowVista, Linux.
+- Cấu hình thực tế của IPv6 trên các hệ điều hành:
+    + CentOS 6
+    + CentOS 7
+    + Ubuntu 16
+    + Ubuntu 18
+    + Windows 7
 
 - Cấu hình thực tế của IPv6 trên thiết bị mạng router Cisco
 
