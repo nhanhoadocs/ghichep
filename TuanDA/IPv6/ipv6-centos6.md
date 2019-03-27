@@ -1,15 +1,17 @@
-# CENTOS 6
+# Cấu hình IPv6 trên OS CentOS 6
 Thêm vào file `/etc/sysctl.conf`.
 
 ```sh
-
 net.ipv6.conf.all.disable_ipv6 = 0
 net.ipv6.conf.default.disable_ipv6 = 0
 ```
+
 Áp thay đổi bằng lệnh:
+
 ```
 sysctl -p
 ```
+
 Kiểm tra lại bằng ‘sysctl -a’
 
 ```sh
@@ -50,8 +52,19 @@ rtt min/avg/max/mdev = 1.546/7.550/13.555/6.005 ms
 - Kiểm tra route của IPv6
 ```sh
 route -A inet6
+ip -6 route show
 ```
+```sh
+# /sbin/route -A inet6 |grep -w "eth0"
+2001:0db8:0:f101 ::/64 :: UA  256 0 0 eth0 <- Interface route for global
+¬ address
+fe80::/10        ::       UA  256 0 0 eth0 <- Interface route for link-local
+¬ address
+ff00::/8         ::       UA  256 0 0 eth0 <- Interface route for all multicast
+¬ addresses
+::/0             ::       UDA 256 0 0 eth0 <- Automatic default route
 - command check hệ thống đã hỗ trợ IPv6 chưa:
+```
 
 ```sh
 [ -f /proc/net/if_inet6 ] && echo 'IPv6 ready system!' || echo 'No IPv6 support found! Compile the kernel!!'
@@ -61,19 +74,6 @@ route -A inet6
 cat /proc/net/if_inet6
 lsmod|grep ipv6
 ```
-
-# CENTOS 7
-
-Tương tự thêm cấu hình sau vào file :
-`/etc/sysconfig/network-scripts/ifcfg-eth0`
-
-```sh
-IPV6INIT=yes
-NETWORKING_IPV6=yes
-IPV6ADDR="2405:4800:200:5005::4"
-IPV6_DEFAULTGW="2405:4800:200:5005::1"
-```
-
 
 # Lỗi tentative dadfailed (Duplicate Address Detection (RFC 4862))
 

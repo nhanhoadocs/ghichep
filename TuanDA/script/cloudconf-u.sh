@@ -42,6 +42,12 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 
+
+if [ $VER == '14' ]; then  
+dpkg --configure -a ; 
+fi
+
+
 #cai cloudinit + growpart 14 16 18
 apt-get install cloud-utils cloud-initramfs-growroot cloud-init -y
 

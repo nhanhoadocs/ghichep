@@ -55,3 +55,6 @@ User            used    soft    hard  grace    used  soft  hard  grace
 root      -- 42326864       0       0         315840     0     0  
 kynguyen  -- 1026800       0       0           6735     0     0
 ```
+
+*** Tham khảo : 
+http://www.omnisecu.com/gnu-linux/redhat-certified-engineer-rhce/how-to-manage-linux-disk-quota-using-edquota-and-repquota-commands.php
