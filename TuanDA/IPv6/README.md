@@ -21,7 +21,8 @@ Thông tin về hiện trạng tài nguyên toàn cầu (IPv4/IPv6).
     + CentOS 7
     + Ubuntu 16
     + Ubuntu 18
-    + Windows 7
+    + [Windows 7](
+    https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-windows7.md)
     + Windows 2012
 
     
