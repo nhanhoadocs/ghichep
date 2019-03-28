@@ -31,5 +31,7 @@ Thông tin về hiện trạng tài nguyên toàn cầu (IPv4/IPv6).
 
 - Cấu hình dịch vụ web với IPv6
 
+- Cấu hình IPv6 với DirectAdmin Control
+
 - Cấu hình kết nối mạng IPv6: định tuyến tĩnh, định tuyến động (RIP)đường hầm
 
