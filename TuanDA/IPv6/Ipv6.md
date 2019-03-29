@@ -87,3 +87,6 @@ Trong địa chỉ ipv6 không còn tồn tại khái niệm địa chỉ broadc
 |Network bits representation: Subnet mask in dotted decimal notation or prefix length	|Network bits representation: Prefix length notation only
 |DNS name resolution: IPv4 host address (A) resource record	|DNS name resolution: IPv6 host address (AAAA) resource record|
 |DNS reverse resolution: IN-ADDR.ARPA domain|	DNS reverse resolution: IP6.ARPA domain|
+
+
+https://mirrors.deepspace6.net/Linux+IPv6-HOWTO/x1159.html

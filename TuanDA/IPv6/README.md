@@ -16,13 +16,22 @@ Thông tin về hiện trạng tài nguyên toàn cầu (IPv4/IPv6).
 
 - Công nghệ chuyển đổi IPv4-IPv6: đường hầm, tunnel broker
 
-- Cấu hình thực tế của IPv6 trên các hệ điều hành WindowXP, window2003, Window2008, WindowVista, Linux.
+- Cấu hình thực tế của IPv6 trên các hệ điều hành:
+    + [CentOS 6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-centos6.md)
+    + CentOS 7
+    + Ubuntu 16
+    + Ubuntu 18
+    + [Windows 7](
+    https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-windows7.md)
+    + [Windows 2012](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-windows2012.md)
 
 - Cấu hình thực tế của IPv6 trên thiết bị mạng router Cisco
 
 - Cấu hình xây dựng máy chủ DNS với IPv6.
 
 - Cấu hình dịch vụ web với IPv6
+
+- [Cấu hình IPv6 với DirectAdmin Control](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-da.md)
 
 - Cấu hình kết nối mạng IPv6: định tuyến tĩnh, định tuyến động (RIP)đường hầm
 
