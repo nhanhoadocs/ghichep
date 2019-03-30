@@ -1,3 +1,4 @@
+# Ap dung cho 8.6.0
 #!/bin/bash
 cd /root
 wget https://files.zimbra.com/downloads/8.6.0_GA/zcs-patch-8.6.0_GA_1241.tgz
