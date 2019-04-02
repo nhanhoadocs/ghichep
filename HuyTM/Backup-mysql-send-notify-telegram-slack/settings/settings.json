@@ -1,0 +1,32 @@
+{
+    "mysql": {
+        "user": "MYSQL_USER",
+        "password": "MYSQL_PASSWORD",
+        "backup_type": "table", 
+        "database": "MYSQL_DATABASES",
+        "tables": "table1, table2, table3"
+    },
+    "backup": {
+        "backup_folder": "/your/backup/folder",
+        "backup_file_name": "your_back_up_file_name"
+    },
+    "delete_old_file": {
+        "delete_old_file": true,
+        "remove_days": 10
+    },
+    "sync": {
+        "sync": false,
+        "ftp_server": "10.10.10.10",
+        "remote_sync_path": "/backup/folder/in/ftp/server"
+    },
+    "telegram": {
+        "send_notify": true,
+        "token": "your_telegram_token",
+        "chat_id": "your_telegram_chat_id"
+    },
+    "slack": {
+        "send_notify": true,
+        "token": "your_slack_token",
+        "channel": "your_slack_channel"
+    }
+}
