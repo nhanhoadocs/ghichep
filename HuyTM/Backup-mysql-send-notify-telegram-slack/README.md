@@ -120,7 +120,7 @@ Có hoặc không gửi xóa các file backup cũ trên server chạy script. N�
     "mysql": {
         "user": "MYSQL_USER",
         "password": "MYSQL_PASSWORD",
-        "backup_type": "table", 
+        "backup_type": "all", 
     ...
 
     "delete_old_file": {
@@ -147,7 +147,7 @@ Có hoặc không gửi xóa các file backup cũ trên server chạy script. N�
     }
 ```
 
-- Ví dụ Backup **một table**, **sync** sang ftp server, **gửi thông báo đến telegram**
+- Ví dụ Backup **3 table**, **sync** sang ftp server, **gửi thông báo đến telegram**
 
 ```
 ...
