@@ -12,7 +12,7 @@ net.ipv6.conf.ens160.disable_ipv6 = 0
 sysctl: reading key "net.ipv6.conf.lo.stable_secret"
 net.ipv6.conf.lo.disable_ipv6 = 0
 ```
-Kết quả trả về `disable_ipv6 = 0` là OS đã hỗ trợ IPv6
+Kết quả trả về `disable_ipv6 = 0` là OS không disable IPv6
 
 2. Cấu hình
 

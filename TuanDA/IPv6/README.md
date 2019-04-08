@@ -18,7 +18,7 @@ Thông tin về hiện trạng tài nguyên toàn cầu (IPv4/IPv6).
 
 - Cấu hình thực tế của IPv6 trên các hệ điều hành:
     + [CentOS 6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-centos6.md)
-    + CentOS 7
+    + [CentOS 7](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-centos7.md)
     + Ubuntu 16
     + Ubuntu 18
     + [Windows 7](
