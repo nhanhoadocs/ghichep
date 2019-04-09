@@ -1,34 +1,19 @@
-Địa chỉ unicast có năm dạng sau đây :
+# Các dạng địa chỉ IPv6
 
+Địa chỉ unicast có năm dạng sau đây :
 1) Địa chỉ đặc biệt (Special address)
 2) Địa chỉ Link-local
 3) Địa chỉ Site-local
 4) Địa chỉ định danh toàn cầu (Global unicast address)
 5) Địa chỉ tương thích (Compatibility address)
 
+## 1. Địa chỉ đặc biệt
 
-#Prefixs
-
-- 2001:DB8:0:2F3B::/64 subnet prefix for a subnet
-- 2001:DB8::/48 address prefix for a summarized route
-- FF00::/8 address prefix for an address range
-
-subnet mask không sử dụng với IPv6
-
-4) Địa chỉ định danh toàn cầu (Global unicast address)
-- Định nghĩa ở RFC 3587
-- ![](../images/unicast1.png)
-
-
-- Cấu hình tự động ở interface
-
-
-## 1) Địa chỉ đặc biệt:
 `0:0:0:0:0:0:0:0` hay còn được viết "::" là dạng địa chỉ “không định danh” được sử dụng để thể hiện rằng hiện tại node không có địa chỉ.
 
 `0:0:0:0:0:0:0:1` hay "::1" được sử dụng làm địa chỉ xác định giao diện loopback, cho phép một node gửi gói tin cho chính nó, tương đương với địa chỉ 127.0.0.1 của ipv4.
 
-## 2) Địa chỉ Link-local
+## 2. Địa chỉ Link-local
 
 Trong IPv6, các node trên cùng một đường link coi nhau là các node lân cận (neighbor node).
 
@@ -48,26 +33,32 @@ Dạng địa chỉ link-local
 
 Địa chỉ link-local bắt đầu bởi 10 bit tiền tố `FE80::/10` (giá trị nhị phân `1111 1110 10`), theo sau bởi 54 bit 0. 64 bit còn lại là định danh giao diện (Interface ID).
 
+4) Địa chỉ định danh toàn cầu (Global unicast address)
+- Định nghĩa ở RFC 3587
+- ![](../images/unicast1.png)
+- Cấu hình tự động ở interface
+
+## 3. Tóm tắt các dạng địa chỉ IPv6:
+
+|Bit | Dạng địa chỉ | Chú thích|
+|---|---|---|
+|:: | Địa chỉ đặc biệt | |
+|::1 | Địa chỉ loopback | |
+|FE80::/10 | Địa chỉ link-local | |
+|FEC0::/10 | Địa chỉ site local | Đã được hủy bỏ |
+|2000::/3 | Địa chỉ unicast định danh toàn cầu.<p>Trong đó: 2002::/16 là Địa chỉ của tunnel 6to4  |
+|::w.x.y.z | Địa chỉ tương thích | Dùng cho công nghệ tunnel tự động.|
+|::FFFF:w.x.y.z | Địa chỉ IPv4 - map | Dùng trong biên dịch địa chỉ IPv6-IPv4 |
+|FF::/8 |Địa chỉ multicast ||
+|FF01::1 |Địa chỉ multicast mọi node phạm vi node||
+|FF02::1 |Địa chỉ multicast mọi node phạm vi link||
+|FF01::2 |Địa chỉ multicast mọi router phạm vi node||
+|FF02::2 |Địa chỉ multicast mọi router phạm vi link||
+|FF05::2 |Địa chỉ multicast mọi router phạm vi site||
+|FF02::1:FF/104 |Địa chỉ multicast Solicited node||
 
 
-
-
-## So sánh với IPv4:
-|IPv4 Address|	IPv6 Address|
-|---|---|
-|Internet address classes|Không sử dụng trong IPv6|
-|Multicast addresses (224.0.0.0/4)|	IPv6 multicast addresses (FF00::/8)|
-|Broadcast addresses	|Không sử dụng trong IPv6|
-|Địa chỉ không xác định 0.0.0.0	|Địa chỉ không xác định ::|
-|Địa chỉ loopback  127.0.0.1|	Địa chỉ loopback ::1|
-|Public IP addresses	|Global unicast addresses|
-|Private IP addresses (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16)	|Site-local addresses (FEC0::/10)|
-|Autoconfigured addresses (169.254.0.0/16)|	Link-local addresses (FE80::/64)|
-|Text representation: Dotted decimal notation|	Text representation: Colon hexadecimal format with suppression of leading zeros and zero compression. IPv4-compatible addresses are expressed in dotted decimal notation.|
-|Network bits representation: Subnet mask in dotted decimal notation or prefix length	|Network bits representation: Prefix length notation only
-|DNS name resolution: IPv4 host address (A) resource record	|DNS name resolution: IPv6 host address (AAAA) resource record|
-|DNS reverse resolution: IN-ADDR.ARPA domain|	DNS reverse resolution: IP6.ARPA domain|
-
+**Tham khảo**
 
 https://mirrors.deepspace6.net/Linux+IPv6-HOWTO/x1159.html
 https://vi.wikipedia.org/wiki/%C4%90%E1%BB%8Ba_ch%E1%BB%89_IPv6

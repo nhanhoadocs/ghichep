@@ -4,6 +4,8 @@
 
 ### PHẦN 2: LÝ THUYẾT VỀ ĐỊA CHỈ IPV6
 - 2.1 Biểu diễn địa chỉ IPv6
+    - [Biểu diễn địa chỉ IPv6 và các dạng địa chỉ IPv6]()
+    - []()
 - 2.2 Cấu trúc đánh địa chỉ. Các dạng địa chỉ IPv6
 - 2.3 Định danh giao diện trong địa chỉ IPv6
 - 2.4 IPv6 Header
@@ -38,20 +40,3 @@
 - [APACHE](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/docs/ipv6-apache-dual.md)
 - [DirectAdmin Control](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/docs/ipv6-da.md)
 
-|Bit | Dạng địa chỉ | Chú thích|
-|---|---|---|
-|:: | Địa chỉ đặc biệt | |
-|::1 | Địa chỉ loopback | |
-|FE80::/10 | Địa chỉ link-local | |
-|FEC0::/10 | Địa chỉ site local | Đã được hủy bỏ |
-|2000::/3 | Địa chỉ unicast định danh toàn cầu. Trong đó:
-2002::/16 – Địa chỉ của tunnel 6to4 | |
-|::w.x.y.z | Địa chỉ tương thích | Dùng cho công nghệ tunnel tự động.|
-|::FFFF:w.x.y.z | Địa chỉ IPv4 - map | Dùng trong biên dịch địa chỉ IPv6-IPv4 |
-|FF::/8 |Địa chỉ multicast ||
-|FF01::1 |Địa chỉ multicast mọi node phạm vi node||
-|FF02::1 |Địa chỉ multicast mọi node phạm vi link||
-|FF01::2 |Địa chỉ multicast mọi router phạm vi node||
-|FF02::2 |Địa chỉ multicast mọi router phạm vi link||
-|FF05::2 |Địa chỉ multicast mọi router phạm vi site||
-|FF02::1:FF/104 |Địa chỉ multicast Solicited node| |

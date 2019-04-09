@@ -1,4 +1,4 @@
-# Biểu diễn địa chỉ IPv6
+# Địa chỉ IPv6 và phân loại
 
 Địa chỉ IPv6 có chiều dài 128 bit, biểu diễn dưới dạng các cụm số hexa phân cách bởi dấu :, ví dụ:
 
@@ -38,3 +38,23 @@ Trong địa chỉ ipv6 không còn tồn tại khái niệm địa chỉ broadc
 
 Địa chỉ anycast cũng xác định tập hợp nhiều giao diện. Tuy nhiên, trong mô hình định tuyến, gói tin có địa chỉ đích anycast chỉ được gửi tới một giao diện duy nhất trong tập hợp. Giao diện đó là giao diện “gần nhất” theo khái niệm của thủ tục định tuyến.
 
+### 2.4 So sánh với địa chỉ IPv4
+
+|IPv4 Address|	IPv6 Address|
+|---|---|
+|Internet address classes|Không sử dụng trong IPv6|
+|Multicast addresses (224.0.0.0/4)|	IPv6 multicast addresses (FF00::/8)|
+|Broadcast addresses	|Không sử dụng trong IPv6|
+|Địa chỉ không xác định 0.0.0.0	|Địa chỉ không xác định ::|
+|Địa chỉ loopback  127.0.0.1|	Địa chỉ loopback ::1|
+|Public IP addresses	|Global unicast addresses|
+|Private IP addresses (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16)	|Site-local addresses (FEC0::/10)|
+|Autoconfigured addresses (169.254.0.0/16)|	Link-local addresses (FE80::/64)|
+|Text representation: Dotted decimal notation|	Text representation: Colon hexadecimal format with suppression of leading zeros and zero compression. IPv4-compatible addresses are expressed in dotted decimal notation.|
+|Network bits representation: Subnet mask in dotted decimal notation or prefix length	|Network bits representation: Prefix length notation only
+|DNS name resolution: IPv4 host address (A) resource record	|DNS name resolution: IPv6 host address (AAAA) resource record|
+|DNS reverse resolution: IN-ADDR.ARPA domain|	DNS reverse resolution: IP6.ARPA domain|
+
+**Tham khảo**
+
+http://daotaoipv6.vnnic.vn/
