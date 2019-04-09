@@ -139,6 +139,6 @@ vi /etc/httpd/conf.d/minhphuong.pw.conf
 
 - Thực hiện việc upload mã nguồn vào thư mục root và trỏ domain vè IPv4 (IPv6):
 
-![](images/zonedns.png)
+![](../images/zonedns.png)
 
 

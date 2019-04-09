@@ -17,7 +17,7 @@ subnet mask không sử dụng với IPv6
 
 4) Địa chỉ định danh toàn cầu (Global unicast address)
 - Định nghĩa ở RFC 3587
-- ![](images/unicast1.png)
+- ![](../images/unicast1.png)
 
 
 - Cấu hình tự động ở interface

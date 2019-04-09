@@ -20,13 +20,13 @@ RFC 3513 - Internet Protocol Version 6 (IPv6) Addressing Architecture mô tả c
 
 ### 2.1 Địa chỉ unicast
 
-![](images/image001.gif)
+![](../images/image001.gif)
 
 Địa chỉ unicast xác định một giao diện duy nhất trong phạm vi tương ứng. Trong mô hình định tuyến, các gói tin có địa chỉ đích là địa chỉ unicast chỉ được gửi tới một interface duy nhất.  Địa chỉ unicast được sử dụng trong giao tiếp một – một
 
 ### 2.2 Địa chỉ multicast
 
-![](images/image002.gif)
+![](../images/image002.gif)
 
 Địa chỉ multicast định danh nhiều interface. Gói tin có địa chỉ đích là địa chỉ multicast sẽ được gửi tới tất cả các interface trong nhóm được gắn địa chỉ đó. Địa chỉ multicast được sử dụng trong giao tiếp một – nhiều.
 
@@ -34,7 +34,7 @@ Trong địa chỉ ipv6 không còn tồn tại khái niệm địa chỉ broadc
 
 ### 2.3. Địa chỉ anycast
 
-![](images/image005.gif)
+![](../images/image005.gif)
 
 Địa chỉ anycast cũng xác định tập hợp nhiều giao diện. Tuy nhiên, trong mô hình định tuyến, gói tin có địa chỉ đích anycast chỉ được gửi tới một giao diện duy nhất trong tập hợp. Giao diện đó là giao diện “gần nhất” theo khái niệm của thủ tục định tuyến.
 
