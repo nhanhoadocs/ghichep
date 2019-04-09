@@ -1,6 +1,6 @@
 # Nội dung	
 
-### [PHẦN 1: TỔNG QUAN VỀ ĐỊA CHỈ IPv6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-summary.md)
+### [PHẦN 1: TỔNG QUAN VỀ ĐỊA CHỈ IPv6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/docs/ipv6-summary.md)
 
 ### PHẦN 2: LÝ THUYẾT VỀ ĐỊA CHỈ IPV6
 - 2.1 Biểu diễn địa chỉ IPv6
