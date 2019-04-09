@@ -24,6 +24,7 @@ Thông tin về hiện trạng tài nguyên toàn cầu (IPv4/IPv6).
     + [Ubuntu 18](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-ubuntu18.md)
     + [Windows 7](
     https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-windows7.md)
+    + [Windows 2008](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-windows2008.md)
     + [Windows 2012](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/ipv6-windows2012.md)
 
 - Cấu hình thực tế của IPv6 trên thiết bị mạng router Cisco
