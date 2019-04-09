@@ -1,4 +1,5 @@
 # Cấu hình IPv6 trên OS CentOS 6
+
 Thêm vào file `/etc/sysctl.conf`.
 
 ```sh
@@ -40,6 +41,7 @@ Restart lại network và kiểm tra lại:
 ```
 
 Kiểm tra ping đến gateway:
+
 ```sh
 [root@Centos6 ~]# ping6 2405:4800:200:5005::1
 PING 2405:4800:200:5005::1(2405:4800:200:5005::1) 56 data bytes
@@ -54,6 +56,7 @@ rtt min/avg/max/mdev = 1.546/7.550/13.555/6.005 ms
 route -A inet6
 ip -6 route show
 ```
+
 ```sh
 # /sbin/route -A inet6 |grep -w "eth0"
 2001:0db8:0:f101 ::/64 :: UA  256 0 0 eth0 <- Interface route for global
@@ -75,7 +78,7 @@ cat /proc/net/if_inet6
 lsmod|grep ipv6
 ```
 
-# Lỗi tentative dadfailed (Duplicate Address Detection (RFC 4862))
+**Lỗi tentative dadfailed (Duplicate Address Detection (RFC 4862))**
 
 ### 1. Hiện tượng:
 - Không ping được ra ngoài theo IPv6

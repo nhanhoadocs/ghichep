@@ -11,18 +11,15 @@ Sau đó có thể truy cập DirectAdmin thông qua IPv6, port 2222.
 
 ## Add IP vào DirectAdmin:
 Tương tự như IPv4, `Admin Level` -> `IP Manager`.
-![](images/da0.png)
+![](../images/da0.png)
 
 Sau đó điền địa chỉ IPv6 (Không cần dấu `[ ]`):
 
-![](images/da1.png)
+![](../images/da1.png)
 
 Add IPv6 vào user sử dụng:
 
-![](images/da2.png)
-
-4) The DNS system should be ready for IPv6.  We have the dns_a.conf and dns_aaaa.conf default records for newly created zones.  Each of these template files have checks on the IP type.  When an IP is sent to the template, the IP type is also included, so the template can chose to ignore adding any records if the IP type doesn't match it's format, or (with customization) you can add some other value if you'd like.  For most people, leaving it along will be best.
-NOTE:  Backup/Restores with the multi-ip system and dns are yet complete.   If you use multiple IPs on a domain, you may need to adjust the zone after restore as the "Additional IPs" may still be in the zone, even if the account is on a different IP.
+![](../images/da2.png)
 
 ## Apache
 Apache đã hỗ trợ IPv6 nên không cần thay đổi.
@@ -95,7 +92,7 @@ tcp        0      0 :::143                      :::*                        LIST
 ## FTP
 Đã hỗ trợ IPv6, thử đăng nhập thông qua IPv6:
 
-![](images/da4.png)
+![](../images/da4.png)
 
 ## Bind (named)
 - Add thêm vào file `/etc/named.conf `:

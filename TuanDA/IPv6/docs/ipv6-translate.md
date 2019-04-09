@@ -2,13 +2,13 @@ Compatibility Addresses
 
 - IPv4-compatible addresses
 
-![](images/img2.png)
+![](../images/img2.png)
 
 0:0:0:0:0:0:w.x.y.z hoặc ::w.x.y.z (w.x.y.z là biểu diễn của IPv4), được sử dụng bởi node IPv4/IPv6 giao tiếp với node IPv6-only thông qua hạ tầng IPv4.
 
 - IPv4-mapped addresses
 
-![](images/img3.png)
+![](../images/img3.png)
 
 0:0:0:0:0:FFFF:w.x.y.z hoặc ::FFFF:w.x.y.z, được sử dụng để biểu diễn kết nối từ IPv4 node đến IPv6 node. Thường được sử dụng trên các hệ thống với vai trò như translator giữa IPv4-only and IPv6-only nodes.
 
