@@ -46,3 +46,6 @@ Thông điệp này được router gửi để thông báo cho host IPv6 rằng
 - Khám phá khả năng có thể kết nối tới được của node lân cận (Neighbor unreachability detection): node quyết định được một node lân cận có thể còn nhận được gói tin hay không.
 - Kiểm tra trùng lặp địa chỉ (Duplicate address detection)
 - Chức năng chuyển hướng (Redirect function): Thông báo cho một host địa chỉ IPv6 đích tiếp theo (next hop) tốt hơn có thể sử dụng để tới được đích cuối cùng.
+
+## Tham khảo:
+https://vi.wikipedia.org/wiki/Neighbor_Discovery_Protocol
