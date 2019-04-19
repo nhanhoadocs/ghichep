@@ -1,8 +1,27 @@
 # Địa chỉ IPv6 và phân loại
 
-Địa chỉ IPv6 có chiều dài 128 bit, biểu diễn dưới dạng các cụm số hexa phân cách bởi dấu :, ví dụ:
+Địa chỉ IPv6 có chiều dài 128 bit, điều đó cho phép có thể biểu diễn đến 3.4x1038 (340.000.000.000.000.000.000.000.000.000.000.000.000) địa chỉ
+
+Một địa chỉ IPv6 thường được viết thành 8 nhóm, mỗi nhóm gồm có 4 số hexa phân cách bởi dấu ":", ví dụ:
 
 `2001:0DC8::1005:2F43:0BCD:FFFF`
+
+Điều này đã nảy sinh một vấn để khi trình duyệt của bạn xử lý bất cứ những cái gì đó phía sau dấu ":" như một số chỉ thị của cổng. Trong trường hợp đó, các địa chỉ IPv6 được phân biệt bên trong dấu ngoặc khi chúng được sử dụng như một phần của URL. Ví dụ:
+
+`HTTP://[2001:0DC8:0000:0000:1005:2F43:0BCD:FFFF]/`
+
+Giống như có thể chỉ định số của cổng với địa chỉ IPv4, bạn cũng có thể chỉ định số cổng khi sử dụng địa chỉ IPv6. Số cổng phải đi sau cùng một định dạng bắt buộc như khi sử dụng IPv4. Và ở bên ngoài các dấu ngoặc. Ví dụ:
+
+`HTTP://[2001:0DC8:0000:0000:1005:2F43:0BCD:FFFF]:80/`
+
+
+![](../images/img0.png)
+
+Để xem một địa chỉ IPv6 được phân chia như thế nào thành các phần con khác nhau của nó, bạn hãy quan sát đến địa chỉ dưới đây: 
+
+`2001:0DC8:0000:0000:1005:2F43:0BCD:FFFF`
+
+Phần `site prefix` của địa chỉ này là: `2001:0DC8:0000`. Trường tiếp theo là `0000` biểu thị `subnet ID`. Các byte còn lại `1005:2F43:0BCD:FFFF` biểu thị `interface ID`. 
 
 ## 1. Rút gọn cách viết địa chỉ IPv6:
 
