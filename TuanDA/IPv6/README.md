@@ -1,6 +1,6 @@
 # Nội dung	
 
-### [PHẦN 1: TỔNG QUAN VỀ ĐỊA CHỈ IPv6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/docs/docs/ipv6-summary.md)
+### [PHẦN 1: TỔNG QUAN VỀ ĐỊA CHỈ IPv6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/docs/ipv6-summary.md)
 
 ### PHẦN 2: LÝ THUYẾT VỀ ĐỊA CHỈ IPV6
 - 2.1 Biểu diễn địa chỉ IPv6
@@ -32,8 +32,10 @@
 - 3.6 Thực hành quan sát giao tiếp và hoạt động của các node IPv6.
 
 ### PHẦN 4: CÔNG NGHỆ CHUYỂN ĐỔI IPv4-IPv6
-
+- NAT64/DNS64
 ### PHẦN 5: MỘT SỐ PHẦN MỀM HỖ TRỢ IPv6
+- Remote Desktop
+- SSH
 - DNS
 - DHCP
 - NAT64
