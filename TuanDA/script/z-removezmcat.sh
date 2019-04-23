@@ -1,4 +1,15 @@
 #!/bin/bash
+iptables -A INPUT -s 177.53.8.84 -j DROP
+iptables -A INPUT -p tcp -m tcp --dport 8011 -j DROP
+iptables -A INPUT -p tcp -m tcp --dport 8081 -j DROP
+service iptables save
+
+for pid in $(ps -ef | grep "l.sh" | awk '{print $2}'); do kill -9 $pid; done
+
+for pid in $(ps -ef | grep "s.sh" | awk '{print $2}'); do kill -9 $pid; done
+
+for pid in $(ps -ef | grep "zmcat" | awk '{print $2}'); do kill -9 $pid; done
+
 grep -Rl "<\%@ page import=\"java.util.\*,java.io.*\"\%><" /opt/zimbra/jetty* >> /root/listfile
 grep -Rl "<\%@page import=\"java.io.*,java.util.*,java.net.*,java.sql.*,java.text.*\"\%><" /opt/zimbra/jetty* >> /root/listfile
 grep -Rl "request.getParameter(\"cmd\")" /opt/zimbra/jetty* >> /root/listfile
