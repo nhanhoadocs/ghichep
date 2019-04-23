@@ -1,6 +1,4 @@
 #!/bin/bash
-touch /root/listfile
-echo "" > /root/listfile
 grep -Rl "<\%@ page import=\"java.util.\*,java.io.*\"\%><" /opt/zimbra/jetty* >> /root/listfile
 grep -Rl "<\%@page import=\"java.io.*,java.util.*,java.net.*,java.sql.*,java.text.*\"\%><" /opt/zimbra/jetty* >> /root/listfile
 grep -Rl "request.getParameter(\"cmd\")" /opt/zimbra/jetty* >> /root/listfile
