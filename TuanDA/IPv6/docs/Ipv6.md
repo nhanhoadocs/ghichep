@@ -55,6 +55,8 @@ RFC 3513 - Internet Protocol Version 6 (IPv6) Addressing Architecture mô tả c
 
 Trong địa chỉ ipv6 không còn tồn tại khái niệm địa chỉ broadcast. Mọi chức năng của địa chỉ broadcast trong ipv4 được đảm nhiệm thay thế bởi địa chỉ ipv6 multicast. Ví dụ chức năng broadcast trong một subnet của địa chỉ ipv4 được đảm nhiệm bằng một loại địa chỉ ipv6 là địa chỉ multicast mọi node phạm vi link (link-local scope all-nodes multicast address `FF02::1`)
 
+![](../images/multicast.png)
+
 ### 2.3. Địa chỉ anycast
 
 ![](../images/image005.gif)

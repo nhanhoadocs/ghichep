@@ -15,9 +15,7 @@
 
 ## 2. Địa chỉ Link-local
 
-Trong IPv6, các node trên cùng một đường link coi nhau là các node lân cận (neighbor node).
-
-Giao thức Neighbor Discovery (ND) là một giao thức thiết yếu, phục vụ giao tiếp giữa các node lân cận.
+Trong IPv6, các node trên cùng một đường link coi nhau là các node lân cận (neighbor node)
 
 Địa chỉ link-local được tạo nên từ 64 bit định danh giao diện Interface và một tiền tố (prefix) quy định sẵn cho địa chỉ link-local là `FE80::/10`.
 
@@ -37,8 +35,28 @@ Dạng địa chỉ ipv6 Site-local được thiết kế với mục đích s�
 
 Địa chỉ Site-local được định nghĩa trong thời kỳ đầu phát triển IPv6. Trong quá trình sử dụng IPv6, người ta nhận thấy nhu cầu sử dụng địa chỉ dạng site-local trong tương lai phát triển của thế hệ địa chỉ ipv6 là không thực tế và không cần thiết. Do vậy, IETF đã sửa đổi RFC3513, loại bỏ đi dạng địa chỉ site-local. Chức năng của địa chỉ Site-local được thay thế bởi dạng địa chỉ IPV6 khác đang được dự thảo, là Globally Unique Local
 
-## 3b. 
+## 3b. Unique Local Unicast Addresses (ULA)
+Được sử dụng để thay thế địa chỉ site-local.
 
+IETF đã dành riêng khối địa chỉ `fc00::/7` vào tháng 10 năm 2005 để sử dụng trong các mạng IPv6 riêng tư và xác định thuật ngữ Unique Local Unicast Addresses (ULA)
+
+Khối địa chỉ `fc00::/7` được chia thành hai phần, `fc00::/8` và `fd00 ::/8`.
+
+![](../images/uniqueadd.png)
+
+Khối `fc00::/8` không xác định.
+
+Khối `fd00::/8` được xác định cho /48 tiền tố, được hình thành bằng cách đặt bốn mươi bit có ý nghĩa nhỏ nhất của tiền tố thành chuỗi bit được tạo ngẫu nhiên.
+
+Một tiền tố định tuyến trong phạm vi `fd00 ::/8` có thể được xây dựng bằng cách tạo một chuỗi thập lục phân 40 bit ngẫu nhiên, lấy ví dụ này là `e48dba82e1`. Chuỗi được gắn vào tiền tố `fd00::/8`. Điều này tạo thành tiền tố định tuyến 48 bit `fde4:8dba:82e1::/48`. Với tiền tố này, 65536 mạng con có kích thước /64 có sẵn cho mạng riêng.
+
+Các tiền tố trong phạm vi `fd00::/8` có các đặc điểm tương tự như các phạm vi địa chỉ riêng của IPv4: 
+
+- Chúng không được cấp bởi một sổ đăng ký địa chỉ và có thể được sử dụng trong các mạng mà không có ai tham gia bên ngoài. 
+- Không được đảm bảo là duy nhất trên toàn cầu. 
+- Các mục nhập Hệ thống tên miền ngược (DNS) (trong ip6.arpa) cho `fd00::/8` ULAs không thể được ủy quyền trong DNS toàn cầu.
+
+Vì `fd00::/8` ULA không có nghĩa là được định tuyến bên ngoài miền quản trị (trang web hoặc tổ chức) của họ, nên các quản trị viên của các mạng kết nối thông thường không cần phải lo lắng về tính duy nhất của tiền tố ULA. Tuy nhiên, nếu các mạng yêu cầu định tuyến các ULA với nhau trong trường hợp sáp nhập, chẳng hạn, rủi ro va chạm địa chỉ là nhỏ nếu sử dụng thuật toán lựa chọn RFC 4193.
 
 ## 4. Địa chỉ định danh toàn cầu (Global unicast address)
 Đây là dạng địa chỉ tương đương với địa chỉ ipv4 public. Chúng được định tuyến và có thể liên kết tới trên phạm vi toàn cầu. 
@@ -88,6 +106,45 @@ Ví dụ: `::FFFF:129.144.52.38`
 IANA đã cấp phát một prefix địa chỉ dành riêng `2002::/16` trong vùng địa chỉ có ba bít đầu 001 (vùng địa chỉ unicast toàn cầu) để sử dụng cho một công nghệ chuyển đổi giao tiếp ipv4-ipv6 rất thông dụng có tên gọi công nghệ tunnel 6to4.
 
 Địa chỉ 6to4 được sử dụng trong giao tiếp giữa hai node chạy đồng thời cả hai thủ tục ipv4 và ipv6 trên mạng cơ sở hạ tầng định tuyến của ipv4. Địa chỉ 6to4 được hình thành bằng cách gắn prefix `2002::/16` với 32 bít địa chỉ ipv4 (viết dưới dạng hexa), từ đó tạo nên một prefix địa chỉ /48.
+
+# Địa chỉ Mulicast
+
+Địa chỉ Multicast IPv6 thực hiện cả chức năng broadcast và multicast của IPv4. Có nhiều loại địa chỉ multicast IPv6, mỗi loại địa chỉ multicast IPv6 có phạm vi hoạt động tương ứng. Lưu lượng của địa chỉ IPv6 multicast sẽ được chuyển tới toàn bộ các host trong một phạm vi hay chỉ được chuyển tới nhóm các host nào đó trong phạm vi là tùy thuộc vào loại địa chỉ multicast.
+
+Cấu trúc của địa chỉ IPv6:
+
+![](../images/multicast_1.png)
+
+Địa chỉ ipv6 multicast luôn được bắt đầu bởi 8 bít prefix 1111 1111. Dạng địa chỉ này rất dễ phân biệt vì nó luôn được bắt đầu bằng `FF`. Địa chỉ multicast không bao giờ được sử dụng làm địa chỉ nguồn của một gói tin IPv6 .
+
+Để phân biệt dạng địa chỉ multicast, nhóm địa chỉ multicast và phạm vi của chúng, trong cấu trúc địa chỉ multicast sử dụng những nhóm bít tạo thành các trường sau đây: Cờ - flag (4 bit), phạm vi - Scope (4 bít) và Định danh nhóm-Group ID (32 bit)
+
+- Cờ (Flag) : Trường này có bốn bít `0T00`, trong đó 3 bít hiện chưa sử dụng được đặt giá trị 0, bít T sẽ xác định đây là dạng địa chỉ IPv6 multicast được IANA gắn vĩnh viễn (permanent-assigned) hay được gắn không vĩnh viễn do người sử dụng tự quy định (non permanent-assigned). Khái niệm này cũng tương tự như khái niệm well-known port trong thủ tục TCP/IP.
+
+- Bít T=0, có nghĩa đây là địa chỉ multicast IPv6 vĩnh viễn (well known) được IANA quy định. RFC2375 - IPv6 Multicast Address Assignments cung cấp danh sách các loại địa chỉ well-known multicast hiện đang được quy định bởi IANA. 
+
+- Bít T=1, đây là dạng địa chỉ multicast không vĩnh viễn
+
+Phạm vi (Scope): Trường này gồm 4 bít xác định phạm vi của nhóm địa chỉ multicast. Hiện nay đang định nghĩa các giá trị như sau:
+
+1: Phạm vi Node
+
+2: Phạm vi Link
+
+5: Phạm vi Site
+
+8: Phạm vi tổ chức Organisation
+
+E: Phạm vi toàn cầu Global 
+
+Giải thích một cách rõ ràng hơn, nếu ta thấy 4 bít trường scope là "0001" (Scope có giá trị 1) khi đó phạm vi của địa chỉ multicast này là phạm vi node. Gói tin multicast sẽ chỉ được gửi trong phạm vi các giao diện trong một node mà thôi.
+Nếu 4 bít này là "0010", giá trị trường Scope là 2, phạm vi của địa chỉ multicast là  phạm vi link. Gói tin multicast được gửi trên phạm vi toàn bộ đường local link.
+
+Router sử dụng giá trị trường Scope của địa chỉ multicast để quyết định có forward lưu lượng multicast hay không. Ví dụ địa chỉ multicast FF02::2 có phạm vi link-local, router sẽ không bao giờ forward gói tin này ra khỏi phạm vi local link.
+
+Nhóm (Group ID) – Thực hiện chức năng định danh các nhóm multicast. Trong một phạm vi scope, có nhiều nhóm multicast (ví dụ nhóm multicast các router, nhóm multicast mọi node, nhóm multicast mọi máy chủ DHCP…). Giá trị các bít Group ID sẽ định danh các nhóm multicast. Trong một phạm vi, số định danh này là duy nhất. Lưu lượng có địa chỉ đích multicast sẽ được chuyển tới các máy thuộc nhóm multicast xác định bởi Group ID, trong phạm vi xác định bởi Scope.
+
+Theo thiết kế ban đầu, Group ID gồm 112 bít. Với 112 bít, có thể định danh 2112 group. Tuy nhiên, để có thể truyền đi trên mạng tới đích, datagram dữ liệu phải chứa thông tin địa chỉ IP (lớp network) và địa chỉ lớp link-layer (địa chỉ MAC trong trường hợp kết nối Ethernet) tương ứng. Để có được ánh xạ 1-1 từ một địa chỉ IPv6 multicast tới một địa chỉ Ethernet multicast MAC duy nhất, số lượng bít của Group ID được khuyến nghị là 32 bít. Chúng ta sẽ tìm hiểu quy tắc ánh xạ địa chỉ IPv6 multicast tới địa chỉ Ethernet multicast MAC trong mục sau.
 
 
 
