@@ -51,8 +51,10 @@ IPV6ADDR_SECONDARIES="second_ipv6_address/120 third_ipv6_address/120 .../120"
 
 Restart your network to bind your new IPv6 Addresses
 CentOS 6
-
+```
 service network restart
+```
 CentOS 7
-
+```
 systemctl restart network
+```

@@ -1,8 +1,31 @@
 # Địa chỉ IPv6 và phân loại
 
-Địa chỉ IPv6 có chiều dài 128 bit, biểu diễn dưới dạng các cụm số hexa phân cách bởi dấu :, ví dụ:
+Địa chỉ IPv6 có chiều dài 128 bit, điều đó cho phép có thể biểu diễn đến 3.4x1038 (340.000.000.000.000.000.000.000.000.000.000.000.000) địa chỉ
+
+Một địa chỉ IPv6 thường được viết thành 8 nhóm, mỗi nhóm gồm có 4 số hexa phân cách bởi dấu ":", ví dụ:
 
 `2001:0DC8::1005:2F43:0BCD:FFFF`
+
+Điều này đã nảy sinh một vấn để khi trình duyệt của bạn xử lý bất cứ những cái gì đó phía sau dấu ":" như một số chỉ thị của cổng. Trong trường hợp đó, các địa chỉ IPv6 được phân biệt bên trong dấu ngoặc khi chúng được sử dụng như một phần của URL. Ví dụ:
+
+`HTTP://[2001:0DC8:0000:0000:1005:2F43:0BCD:FFFF]/`
+
+Giống như có thể chỉ định số của cổng với địa chỉ IPv4, bạn cũng có thể chỉ định số cổng khi sử dụng địa chỉ IPv6. Số cổng phải đi sau cùng một định dạng bắt buộc như khi sử dụng IPv4. Và ở bên ngoài các dấu ngoặc. Ví dụ:
+
+`HTTP://[2001:0DC8:0000:0000:1005:2F43:0BCD:FFFF]:80/`
+
+
+![](../images/img0.png)
+
+Để xem một địa chỉ IPv6 được phân chia như thế nào thành các phần con khác nhau của nó, bạn hãy quan sát đến địa chỉ dưới đây: 
+
+`2001:0DC8:0000:0000:1005:2F43:0BCD:FFFF/64`
+
+Trong IPv6, một LAN, thường nhận /64 là tiền tố subnet (`subnet prefix`) , có nghĩa 64 bit được sử dụng để biểu diễn phần mạng, trong khi đó, 64 bit còn lại được sử dụng như ID giao diện (`interface ID`). 
+Do vậy, tiền tố subnet là `2001:0DC8:0000:0000` và định danh giao diện `1005:2F43:0BCD:FFFF`. 
+
+Khi một tổ chức nhận vùng địa chỉ IPv6 phân bổ từ một ISP, trong đa số trường hợp là 48 bit (/48), ví dụ `2001:260:20::/48`. Khi đó, 16 bit là tự do sử dụng làm `subnet ID` để xây dựng lên các subnet khác nhau. Ví dụ `2001:260:20:1000::/64` (subnet ID 1000) và `2001:260:20:2000::/64`(subnet ID 2000) là thuộc cùng một mạng, vì chúng có 48 bít đầu là như nhau (`2001:260:20::`).
+
 
 ## 1. Rút gọn cách viết địa chỉ IPv6:
 
@@ -32,6 +55,8 @@ RFC 3513 - Internet Protocol Version 6 (IPv6) Addressing Architecture mô tả c
 
 Trong địa chỉ ipv6 không còn tồn tại khái niệm địa chỉ broadcast. Mọi chức năng của địa chỉ broadcast trong ipv4 được đảm nhiệm thay thế bởi địa chỉ ipv6 multicast. Ví dụ chức năng broadcast trong một subnet của địa chỉ ipv4 được đảm nhiệm bằng một loại địa chỉ ipv6 là địa chỉ multicast mọi node phạm vi link (link-local scope all-nodes multicast address `FF02::1`)
 
+![](../images/multicast.png)
+
 ### 2.3. Địa chỉ anycast
 
 ![](../images/image005.gif)
@@ -50,10 +75,8 @@ Trong địa chỉ ipv6 không còn tồn tại khái niệm địa chỉ broadc
 |Public IP addresses	|Global unicast addresses|
 |Private IP addresses (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16)	|Site-local addresses (FEC0::/10)|
 |Autoconfigured addresses (169.254.0.0/16)|	Link-local addresses (FE80::/64)|
-|Text representation: Dotted decimal notation|	Text representation: Colon hexadecimal format with suppression of leading zeros and zero compression. IPv4-compatible addresses are expressed in dotted decimal notation.|
-|Network bits representation: Subnet mask in dotted decimal notation or prefix length	|Network bits representation: Prefix length notation only
-|DNS name resolution: IPv4 host address (A) resource record	|DNS name resolution: IPv6 host address (AAAA) resource record|
-|DNS reverse resolution: IN-ADDR.ARPA domain|	DNS reverse resolution: IP6.ARPA domain|
+|Phân giải DNS: Bản ghi A	|Phân giải DNS: Bản ghi AAAA|
+|Phân giải ngược : `IN-ADDR.ARPA domain`|	Phân giải ngược: `IP6.ARPA domain`|
 
 **Tham khảo**
 
