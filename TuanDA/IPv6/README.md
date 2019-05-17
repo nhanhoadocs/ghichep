@@ -8,6 +8,11 @@
     - []()
 - 2.2 Cấu trúc đánh địa chỉ. Các dạng địa chỉ IPv6
 - 2.3 Định danh giao diện trong địa chỉ IPv6
+    - Manual
+    - Auto EUI-64
+    - DHCPv6
+    - Pseudo-random interface ID
+    - Cryptographically generated ID
 - 2.4 IPv6 Header
 - 2.5 Cấu hình thực tế của IPv6 trên các hệ điều hành:
     + [CentOS 6](https://github.com/anhtuan204/ghichep/blob/master/TuanDA/IPv6/docs/ipv6-centos6.md)

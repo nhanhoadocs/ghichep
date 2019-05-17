@@ -125,28 +125,34 @@ Cấu trúc của địa chỉ IPv6:
 
 - Bít T=1, đây là dạng địa chỉ multicast không vĩnh viễn
 
-Phạm vi (Scope): Trường này gồm 4 bít xác định phạm vi của nhóm địa chỉ multicast. Hiện nay đang định nghĩa các giá trị như sau:
-
-1: Phạm vi Node
-
-2: Phạm vi Link
-
-5: Phạm vi Site
-
-8: Phạm vi tổ chức Organisation
-
-E: Phạm vi toàn cầu Global 
+- Phạm vi (Scope): Trường này gồm 4 bít xác định phạm vi của nhóm địa chỉ multicast. Hiện nay đang định nghĩa các giá trị như sau:
+    - 1: Phạm vi Node
+    - 2: Phạm vi Link
+    - 5: Phạm vi Site
+    - 8: Phạm vi tổ chức Organisation
+    - E: Phạm vi toàn cầu Global 
 
 Giải thích một cách rõ ràng hơn, nếu ta thấy 4 bít trường scope là "0001" (Scope có giá trị 1) khi đó phạm vi của địa chỉ multicast này là phạm vi node. Gói tin multicast sẽ chỉ được gửi trong phạm vi các giao diện trong một node mà thôi.
+
 Nếu 4 bít này là "0010", giá trị trường Scope là 2, phạm vi của địa chỉ multicast là  phạm vi link. Gói tin multicast được gửi trên phạm vi toàn bộ đường local link.
 
 Router sử dụng giá trị trường Scope của địa chỉ multicast để quyết định có forward lưu lượng multicast hay không. Ví dụ địa chỉ multicast FF02::2 có phạm vi link-local, router sẽ không bao giờ forward gói tin này ra khỏi phạm vi local link.
 
-Nhóm (Group ID) – Thực hiện chức năng định danh các nhóm multicast. Trong một phạm vi scope, có nhiều nhóm multicast (ví dụ nhóm multicast các router, nhóm multicast mọi node, nhóm multicast mọi máy chủ DHCP…). Giá trị các bít Group ID sẽ định danh các nhóm multicast. Trong một phạm vi, số định danh này là duy nhất. Lưu lượng có địa chỉ đích multicast sẽ được chuyển tới các máy thuộc nhóm multicast xác định bởi Group ID, trong phạm vi xác định bởi Scope.
+- Nhóm (Group ID) – Thực hiện chức năng định danh các nhóm multicast. Trong một phạm vi scope, có nhiều nhóm multicast (ví dụ nhóm multicast các router, nhóm multicast mọi node, nhóm multicast mọi máy chủ DHCP…). Giá trị các bít Group ID sẽ định danh các nhóm multicast. Trong một phạm vi, số định danh này là duy nhất. Lưu lượng có địa chỉ đích multicast sẽ được chuyển tới các máy thuộc nhóm multicast xác định bởi Group ID, trong phạm vi xác định bởi Scope.
 
 Theo thiết kế ban đầu, Group ID gồm 112 bít. Với 112 bít, có thể định danh 2112 group. Tuy nhiên, để có thể truyền đi trên mạng tới đích, datagram dữ liệu phải chứa thông tin địa chỉ IP (lớp network) và địa chỉ lớp link-layer (địa chỉ MAC trong trường hợp kết nối Ethernet) tương ứng. Để có được ánh xạ 1-1 từ một địa chỉ IPv6 multicast tới một địa chỉ Ethernet multicast MAC duy nhất, số lượng bít của Group ID được khuyến nghị là 32 bít. Chúng ta sẽ tìm hiểu quy tắc ánh xạ địa chỉ IPv6 multicast tới địa chỉ Ethernet multicast MAC trong mục sau.
 
+# Địa chỉ AnyCast
 
+Địa chỉ anycast được gắn cho một nhóm nhiều giao diện. Gói tin được gửi tới địa chỉ anycast sẽ được chuyển đi theo cấu trúc định tuyến tới giao diện gần nhất trong nhóm (tính theo thủ tục định tuyến). RFC3513 định nghĩa địa chỉ anycast với những đặc điểm như sau:
+
+- Anycast không có không gian địa chỉ riêng mà thuộc vùng địa chỉ unicast. Khi một địa chỉ unicast được gắn đồng thời cho nhiều giao diện, nó sẽ trở thành địa chỉ anycast.
+
+- Một địa chỉ anycast có thể được gắn cho nhiều giao diện của nhiều node.
+
+Địa chỉ anycast không bao giờ được sử dụng làm địa chỉ nguồn của một gói tin ipv6. Hiện nay, địa chỉ anycast không được gắn cho ipv6 host mà chỉ được gắn cho ipv6 router. Một trong những ứng dụng mong muốn của địa chỉ anycast là sử dụng để xác định một tập các router thuộc về một tổ chức cung cấp dịch vụ Internet.
+
+Hiện nay, mới chỉ có một dạng địa chỉ anycast được định nghĩa và ứng dụng. Đó là địa chỉ anycast Subnet-Router. Một địa chỉ anycast Subnet-Router tương ứng với một prefix địa chỉ trong subnet.
 
 ## 3. Tóm tắt các dạng địa chỉ IPv6:
 
