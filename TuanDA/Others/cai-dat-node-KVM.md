@@ -207,3 +207,17 @@ New Storage:
 Điền thông tin thư mục đã mount ở trên và chọn kiểu DIR, nhấn CREATE:
 
 ![](/images/addkvm_4.png)
+
+# Cấu hình allow và deny
+
+Thêm vào `/etc/hosts.allow` : 
+
+`
+sshd: 192.168.70.*,27.72.59.135
+`
+
+Thêm vào `/etc/hosts.deny` :
+
+`
+sshd: ALL
+`
