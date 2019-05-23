@@ -3,6 +3,11 @@
 Bước 1: Setup 1 VM có internet và có gói GUI. ( ở đây sử dụng Ubuntu Desktop 16.04)
 
 Bước 2: Download script và file run về
+```sh
+wget https://github.com/anhtuan204/ghichep/blob/master/TuanDA/script/CVE2019-0708/rdesktop?raw=true && mv rdesktop?raw=true rdesktop
+
+wget https://raw.githubusercontent.com/anhtuan204/ghichep/master/TuanDA/script/CVE2019-0708/scan-2019-0708.sh
+```
 
 Bước 3: Edit lại thông số network và port
 
