@@ -11,7 +11,7 @@ wget https://raw.githubusercontent.com/anhtuan204/ghichep/master/TuanDA/script/C
 
 Bước 3: Edit lại thông số network và port
 
-![](img_2.png)
+![](img_3.png)
 
 Bước 4: Chạy script và check file output 
 
