@@ -10,14 +10,19 @@
 
 ![](images/migrate_2.png)
 
+- Trước khi convert có thể thực hiện mở bằng Excel , chỉnh sửa và lưu lại:
+![](images/migrate_11.png)
+
+(Mục tiêu remove các dấu " để thành format chuẩn)
+
 - Truy cập vào trang : https://www.freeformatter.com/csv-to-xml-converter.html#ad-output
 
 - Paste nội dung file .csv trên vào.
 - Format XML ở dưới điền theo dạng:
-```sh
+```
 <User>
-<sn></sn>
-<givenName></givenName>
+<sn>##4##</sn>
+<givenName>##4##</givenName>
 <displayName>##4##</displayName>
 <RemoteEmailAddress>##1##</RemoteEmailAddress>
 <password>test123</password>
@@ -107,3 +112,7 @@ imapsync --host1 <ip/hostname_oldhost>  \
 - Sau khi đồng bộ, hiển thị như dưới là đã hoàn tất và không gặp lỗi:
 
 ![](images/migrate_10.png)
+
+**Link tham khảo** :
+- https://wiki.xmission.com/Zimbra_Migration:_IMAPSync
+- https://github.com/imapsync/imapsync
