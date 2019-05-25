@@ -359,4 +359,5 @@ systemctl restart neutron-linuxbridge-agent.service neutron-dhcp-agent.service n
 - Truy cập dashboard ở địa chỉ http://172.16.4.240 và tạo máy ảo
 
 `openstack network agent list` -> phai up
+
 `openstack compute service list `-> ra compute (luu y sua kvm thanh qemu vs esxi)

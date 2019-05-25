@@ -2,7 +2,7 @@
 #Khai bao port o day 
 port=3389
 #Khai bao range IP o day
-range=45.117.80
+range=11.11.11
 echo "" > test
 for ip in {2..254};
 do
