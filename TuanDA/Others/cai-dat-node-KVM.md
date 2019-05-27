@@ -149,7 +149,7 @@ fdisk /dev/sdb
 		+890G
 		w :  Ghi lại thay đổi vào đĩa - phải rất cẩn thận khi sử dụng lệnh này!!
 		
-![](/images/fdisk.png)
+![](../images/fdisk.png)
 
 - Kiểm tra lại bằng `fdisk -l`
 
@@ -194,19 +194,19 @@ UUID=<ID> /data ext4 defaults 0 0
 
 Chọn host add storage:
 
-![](/images/addkvm_1.png)
+![](../images/addkvm_1.png)
 
 Chọn phần Storage:
 
-![](/images/addkvm_2.png)
+![](../images/addkvm_2.png)
 
 New Storage:
 
-![](/images/addkvm_3.png)
+![](../images/addkvm_3.png)
 
 Điền thông tin thư mục đã mount ở trên và chọn kiểu DIR, nhấn CREATE:
 
-![](/images/addkvm_4.png)
+![](../images/addkvm_4.png)
 
 # Cấu hình allow và deny
 
