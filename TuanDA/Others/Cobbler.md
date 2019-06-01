@@ -1,43 +1,133 @@
-Trước khi tìm hiểu Cobbler, cần nắm rõ về PXE boot trước.
 
-1.	Giới thiệu Cobbler
-Cobbler là một gói công cụ tiện ích cho phép triển khai hoàn chỉnh một máy chủ PXE server với khả năng cài đặt tự động các phiên bản Linux thông qua môi trường mạng đồng thời hỗ trợ kết hợp tính năng của kickstart file cho phép tự động hóa hoàn toàn quy trình cài đặt, loại bỏ hẳn các thao tác trả lời không cần thiết trong quá trình triển khai.
+# Services IP Address on the server - IP đường PXE
+IP_ADDR=192.168.22.51
+IP_GATEWAY=192.168.22.1
+NETMASK=255.255.255.0
+NETDEVICE=eth2
+NETPREFIX=24
+NETWORK=192.168.22.0
 
-Bên cạnh đó, Cobbler còn có thể giúp đỡ trong việc cung cấp, quản lý DNS và DHCP, cập nhật gói, quản lý năng lượng, sắp xếp quản lý cấu hình và nhiều tính năng nữa.
+DHCP_MIN_HOST=192.168.22.150
+DHCP_MAX_HOST=192.168.22.200
+
+###
+```
+echo "Setup IP  eth0"
+nmcli con modify eth0 ipv4.addresses 192.168.20.51/24
+nmcli con modify eth0 ipv4.method manual
+nmcli con mod eth0 connection.autoconnect yes
+
+echo "Setup IP  eth1"
+nmcli con modify eth1 ipv4.addresses 192.168.21.51/24
+nmcli con modify eth1 ipv4.method manual
+nmcli con mod eth1 connection.autoconnect yes
+
+echo "Setup IP  eth2"
+nmcli con modify eth2 ipv4.addresses 192.168.22.51/24
+nmcli con modify eth2 ipv4.gateway 192.168.22.1
+nmcli con modify eth2 ipv4.dns 8.8.8.8
+nmcli con modify eth2 ipv4.method manual
+nmcli con modify eth2 connection.autoconnect yes
+
+sudo systemctl disable firewalld
+sudo systemctl stop firewalld
+sudo systemctl disable NetworkManager
+sudo systemctl stop NetworkManager
+sudo systemctl enable network
+sudo systemctl start network
+```
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+setenforce 0
+```
+
+**Hoặc sử dụng firewalld**
+```
+firewall-cmd --add-port=80/tcp --permanent
+firewall-cmd --add-port=443/tcp --permanent
+firewall-cmd --add-service=dhcp --permanent
+firewall-cmd --add-port=69/tcp --permanent
+firewall-cmd --add-port=69/udp --permanent
+firewall-cmd --add-port=4011/udp --permanent
+firewall-cmd --reload
+```
+```
+### install
+yum install epel-release -y
+yum install wget cobbler cobbler-web dnsmasq syslinux pykickstart xinetd bind bind-utils dhcp debmirror pykickstart fence-agents-all -y
+```
+
+```
+systemctl start cobblerd
+systemctl enable cobblerd
+systemctl start httpd
+systemctl enable httpd
+```
+```sh
+sed -i "s/127\.0\.0\.1/${IP_ADDR}/" /etc/cobbler/settings
+sed -i "s/manage_dhcp: .*/manage_dhcp: 1/" /etc/cobbler/settings
+sed -i "s/subnet .* netmask .* {/subnet $NETWORK netmask $NETMASK {/" /etc/cobbler/dhcp.template
+sed -i "s/option routers .*/option routers             ${IP_GATEWAY};/" /etc/cobbler/dhcp.template
+sed -i "s/option domain-name-servers .*/option domain-name-servers 8.8.8.8;/" /etc/cobbler/dhcp.template
+sed -i "s/range dynamic-bootp .*/range dynamic-bootp        ${DHCP_MIN_HOST} ${DHCP_MAX_HOST};/" /etc/cobbler/dhcp.template
+sed -i "s/disable.*/disable\t\t\t= no/" /etc/xinetd.d/tftp
+sed -i "s/^@dists/#@dists/" /etc/debmirror.conf
+sed -i "s/^@arches/#@arches/" /etc/debmirror.conf
+```
+
+```sh
+systemctl enable rsyncd.service
+systemctl restart rsyncd.service
+systemctl restart cobblerd
+systemctl restart xinetd
+systemctl enable xinetd
+systemctl enable dhcpd
+```
+```sh
+cd /root
+wget http://mirrors.nhanhoa.com/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+mkdir /mnt/centos
+mount -o loop /root/CentOS-7-x86_64-Minimal-1810.iso  /mnt/centos/
+cobbler import --arch=x86_64 --path=/mnt/centos --name=CentOS7
+cd /var/lib/cobbler/kickstarts
+wget https://raw.githubusercontent.com/MinhKMA/meditech-thuctap/master/MinhNV/ghi_chep_pxe/cobbler/centos7.ks
+```
 
 
-2.	Các thành phần của Cobbler:
-Cobbler kết nối và tự động hóa nhiều công đoạn khác nhau trong quá trình cài đặt Linux, giúp cho người quản trị dễ dàng hơn trong việc cài đặt số lượng lớn hệ điều hành Linux với những cấu hình khác nhau.
+- Sử dụng openssl để sinh ra mật khẩu đã được mã hóa như sau:
+```
+ openssl passwd -1
+ Password: Thanglong2019#@!
+ Verifying - Password: Thanglong2019#@!
+ $1$gjuhkmEg$mx9FyR5xZVNZRDp7j7/no/
+```
+- Thay thế trong file centos7.ks
 
-Các thành phần chính của Cobbler cũng tương tự như của một PXE server bình thường: TFTP server, DHCP server, Kickstart file. Bên cạnh đó, Cobbler còn có thêm một số tính năng nổi bật như:
+``` 
+sed -i "s/127\.0\.0\.1/${IP_ADDR}/" /var/lib/cobbler/kickstarts/centos7.ks
+cobbler profile edit --name=CentOS7-x86_64 --kickstart=/var/lib/cobbler/kickstarts/centos7.ks
+```
 
-Web server: cung cấp giao diện web tương tác cho người quản trị, thông qua đó quản lý các profile cũng như các máy trạm được cài đặt.
-
-DNS server: Quản lý miền dịch vụ của các máy client. (Không bắt buộc phải có như DHCP)
-
-3.	Các đối tượng trong Cobbler
-Distro: Đại diện cho một hệ điều hành. Nó chứa các thông tin về kernel và initrd, thêm vào đó là các dữ liệu khác như các thông số của kernel.
-
-Profile: Chỉ tới các distro, một file kickstart, và các repository có thể, các dữ liệu khác như một vài thông số đặc biệt của kernel.
-
-System: Đại diện cho các máy được cung cấp, nó chỉ tới một profile hoặc một image và chứa thông tin về IP và địa chỉ MAC, quản lý tài nguyên (địa chỉ, credential, type) và nhiều loại data chuyên biệt hơn.
-
-Repository: Giữ thông tin về các mirror repo cho quá trình cài đặt và cập nhật phần mềm của các máy client.
-
-Image: có thể thay thế cho distro cho các file mà không phù hợp với loại này. (chưa rõ lắm..)
-
-Dựa vào các đối tượng trên và mối quan hệ giữa chúng, Cobbler biết cách làm thế nào để thay đổi hệ thống file để phản ánh cấu hình. Sau đây là mối quan hệ giữa các đối tượng trong Cobbler:
-
-img
+cobbler get-loaders
+cobbler check
+cobbler sync
 
 
-4. Tham khảo
-[1] https://www.ibm.com/developerworks/library/l-cobbler/index.html
+**Với máy tạo từ virt-manager **
+**Đăng nhập web bị lỗi**:
+- https://192.168.22.51/cobbler_web
+```sh
+yum install python-pip -y
+pip install Django==1.8.19
+systemctl restart httpd.service
+```
 
-[2] https://letonphat.wordpress.com/2011/07/05/tri%E1%BB%83n-khai-ci-d%E1%BA%B7t-h%E1%BB%87-th%E1%BB%91ng-linux-t%E1%BB%B1-d%E1%BB%99ng-v%E1%BB%9Bi-cobbler/
+**Thay đổi password web**
+htdigest /etc/cobbler/users.digest "Cobbler" cobbler
 
-
-https://github.com/hocchudong/ghichep-cobbler/blob/master/docs/2.Cobbler-cai_dat_centos7.md
+**Commmand**
+```
 cobbler status
 cobbler list
 cobbler profile list
@@ -50,3 +140,5 @@ cobbler distro list : liệt kê danh sách các distro
 cobbler distro remove : xóa distro nào đó khỏi hệ thống cobbler
 cobbler distro rename : đổi tên cobbler
 cobbler distro report : Hiển thị các thông tin chi tiết về distro
+```
+
