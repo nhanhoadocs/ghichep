@@ -148,3 +148,5 @@ cobbler distro rename : đổi tên cobbler
 cobbler distro report : Hiển thị các thông tin chi tiết về distro
 ```
 
+**Khi thay đổi cấu hình KS cần cobbler sync lại**
+
