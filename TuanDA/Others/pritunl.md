@@ -120,7 +120,7 @@ sudo pritunl default-password
 
 - Vào mục Server, chọn `Start Server`:
 
-![](/images/pritunl15b.png)
+![](images/pritunl15b.png)
 
 **Kết nối Client**
 
