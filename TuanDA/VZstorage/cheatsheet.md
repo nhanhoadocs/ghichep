@@ -1,9 +1,9 @@
 - [1. Tạo máy ảo bằng virt-install](#virtinstall)
 - [2. Tạo máy ảo bằng virt-manager](#virtmanager)
 - [3. Tạo máy ảo bằng file XML](#xml)
-- [Thay thế ổ MDS](#changmds)
-- [Thay thế ổ Chunk (CS)](#changcs)
-- [Thay thế ổ Cache](#changcache)
+- [Thay thế ổ MDS](#changemds)
+- [Thay thế ổ Chunk (CS)](#changecs)
+- [Thay thế ổ Cache](#changecache)
 
 
 
