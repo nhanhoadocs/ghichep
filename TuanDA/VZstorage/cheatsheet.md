@@ -1,6 +1,6 @@
 - [1. Tạo máy ảo bằng virt-install](#virtinstall)
-- [2. Tạo máy ảo bằng virt-manager](#virtmanager)
-- [3. Tạo máy ảo bằng file XML](#xml)
+- [Xử lý lỗi không nhận HA](#noha)
+- [Register target trên node mới](#register)
 - [Thay thế ổ MDS](#changemds)
 - [Thay thế ổ Chunk (CS)](#changecs)
 - [Thay thế ổ Cache](#changecache)
@@ -28,29 +28,48 @@ vstorage-iscsi list
 
 # <a name="register"> Register target trên node mới </a>
 
-1. In node Compute
- 
-- logout
-- kiem tra tren note old : 
+- Trên node Compute logout target:
+
+```sh
+ iscsiadm --mode node --targetname  iqn.2014-06.com.vstorage:kvm2 --portal 10.10.11.225:3260 --logout
+```
+
+- Kiểm tra trên node cũ :
+
+```sh 
 vstorage-iscsi list -t iqn.2014-06.com.vstorage:target1
 vstorage-iscsi stop -t iqn.2014-06.com.vstorage:target1
-2. In node old Storage 
+```
 
+- Trên node storage cũ:  
+
+```sh
 vstorage-iscsi unregister -t iqn.2014-06.com.vstorage:target1
-3. In new node Storage
- vstorage-iscsi register -t iqn.2014-06.com.vstorage:target1
+```
 
-4. Start target in node compute
+- Trên node storage mới: 
+
+```sh
+ vstorage-iscsi register -t iqn.2014-06.com.vstorage:target1
+```
+
+- Start target trên node compute
+
+```sh
 vstorage-iscsi start -t iqn.2014-06.com.vstorage:target1
+```
 
 # <a name="noha"> Xử lý lỗi không nhận HA </a>
 
+```sh
 yum install hastart -y
 hastart -c vsto  -n 10.10.11.0/24 <iscsi>
 shaman -c vsto add-role ISCSI
-if you want HA to work only for iSCSI targets, change the shaman roles on the node by running the following command:
+
+#if you want HA to work only for iSCSI targets, change the shaman roles on the node by running the following command:
 
 shaman -c vsto set-roles ISCSI
+```
 
 # <a name="changeidtarget"> Thay đổi target IP </a>
 
@@ -363,6 +382,7 @@ vstorage -c vsto configure-cs -r /vstorage/vsto-cs3 -a /vstorage/vsto-ssd2/cs3-v
 
 
 **Cách 2: Move trực tiếp.**
+
 ```sh
 vstorage -c vsto configure-cs -r /vstorage/vsto-cs -m /vstorage/vsto-ssd2/cs-vsto-journal -s 34108
 vstorage -c vsto configure-cs -r /vstorage/vsto-cs1 -m /vstorage/vsto-ssd2/cs1-vsto-journal -s 34108
