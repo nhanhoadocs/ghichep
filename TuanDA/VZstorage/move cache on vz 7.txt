@@ -1,0 +1,55 @@
+Move cache tren virtuozzo storage
+1. format o ssd
+- /usr/libexec/vstorage/prepare_vstorage_drive /dev/sdk --ssd
+- mkfs.ext4 /dev/sdk2
+2. Mount ssd
+- Tạo thư muc ssd
+mkdir nhanhoa-storage-ssd2
+- Mount o ssd vao thu muc
+ mount /dev/sdk2 /vstorage/nhanhoa-storage-ssd2
+- add them o vua mount vao file /etc/fstab
++ lay uuid
+blkid /dev/sdk2
++ them vao /etc/fstab
+UUID=c3173f66-06aa-4433-b57f-d1e6ea6ae08a /vstorage/nhanhoa-storage-ssd2                     ext4    defaults,noatime,lazytime 0 0
+3. xac dinh cac o can move cache
+vstorage -c nhanhoa-storage top
+để nhìn thấy ổ chưa cache ấn phím C sau đấy ấn phím i đến phần FLAGS 
+kí hiệu D là ổ sata chưa được write cache ssd
+  1051    0    6984 None None             None                   0% D          
+  1052    0    6987 None None              11,  1d 11h ago       0% D          
+  1053    0    6985 None None             None                   0% D          
+  1054    0    6986 None None              11,  1d 11h ago       0% D
+- Tính toán dung lượng.
+ vstorage -c nhanhoa-storage advise-configuration  -w  --cs  /vstorage/nhanhoa-storage-cs  --cs /vstorage/nhanhoa-storage-cs1   --cs /vstorage/nhanhoa-storage-cs2  --cs /vstorage/nhanhoa-storage-cs3 --ssd  /vstorage/nhanhoa-storage-ssd2 -m /vstorage/nhanhoa-storage
+You have the following setup:
+CS  on /vstorage/nhanhoa-storage-cs3 -- Total disk space 1.7TB
+CS  on /vstorage/nhanhoa-storage-cs2 -- Total disk space 1.7TB
+CS  on /vstorage/nhanhoa-storage-cs1 -- Total disk space 1.7TB
+CS  on /vstorage/nhanhoa-storage-cs -- Total disk space 1.7TB
+
+SSD on /vstorage/nhanhoa-storage-ssd2 -- Total disk space 219.4GB
+
+Proposed server configuration optimized for writes:
+ -  133.2GB (60%) for CS journals, 57.1GB (26%) for mount read cache on /vstorage/nhanhoa-storage-ssd2,
+ 29.1GB (13%) reserved (including  7.1GB checksums for 7.1TB of data)
+ - CS journal sizes:
+         33.3GB for /vstorage/nhanhoa-storage-cs3 at /vstorage/nhanhoa-storage-ssd2
+         33.3GB for /vstorage/nhanhoa-storage-cs2 at /vstorage/nhanhoa-storage-ssd2
+         33.3GB for /vstorage/nhanhoa-storage-cs1 at /vstorage/nhanhoa-storage-ssd2
+         33.3GB for /vstorage/nhanhoa-storage-cs at /vstorage/nhanhoa-storage-ssd2
+
+How to setup the node:
+vstorage -c nhanhoa-storage make-cs -r /vstorage/nhanhoa-storage-cs3 -j /vstorage/nhanhoa-storage-ssd2/cs4-nhanhoa-storage-journal -s 34108
+vstorage -c nhanhoa-storage make-cs -r /vstorage/nhanhoa-storage-cs2 -j /vstorage/nhanhoa-storage-ssd2/cs3-nhanhoa-storage-journal -s 34108
+vstorage -c nhanhoa-storage make-cs -r /vstorage/nhanhoa-storage-cs1 -j /vstorage/nhanhoa-storage-ssd2/cs2-nhanhoa-storage-journal -s 34108
+vstorage -c nhanhoa-storage make-cs -r /vstorage/nhanhoa-storage-cs -j /vstorage/nhanhoa-storage-ssd2/cs1-nhanhoa-storage-journal -s 34108
+vstorage-mount -c nhanhoa-storage /vstorage/nhanhoa-storage -C /vstorage/nhanhoa-storage-ssd2/vstorage-nhanhoa-storage-cache -R 58471
+
+Mount option for automatic cluster mount from /etc/fstab:
+vstorage://nhanhoa-storage /vstorage/nhanhoa-storage fuse.vstorage cache=/vstorage/nhanhoa-storage-ssd2/vstorage-nhanhoa-storage-cac
+Tiến Hành move cache.
+vstorage -c nhanhoa-storage configure-cs -r /vstorage/nhanhoa-storage-cs  -a /vstorage/nhanhoa-storage-ssd2/cs-nhanhoa-storage-journal -s 34108
+vstorage -c nhanhoa-storage configure-cs -r /vstorage/nhanhoa-storage-cs1  -a /vstorage/nhanhoa-storage-ssd2/cs1-nhanhoa-storage-journal -s 34108
+vstorage -c nhanhoa-storage configure-cs -r /vstorage/nhanhoa-storage-cs2  -a /vstorage/nhanhoa-storage-ssd2/cs2-nhanhoa-storage-journal -s 34108
+vstorage -c nhanhoa-storage configure-cs -r /vstorage/nhanhoa-storage-cs3  -a /vstorage/nhanhoa-storage-ssd2/cs3-nhanhoa-storage-journal -s 34108
