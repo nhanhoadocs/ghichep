@@ -1,4 +1,12 @@
-- [1. Tạo máy ảo bằng virt-install](#virtinstall)
+
+
+- [Cấu hình ổ CS (không Cache)](#virtinstall)
+- [Move từ không cache sang có cache ](#virtinstall)
+- [Cấu hình ổ CS (+ Cache) ](#virtinstall)
+- [Set replicate ](#virtinstall)
+- [add thêm LUN vào target đang chạy ](#virtinstall)
+- [Thay đổi LUN size ](#virtinstall)
+- [Thay đổi target IP ](#virtinstall)
 - [Xử lý lỗi không nhận HA](#noha)
 - [Register target trên node mới](#register)
 - [Thay thế ổ MDS](#changemds)
