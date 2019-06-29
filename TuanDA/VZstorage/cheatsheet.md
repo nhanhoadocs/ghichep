@@ -1,5 +1,5 @@
 
-
+- [Các câu lệnh cơ bản](#cmd)
 - [Cấu hình ổ CS (không Cache)](#create-cs-nocache)
 - [Move từ không cache sang có cache ](#virtinstall)
 - [Cấu hình ổ CS (+ Cache) ](#virtinstall)
@@ -14,6 +14,52 @@
 - [Thay thế ổ Cache](#changecache)
 - [Lỗi target unknow](#unknow)
 
+# <a name="cmd"> Các câu lệnh cơ bản </a>
+
+```
+vstorage -c nhanhoa-storage top
+#Monitor hệ thống Virtuozzo storage
+```
+
+```
+vstorage -c nhanhoa-storage list-services
+#List ra các CS đang hoạt động trên node
+```
+
+```
+vstorage -c nhanhoa-storage get-event
+#View event logs trên virtuozzo storage
+```
+
+```
+vzlicview
+v#iew license node
+```
+
+```
+vzlicload -p license
+#Active license cho node
+```
+
+```
+vstorage -c nhanhoa-storage view-license 
+#View license virtuozzo storage và HWID của node
+```
+
+```
+vstorage -c nhanhoa-storage update-license
+#Update license virtuozzo storage
+```
+
+```
+vstorage-iscsi list -a
+#List all target
+```
+
+```
+vstorage-i list -t
+#View thông tin về target
+```
 
 # <a name="register"> Register target trên node mới </a>
 
@@ -48,7 +94,8 @@ vstorage-iscsi unregister -t iqn.2014-06.com.vstorage:target1
 vstorage-iscsi start -t iqn.2014-06.com.vstorage:target1
 ```
 
-### Đăng ký và sử dụng free License (Cho việc HA target)###
+**Đăng ký và sử dụng free License (Cho việc HA target)**
+
 - Đăng ký trên trang chủ: https://www.virtuozzo.com/
 ```
 vzlicload -p A40R00-S2VH74-M3FS45-G4B100-9HVS40
@@ -165,7 +212,7 @@ vstorage -c vsto configure-cs -r /vstorage/vsto-cs -a /vstorage/vsto-ssd/vsto-cs
 ```sh
 vstorage-mount -c vsto /vstorage/vsto -C /vstorage/vsto-ssd/vstorage-vsto-cache -R 7769
 ```
-# tao CS (+ Cache)
+# Tạo CS (+ Cache)
 # <a name="create-cs-nocache"> Cấu hình CS (không Cache) </a>
 ```sh
 /usr/libexec/vstorage/prepare_vstorage_drive /dev/sdf --ssd
