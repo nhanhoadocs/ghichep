@@ -15,25 +15,6 @@
 - [Lỗi target unknow](#unknow)
 
 
-[root@storage38191 ~]# systemctl -a | grep iscsi
-  sys-devices-virtual-net-vstorage\x2discsi.device  		loaded    active     plugged         /sys/devices/virtual/net/vstorage-iscsi
-  sys-subsystem-net-devices-vstorage\x2discsi.device 		loaded    active     plugged         /sys/subsystem/net/devices/vstorage-iscsi
-  iscsi-shutdown.service 									loaded    active     exited          Logout off all iSCSI sessions on shutdown
-  iscsi.service  											loaded    active     exited          Login and scanning of iSCSI devices
-  iscsid.service                                                                                                                                                 loaded    inactive   dead            Open-iSCSI
-  iscsiuio.service                                                                                                                                               loaded    inactive   dead            iSCSI UserSpace I/O driver
-  vstorage-iscsid.service                                                                                                                                        loaded    active     exited          Vstorage iSCSI services
-  vstorage-iscsid@kvm2.service                                                                                                                                   loaded    active     running         Vstorage iSCSI service for kvm2 target
-  system-vstorage\x2discsid.slice                                                                                                                                loaded    active     active          system-vstorage\x2discsid.slice
-  iscsid.socket                                                                                                                                                  loaded    inactive   dead            Open-iSCSI iscsid Socket
-  iscsiuio.socket                                                                                                                                                loaded    active     listening       Open-iSCSI iscsiuio Socket
-  vstorage-iscsid.target                                                                                                                                         not-found inactive   dead            vstorage-iscsid.target
-
-iscsiadm -m node -o show
-vstorage-iscsi list
-
-
-
 # <a name="register"> Register target trên node mới </a>
 
 - Trên node Compute logout target:
