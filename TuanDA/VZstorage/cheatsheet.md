@@ -33,7 +33,7 @@ vstorage -c nhanhoa-storage get-event
 
 ```
 vzlicview
-v#iew license node
+#view license node
 ```
 
 ```
@@ -57,8 +57,18 @@ vstorage-iscsi list -a
 ```
 
 ```
-vstorage-i list -t
+vstorage-iscsi list -t
 #View thông tin về target
+```
+
+```
+iscsiadm --mode node
+#List target đang connect vào (trên server client)
+```
+
+```
+ls -lah /dev/disk/by-path/
+#Để view target nào gán vào ổ nào của server (đứng trên server client)
 ```
 
 # <a name="register"> Register target trên node mới </a>
@@ -481,7 +491,7 @@ vstorage -c vsto configure-cs -r /vstorage/vsto-cs2 -m /vstorage/vsto-ssd2/cs2-v
 vstorage -c vsto configure-cs -r /vstorage/vsto-cs3 -m /vstorage/vsto-ssd2/cs3-vsto-journal -s 34108
 ```
 
-# <a name="unknow"> lỗi target unknow </a>
+# <a name="unknow"> Lỗi target unknow </a>
 - Xóa cache shaman:
 ```sh
 shaman -c vsto cleanup-broken 
