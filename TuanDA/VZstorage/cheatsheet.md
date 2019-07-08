@@ -71,6 +71,27 @@ ls -lah /dev/disk/by-path/
 #Để view target nào gán vào ổ nào của server (đứng trên server client)
 ```
 
+```
+[root@vz1 ~]# cat /etc/vstorage/host_id
+ada9ff74a9a3474a
+#Kiểm tra ID của Host
+```
+
+```
+vstorage get-attr /vstorage/vsto
+connected to MDS#4
+Path: 'vstorage://vsto/'
+Attributes:
+  directory
+  client-ssd-cache=1
+  replicas=3:2
+  failure-domain=host
+  tier=0
+  chunk-size=268435456
+#Kiểm tra trạng thái Cluster
+```
+
+
 # <a name="register"> Register target trên node mới </a>
 
 - Trên node Compute logout target:
