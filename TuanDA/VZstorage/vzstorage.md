@@ -45,7 +45,7 @@ nodes in the cluster)
 Storage: Four or more HDDs or SSDs; 1 DWPD
 endurance minimum, 10 DWPD recommended
 
-Terabytes Written (TBW)
+### Terabytes Written (TBW)
 
 Terabytes Written (TBW) directly measures how much you can write cumulatively into the drive over its lifetime. Essentially, it just includes the multiplication we did above in the measurement itself. 
 For example, if your drive is rated for 365 TBW, that means you can write 365 TB into it before you may need to replace it. 
