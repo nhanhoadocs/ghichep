@@ -1,0 +1,110 @@
+```sh
+[DEFAULT]
+enabled_apis = osapi_compute,metadata
+transport_url = rabbit://openstack:Welcome123@172.16.3.222:5672
+use_neutron = True
+firewall_driver = nova.virt.firewall.NoopFirewallDriver
+[api]
+auth_strategy = keystone
+[api_database]
+[barbican]
+[cache]
+[cells]
+[cinder]
+os_region_name = RegionTwo
+[compute]
+[conductor]
+[console]
+[consoleauth]
+[cors]
+[crypto]
+[database]
+[devices]
+[ephemeral_storage_encryption]
+[filter_scheduler]
+[glance]
+api_servers = http://172.16.3.222:9292
+[guestfs]
+[healthcheck]
+[hyperv]
+[ironic]
+[key_manager]
+[keystone]
+[keystone_authtoken]
+#auth_url = http://172.16.3.222:5000/v3
+#memcached_servers = 172.16.3.222:11211
+auth_url = http://172.16.3.220:5000/v3
+memcached_servers = 172.16.3.220:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = nova
+password = Welcome123
+region_name = RegionTwo
+[libvirt]
+virt_type = qemu
+[matchmaker_redis]
+[metrics]
+[mks]
+[neutron]
+url = http://172.16.3.222:9696
+#auth_url = http://172.16.3.222:35357
+auth_url = http://172.16.3.220:35357
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+#region_name = RegionOne
+region_name = RegionTwo
+project_name = service
+username = neutron
+password = Welcome123
+[notifications]
+[osapi_v21]
+[oslo_concurrency]
+lock_path = /var/lib/nova/tmp
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+rabbit_ha_queues = true
+rabbit_retry_interval = 1
+rabbit_retry_backoff = 2
+amqp_durable_queues= true
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[pci]
+[placement]
+#os_region_name = RegionOne
+os_region_name = RegionTwo
+project_domain_name = Default
+project_name = service
+auth_type = password
+user_domain_name = Default
+#auth_url = http://172.16.3.222:5000/v3
+auth_url = http://172.16.3.220:5000/v3
+username = placement
+password = Welcome123
+[quota]
+[rdp]
+[remote_debug]
+[scheduler]
+discover_hosts_in_cells_interval = 300
+[serial_console]
+[service_user]
+[spice]
+[upgrade_levels]
+[vault]
+[vendordata_dynamic_auth]
+[vmware]
+[vnc]
+enabled = True
+server_listen = 0.0.0.0
+server_proxyclient_address = 172.16.3.223
+novncproxy_base_url = http://172.16.3.222:6080/vnc_auto.html
+[workarounds]
+[wsgi]
+[xenserver]
+[xvp]
+```
