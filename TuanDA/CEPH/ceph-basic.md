@@ -145,13 +145,13 @@ ceph-deploy install --release luminous ceph1 ceph2 ceph3
 ```
 
 - Kiểm tra sau khi cài đặt
-
+```
 ceph -v 
-
+```
 - Khởi tạo cluster với các node mon (Monitor-quản lý) dựa trên file ceph.conf
-
+```sh
 ceph-deploy mon create-initial
-
+```
 - Sau khi thực hiện lệnh phía trên sẽ sinh thêm ra 05 file : 
 - ceph.bootstrap-mds.keyring, 
 - ceph.bootstrap-mgr.keyring, 
