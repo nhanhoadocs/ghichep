@@ -209,11 +209,11 @@ ceph auth get-or-create client.glance mon 'allow r' osd 'allow class-read object
 ```sh 
 ceph auth get-or-create client.glance | ssh 172.16.3.220 sudo tee /etc/ceph/ceph.client.glance.keyring
 ```
-
+```
 ssh 172.16.3.220 sudo tee /etc/ceph/ceph.conf < /etc/ceph/ceph.conf
 ssh 172.16.3.221 sudo tee /etc/ceph/ceph.conf < /etc/ceph/ceph.conf
 ceph-deploy admin controller compute
-
+````
 
 ### 4.2 Thực hiện trên Node Controller
 
