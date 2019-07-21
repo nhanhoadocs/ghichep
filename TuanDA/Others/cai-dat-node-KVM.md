@@ -1,35 +1,7 @@
 
 # Cấu hình network
 
-## Chinh sua em3
-```sh
-/etc/sysconfig/network-scripts/ifcfg-em3
-TYPE=Ethernet
-BOOTPROTO=none
-NAME=em3
-DEVICE=em3
-ONBOOT=yes
-```
-Tạo subinterface để nhận IP (mode trên switch là mode `trunk`):
-```
-/etc/sysconfig/network-scripts/ifcfg-em3.70
-DEVICE=em3.70
-BOOTPROTO=none
-ONBOOT=yes
-VLAN=yes
-BRIDGE=vlan70
-TYPE=Ethernet
-NM_CONTROLLED=no
-IPADDR=192.168.70.82
-PREFIX=24
-GATEWAY=192.168.70.1
-```
-Cấu hình DNS:
-```sh
-echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-```
-
-# Update và cài đặt package
+## Update và cài đặt package
 
 ```sh
 yum update --exclude=kernel -y
@@ -52,22 +24,31 @@ kvm                   593920  1 kvm_intel
 irqbypass              16384  1 kvm
 ```
 
-Sửa đổi cấu hình Bridge:
-/etc/sysconfig/network-scripts/ifcfg-vlan70
+## 1. Cấu hình đường management:
+Ở đây đường VLAN sử dụng để management là em3 - VLAN 70.
 
+Đầu trên switch cấu hình trunking và allow VLAN 70
+
+- Tạo interface VLAN với IP để management:
 ```sh
+vi /etc/sysconfig/network-scripts/ifcfg-vlan70
+```
+```
 DEVICE=vlan70
 TYPE=Bridge
 BOOTPROTO=none
 ONBOOT=yes
 NM_CONTROLLED=no
-IPADDR=192.168.70.82
+IPADDR=<ip_management>
 PREFIX=24
-GATEWAY=192.168.70.1
+GATEWAY=<ip>
 ```
 
-/etc/sysconfig/network-scripts/ifcfg-em3.70
+- Tạo subinterface kết nối tới VLAN 70:
 ```sh
+vi /etc/sysconfig/network-scripts/ifcfg-em3.70
+```
+```
 DEVICE=em3.70
 BOOTPROTO=none
 ONBOOT=yes
@@ -77,7 +58,51 @@ TYPE=Ethernet
 NM_CONTROLLED=no
 ```
 
+- Kiểm tra lại bằng lệnh `brctl show`
+```sh
+[root@kvm7082 ~]# brctl show
+bridge name     bridge id               STP enabled     interfaces
+virbr0          8000.52540086bd29       yes             virbr0-nic
+vlan70          8000.ecf4bbc11162       no              em3.70
+```
 
+## 2. Cấu hình network cho các VLAN dành cho máy ảo:
+Tạo các interface và bridge (ở đây là interface em1 - VLAN 192 - Đầu switch cấu hình trunk allow VLAN 192):
+
+```sh
+vi /etc/sysconfig/network-scripts/ifcfg-em1.192
+
+DEVICE=em1.192
+BOOTPROTO=none
+ONBOOT=yes
+VLAN=yes
+BRIDGE=vlan192
+TYPE=Ethernet
+NM_CONTROLLED=no
+
+vi /etc/sysconfig/network-scripts/ifcfg-vlan192
+
+DEVICE=vlan192
+TYPE=Bridge
+BOOTPROTO=none
+ONBOOT=yes
+NM_CONTROLLED=no
+```
+```
+ifdown em1.192 && ifup m1.192
+ifdown vlan192 && ifup vlan192
+```
+
+- Kiểm tra lại bằng lệnh:
+```
+brctl show
+[root@kvm7082 ~]# brctl show
+bridge name     bridge id               STP enabled     interfaces
+virbr0          8000.52540086bd29       yes             virbr0-nic
+vlan192         8000.ecf4bbc11160       no              em1.192
+```
+
+## Virt-manager
 Đối với bản Minimal để dùng được công cụ đồ họa virt-manager người dùng phải cài đặt gói x-window bằng câu lệnh
 
 ```sh
@@ -109,7 +134,8 @@ Bỏ comment và chỉnh sửa một số dòng sau trong file `/etc/libvirt/lib
 listen_tls = 0
 listen_tcp = 1
 tcp_port = "16509"
-listen_addr = "0.0.0.0"
+#secure lại VNC chỉ listen local
+listen_addr = "<ip>"
 auth_tcp = "none"
 ```
 
@@ -149,7 +175,7 @@ fdisk /dev/sdb
 		+890G
 		w :  Ghi lại thay đổi vào đĩa - phải rất cẩn thận khi sử dụng lệnh này!!
 		
-![](/images/fdisk.png)
+![](../images/fdisk.png)
 
 - Kiểm tra lại bằng `fdisk -l`
 
@@ -158,12 +184,12 @@ fdisk /dev/sdb
 [root@kvm7082 ~]# pvcreate /dev/sdb1
   Physical volume "/dev/sdb1" successfully created.
 ```
-- Tao VG:
+- Tạo VG:
 ```sh
 [root@kvm7082 ~]# vgcreate vg-kvm /dev/sdb1 
   Volume group "vg-kvm" successfully created
 ```
-- Tao LVM: (dung lượng nhỏ hơn)
+- Tạo LVM: (dung lượng nhỏ hơn)
 ```
 [root@kvm7082 ~]# lvcreate -L 889G -n lv-kvm vg-kvm  
   Logical volume "lv-kvm" created.
@@ -194,19 +220,19 @@ UUID=<ID> /data ext4 defaults 0 0
 
 Chọn host add storage:
 
-![](/images/addkvm_1.png)
+![](../images/addkvm_1.png)
 
 Chọn phần Storage:
 
-![](/images/addkvm_2.png)
+![](../images/addkvm_2.png)
 
 New Storage:
 
-![](/images/addkvm_3.png)
+![](../images/addkvm_3.png)
 
 Điền thông tin thư mục đã mount ở trên và chọn kiểu DIR, nhấn CREATE:
 
-![](/images/addkvm_4.png)
+![](../images/addkvm_4.png)
 
 # Cấu hình allow và deny
 
@@ -221,3 +247,8 @@ Thêm vào `/etc/hosts.deny` :
 `
 sshd: ALL
 `
+
+# Secure VNC:
+- Các VM tạo ra nên có password VNC.
+- Logout sau mỗi phiên làm việc.
+

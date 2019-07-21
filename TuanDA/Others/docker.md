@@ -70,7 +70,29 @@ Như vậy là mình đã thực hiện chạy một container với image đư�
 Ví dụ: docker run -itd ubuntu. Khi này Docker sẽ tự pull image về host cho bạn rồi sau đó nó mới chạy container
 
 
+2. Cài đặt Docker sử dụng yum và repository#
+Cài đặt các gói cần thiết
 
+`sudo yum install -y yum-utils device-mapper-persistent-data lvm2`
+
+Thêm Docker repo
+
+`sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
+
+Cài đặt bản lastest của Docker CE
+
+`sudo yum install -y docker-ce docker-ce-cli containerd.io`
+
+Kiểm tra lại cài đặt
+
+`sudo systemctl start docker
+docker -v`
+
+Docker version 18.09.1, build 4c52b90
+
+Chạy container đầu tiên với Docker
+
+`sudo docker run hello-world`
 
 
 

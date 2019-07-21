@@ -1,0 +1,55 @@
+```sh
+[DEFAULT]
+bind_host = 172.16.3.222
+core_plugin = ml2
+service_plugins = router
+transport_url = rabbit://openstack:Welcome123@172.16.3.222:5672
+auth_strategy = keystone
+notify_nova_on_port_status_changes = true
+notify_nova_on_port_data_changes = true
+allow_overlapping_ips = True
+dhcp_agents_per_network = 2
+[agent]
+[cors]
+[database]
+connection = mysql+pymysql://neutron:Welcome123@172.16.3.222/neutron
+[keystone_authtoken]
+#auth_uri = http://172.16.3.222:5000
+#auth_url = http://172.16.3.222:35357
+auth_uri = http://172.16.3.220:5000
+auth_url = http://172.16.3.220:35357
+memcached_servers = 172.16.3.222:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = neutron
+password = Welcome123
+[matchmaker_redis]
+[nova]
+#auth_url = http://172.16.3.222:35357
+auth_url = http://172.16.3.220:35357
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+#region_name = RegionOne
+region_name = RegionTwo
+project_name = service
+username = nova
+password = Welcome123
+[oslo_concurrency]
+lock_path = /var/lib/neutron/tmp
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+rabbit_retry_interval = 1
+rabbit_retry_backoff = 2
+amqp_durable_queues = true
+rabbit_ha_queues = true
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[quotas]
+[ssl]
+```

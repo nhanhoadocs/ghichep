@@ -1,0 +1,123 @@
+```sh
+[DEFAULT]
+my_ip = 172.16.3.222
+enabled_apis = osapi_compute,metadata
+use_neutron = True
+osapi_compute_listen=172.16.3.222
+metadata_host=172.16.3.222
+metadata_listen=172.16.3.222
+metadata_listen_port=8775
+firewall_driver = nova.virt.firewall.NoopFirewallDriver
+transport_url = rabbit://openstack:Welcome123@172.16.3.222:5672
+[api]
+auth_strategy = keystone
+[api_database]
+connection = mysql+pymysql://nova:Welcome123@172.16.3.222/nova_api
+[barbican]
+[cache]
+backend = oslo_cache.memcache_pool
+enabled = true
+memcache_servers = 172.16.3.222:11211
+[cells]
+[cinder]
+#os_region_name = RegionOne
+os_region_name = RegionTwo
+[compute]
+[conductor]
+[console]
+[consoleauth]
+[cors]
+[crypto]
+[database]
+connection = mysql+pymysql://nova:Welcome123@172.16.3.222/nova
+[devices]
+[ephemeral_storage_encryption]
+[filter_scheduler]
+[glance]
+api_servers = http://172.16.3.222:9292
+[guestfs]
+[healthcheck]
+[hyperv]
+[ironic]
+[key_manager]
+[keystone]
+[keystone_authtoken]
+#auth_url = http://172.16.3.222:5000/v3
+#memcached_servers = 172.16.3.222:11211
+auth_url = http://172.16.3.220:5000/v3
+memcached_servers = 172.16.3.220:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = nova
+password = Welcome123
+region_name = RegionTwo
+[libvirt]
+[matchmaker_redis]
+[metrics]
+[mks]
+[neutron]
+url = http://172.16.3.222:9696
+#auth_url = http://172.16.3.222:35357
+auth_url = http://172.16.3.220:35357
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+#region_name = RegionOne
+region_name = RegionTwo
+project_name = service
+username = neutron
+password = Welcome123
+service_metadata_proxy = true
+metadata_proxy_shared_secret = Welcome123
+[notifications]
+[osapi_v21]
+[oslo_concurrency]
+lock_path = /var/lib/nova/tmp
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+rabbit_ha_queues = true
+rabbit_retry_interval = 1
+rabbit_retry_backoff = 2
+amqp_durable_queues= true
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[pci]
+[placement]
+#os_region_name = RegionOne
+os_region_name = RegionTwo
+project_domain_name = Default
+project_name = service
+auth_type = password
+user_domain_name = Default
+#auth_url = http://172.16.3.222:5000/v3
+auth_url = http://172.16.3.220:5000/v3
+username = placement
+password = Welcome123
+[quota]
+[rdp]
+[remote_debug]
+[scheduler]
+discover_hosts_in_cells_interval = 300
+[serial_console]
+[service_user]
+[spice]
+[upgrade_levels]
+[vault]
+[vendordata_dynamic_auth]
+[vmware]
+[vnc]
+novncproxy_host=172.16.3.222
+enabled = true
+vncserver_listen = 172.16.3.222
+vncserver_proxyclient_address = 172.16.3.222
+novncproxy_base_url = http://172.16.3.222:6080/vnc_auto.html
+[workarounds]
+[wsgi]
+[xenserver]
+[xvp]
+```

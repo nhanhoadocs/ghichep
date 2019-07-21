@@ -1,0 +1,39 @@
+```sh
+[DEFAULT]
+bind_host = 172.16.3.222
+registry_host = 172.16.3.222
+[cors]
+[database]
+connection = mysql+pymysql://glance:Welcome123@172.16.3.222/glance
+[glance_store]
+stores = file,http
+default_store = file
+filesystem_store_datadir = /var/lib/glance/images/
+[image_format]
+[keystone_authtoken]
+auth_uri = http://172.16.3.220:5000
+auth_url = http://172.16.3.220:5000
+memcached_servers = 172.16.3.222:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = glance
+password = Welcome123
+region_name = RegionTwo
+[matchmaker_redis]
+[oslo_concurrency]
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[paste_deploy]
+flavor = keystone
+[profiler]
+[store_type_location_strategy]
+[task]
+[taskflow_executor]
+```
