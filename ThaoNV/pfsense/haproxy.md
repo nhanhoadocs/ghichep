@@ -57,6 +57,8 @@ Save lại và check trong `Status`-> `Haproxy Status`
 
 <img src="https://i.imgur.com/mRZ7bHp.png">
 
+Truy cập web và kiểm tra 
+
 - Tham khảo
 
 https://blog.devita.co/pfsense-to-proxy-traffic-for-websites-using-pfsense/
