@@ -1,5 +1,15 @@
 # Hướng dẫn compare cpu capabilities để kiểm tra khả năng live-migration giữa 2 compute
 
+- Cài đặt libvirt nếu chưa có
+
+`yum install libvirt -y`
+
+- Start libvirt
+
+```
+systemctl start libvirtd
+```
+
 - Dump capabilities ở node compute còn lại
 
 `virsh capabilities > virsh-caps.xml`
