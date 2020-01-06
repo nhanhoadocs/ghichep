@@ -519,7 +519,7 @@ EOF
 
 ```
 cp /etc/httpd/conf.d/00-placement-api.conf /etc/httpd/conf.d/00-placement-api.conf.org
-cat << 'EOF' >> /etc/httpd/conf.d/00-nova-placement-api.conf
+cat << 'EOF' >> /etc/httpd/conf.d/00-placement-api.conf
 
 
 <Directory /usr/bin>
