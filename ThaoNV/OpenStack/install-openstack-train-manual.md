@@ -961,3 +961,364 @@ EOF
 - Enable service
 
 `systemctl enable libvirtd.service openstack-nova-compute.service --now`
+
+## Phần 6: Cài đặt neutron
+
+### Trên node CTL
+
+- Tạo db
+
+```
+mysql -u root -pWelcome123
+CREATE DATABASE neutron;
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' \
+  IDENTIFIED BY 'Welcome123';
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' \
+  IDENTIFIED BY 'Welcome123';
+exit
+```
+
+- Tạo user
+
+`openstack user create --domain default --password Welcome123 neutron`
+
+- Gan role
+
+`openstack role add --project service --user neutron admin`
+
+- Tao service
+
+```
+openstack service create --name neutron \
+  --description "OpenStack Networking" network
+```
+
+- Tao endpoint
+
+```
+openstack endpoint create --region RegionOne \
+  network public http://10.10.11.171:9696
+openstack endpoint create --region RegionOne \
+  network internal http://10.10.11.171:9696
+openstack endpoint create --region RegionOne \
+  network admin http://10.10.11.171:9696
+```
+
+- Cai package
+
+```
+yum install openstack-neutron openstack-neutron-ml2 \
+  openstack-neutron-linuxbridge ebtables -y
+```
+
+- Backup cấu hình neutron
+
+`mv /etc/neutron/neutron.{conf,conf.bk}`
+
+- Cấu hình neutron
+
+```
+cat << EOF >> /etc/neutron/neutron.conf
+[DEFAULT]
+core_plugin = ml2
+service_plugins = router
+transport_url = rabbit://openstack:Welcome123@10.10.11.171
+auth_strategy = keystone
+notify_nova_on_port_status_changes = true
+notify_nova_on_port_data_changes = true
+[cors]
+[database]
+connection = mysql+pymysql://neutron:Welcome123@10.10.11.171/neutron
+[keystone_authtoken]
+www_authenticate_uri = http://10.10.11.171:5000
+auth_url = http://10.10.11.171:5000
+memcached_servers = 10.10.11.171:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = neutron
+password = Welcome123
+[nova]
+auth_url = http://10.10.11.171:5000
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+region_name = RegionOne
+project_name = service
+username = nova
+password = Welcome123
+[oslo_concurrency]
+lock_path = /var/lib/neutron/tmp
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_middleware]
+[oslo_policy]
+[privsep]
+[ssl]
+EOF
+```
+
+- Backup config ml2_config
+
+`mv /etc/neutron/plugins/ml2/ml2_conf.{ini,ini.bk}`
+
+- Cấu hình ml2_config
+
+```
+cat << EOF >> /etc/neutron/plugins/ml2/ml2_conf.ini
+[DEFAULT]
+[ml2]
+type_drivers = flat,vlan,vxlan
+tenant_network_types = vxlan
+mechanism_drivers = linuxbridge,l2population
+extension_drivers = port_security
+[ml2_type_flat]
+flat_networks = provider
+[securitygroup]
+enable_ipset = true
+EOF
+```
+
+- Backup lại config linuxbridge_agent
+
+`mv /etc/neutron/plugins/ml2/linuxbridge_agent.{ini,init.bk}`
+
+- Cấu hình cho linuxbridge_agent
+
+```
+cat << EOF >> /etc/neutron/plugins/ml2/linuxbridge_agent.ini
+[DEFAULT]
+[linux_bridge]
+physical_interface_mappings = provider:eth1
+[vxlan]
+enable_vxlan = true
+local_ip = 10.10.11.171
+l2_population = true
+[securitygroup]
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+EOF
+```
+
+- Thêm rule
+
+```
+echo 'net.bridge.bridge-nf-call-iptables = 1' >> /etc/sysctl.conf
+echo 'net.bridge.bridge-nf-call-ip6tables = 1' >> /etc/sysctl.conf
+modprobe br_netfilter
+/sbin/sysctl -p
+```
+
+- Backup cấu hình l3_agent
+
+`mv /etc/neutron/l3_agent.{ini,ini.bk}`
+
+- Cấu hình l3_agent
+
+```
+cat << EOF >> /etc/neutron/l3_agent.ini
+[DEFAULT]
+interface_driver = linuxbridge
+EOF
+```
+
+- Phân quyền
+
+`chown root:neutron /etc/neutron/neutron.conf /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini /etc/neutron/l3_agent.ini`
+
+- Tạo symlink
+
+`ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini`
+
+- Populate db
+
+```
+su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+```
+
+- Restart `Compute API`
+
+`systemctl restart openstack-nova-api.service`
+
+- Enable service
+
+`systemctl enable neutron-server.service neutron-linuxbridge-agent.service neutron-l3-agent.service --now`
+
+### Trên node COM
+
+- Cai package
+
+```
+yum install openstack-neutron openstack-neutron-ml2 \
+  openstack-neutron-linuxbridge ebtables -y
+```
+
+- Backup cấu hình neutron
+
+`mv /etc/neutron/neutron.{conf,conf.bk}`
+
+- Cấu hình neutron
+
+```
+cat << EOF >> /etc/neutron/neutron.conf
+[DEFAULT]
+auth_strategy = keystone
+core_plugin = ml2
+transport_url = rabbit://openstack:Welcome123@10.10.11.171
+notify_nova_on_port_status_changes = true
+notify_nova_on_port_data_changes = true
+[cors]
+[database]
+[keystone_authtoken]
+www_authenticate_uri = http://10.10.11.171:5000
+auth_url = http://10.10.11.171:5000
+memcached_servers = 10.10.11.171:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = neutron
+password = Welcome123
+[oslo_concurrency]
+lock_path = /var/lib/neutron/tmp
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_middleware]
+[oslo_policy]
+[privsep]
+[ssl]
+EOF
+```
+
+- Backup lại config linuxbridge_agent
+
+`mv /etc/neutron/plugins/ml2/linuxbridge_agent.{ini,init.bk}`
+
+- Cấu hình cho linuxbridge_agent
+
+```
+cat << EOF >> /etc/neutron/plugins/ml2/linuxbridge_agent.ini
+[DEFAULT]
+[linux_bridge]
+physical_interface_mappings = provider:eth1
+[vxlan]
+enable_vxlan = True
+local_ip = 10.10.11.172
+[securitygroup]
+enable_security_group = True
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+EOF
+```
+
+- Thêm rule
+
+```
+echo 'net.bridge.bridge-nf-call-iptables = 1' >> /etc/sysctl.conf
+echo 'net.bridge.bridge-nf-call-ip6tables = 1' >> /etc/sysctl.conf
+modprobe br_netfilter
+/sbin/sysctl -p
+```
+
+- Backup cấu hình dhcp_agent
+
+`mv /etc/neutron/dhcp_agent.{ini,ini.bk}`
+
+- Cấu hình dhcp agent
+
+```
+cat << EOF >> /etc/neutron/dhcp_agent.ini
+[DEFAULT]
+interface_driver = linuxbridge
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+enable_isolated_metadata = true
+EOF
+```
+
+- Backup cấu hình metadata_agent
+
+`mv /etc/neutron/metadata_agent.{ini,ini.bk}`
+
+- Cấu hình metadata agent
+
+```
+cat << EOF >> /etc/neutron/metadata_agent.ini
+[DEFAULT]
+nova_metadata_host = 10.10.11.171
+metadata_proxy_shared_secret = Welcome123
+EOF
+```
+
+- Phân quyền
+
+`chown root:neutron /etc/neutron/neutron.conf /etc/neutron/plugins/ml2/linuxbridge_agent.ini /etc/neutron/dhcp_agent.ini /etc/neutron/metadata_agent.ini`
+
+- Enable service
+
+`systemctl enable neutron-linuxbridge-agent.service neutron-dhcp-agent.service neutron-metadata-agent.service --now`
+
+## Phần 7: Cài đặt horizon
+
+- Cài đặt packages
+
+`yum install -y openstack-dashboard`
+
+- Tạo file direct
+
+```
+filehtml=/var/www/html/index.html
+touch $filehtml
+cat << EOF >> $filehtml
+<html>
+<head>
+<META HTTP-EQUIV="Refresh" Content="0.5; URL=http://10.10.11.171/dashboard">
+</head>
+<body>
+<center> <h1>Redirecting to OpenStack Dashboard</h1> </center>
+</body>
+</html>
+EOF
+```
+
+- Backup file cấu hình
+
+`cp /etc/openstack-dashboard/{local_settings,local_settings.bk}`
+
+- Chỉnh sửa cấu hình file `/etc/openstack-dashboard/local_settings`
+
+```
+ALLOWED_HOSTS = ['*',]
+OPENSTACK_API_VERSIONS = {
+    "identity": 3,
+    "image": 2,
+    "volume": 3,
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+CACHES = {
+    'default': {
+         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+         'LOCATION': '10.10.11.171:11211',
+    }
+}
+OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
+OPENSTACK_HOST = "10.10.11.171"
+OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
+OPENSTACK_KEYSTONE_DEFAULT_ROLE = "myrole"
+
+TIME_ZONE = "Asia/Ho_Chi_Minh"
+WEBROOT = '/dashboard/'
+```
+
+Thêm config httpd cho dashboard
+
+`echo "WSGIApplicationGroup %{GLOBAL}" >> /etc/httpd/conf.d/openstack-dashboard.conf`
+
+Restart service httpd và memcached
+
+`systemctl restart httpd.service memcached.service`
