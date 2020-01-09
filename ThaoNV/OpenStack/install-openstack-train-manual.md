@@ -84,6 +84,7 @@ server 3.asia.pool.ntp.org iburst/g' /etc/chrony.conf
 sed -i 's/server 1.centos.pool.ntp.org iburst/#/g' /etc/chrony.conf
 sed -i 's/server 2.centos.pool.ntp.org iburst/#/g' /etc/chrony.conf
 sed -i 's/server 3.centos.pool.ntp.org iburst/#/g' /etc/chrony.conf
+sed -i 's/#allow 192.168.0.0\/16/allow 0\/0/g' /etc/chrony.conf
 
 systemctl enable chronyd.service
 systemctl restart chronyd.service
@@ -980,6 +981,8 @@ exit
 
 - Tạo user
 
+`source admin-openrc`
+
 `openstack user create --domain default --password Welcome123 neutron`
 
 - Gan role
@@ -1322,3 +1325,154 @@ Thêm config httpd cho dashboard
 Restart service httpd và memcached
 
 `systemctl restart httpd.service memcached.service`
+
+## Phần 8: Cài đặt cinder
+
+- Tạo db
+
+```
+mysql -u root -pWelcome123
+CREATE DATABASE cinder;
+GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'localhost' \
+  IDENTIFIED BY 'Welcome123';
+GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'%' \
+  IDENTIFIED BY 'Welcome123';
+```
+
+- Tạo user
+
+`source admin-openrc`
+
+`openstack user create --domain default --password Welcome123 cinder`
+
+- Add role 
+
+`openstack role add --project service --user cinder admin`
+
+- Tạo service 
+
+```
+openstack service create --name cinderv2 \
+  --description "OpenStack Block Storage" volumev2
+openstack service create --name cinderv3 \
+  --description "OpenStack Block Storage" volumev3
+```
+
+- Tạo endpoint 
+
+```
+openstack endpoint create --region RegionOne \
+  volumev2 public http://10.10.11.171:8776/v2/%\(project_id\)s
+openstack endpoint create --region RegionOne \
+  volumev2 internal http://10.10.11.171:8776/v2/%\(project_id\)s
+openstack endpoint create --region RegionOne \
+  volumev2 admin http://10.10.11.171:8776/v2/%\(project_id\)s
+openstack endpoint create --region RegionOne \
+  volumev3 public http://10.10.11.171:8776/v3/%\(project_id\)s
+openstack endpoint create --region RegionOne \
+  volumev3 internal http://10.10.11.171:8776/v3/%\(project_id\)s
+openstack endpoint create --region RegionOne \
+  volumev3 admin http://10.10.11.171:8776/v3/%\(project_id\)s
+```
+
+- Cài đặt packages
+
+`yum install -y openstack-cinder lvm2 device-mapper-persistent-data targetcli python-keystone`
+
+- Enable service 
+
+```
+systemctl enable lvm2-lvmetad.service
+systemctl start lvm2-lvmetad.service
+```
+
+- Tạo pv, vg
+
+```
+pvcreate /dev/vdb
+vgcreate cinder-volumes /dev/vdb
+```
+
+- Chỉnh sửa file `/etc/lvm/lvm.conf`
+
+Uncomment dòng 141
+
+`filter = [ "a|.*/|" ]`
+
+- Backup cấu hình cinder
+
+`mv /etc/cinder/cinder.{conf,conf.bk}`
+
+- Cấu hình cinder
+
+```
+cat << EOF >> /etc/cinder/cinder.conf
+[DEFAULT]
+transport_url = rabbit://openstack:Welcome123@10.10.11.171
+auth_strategy = keystone
+my_ip = 10.10.11.171
+enabled_backends = lvm
+glance_api_servers = http://10.10.11.171:9292
+enable_v3_api = True
+[backend]
+[backend_defaults]
+[barbican]
+[brcd_fabric_example]
+[cisco_fabric_example]
+[coordination]
+[cors]
+[database]
+connection = mysql+pymysql://cinder:Welcome123@10.10.11.171/cinder
+[fc-zone-manager]
+[healthcheck]
+[key_manager]
+[keystone_authtoken]
+www_authenticate_uri = http://10.10.11.171:5000
+auth_url = http://10.10.11.171:5000
+memcached_servers = 10.10.11.171:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = cinder
+password = Welcome123
+[nova]
+[oslo_concurrency]
+lock_path = /var/lib/cinder/tmp
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_middleware]
+[oslo_policy]
+[oslo_reports]
+[oslo_versionedobjects]
+[privsep]
+[profiler]
+[sample_castellan_source]
+[sample_remote_file_source]
+[service_user]
+[ssl]
+[vault]
+[lvm]
+volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
+volume_group = cinder-volumes
+target_protocol = iscsi
+target_helper = lioadm
+EOF
+```
+
+- Restart nova-api 
+
+`systemctl restart openstack-nova-api.service`
+
+- Enable service 
+
+```
+systemctl enable openstack-cinder-api.service openstack-cinder-scheduler.service openstack-cinder-volume.service target.service
+systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service openstack-cinder-volume.service target.service
+```
+
+- Kiểm tra lại
+
+`openstack volume service list`
