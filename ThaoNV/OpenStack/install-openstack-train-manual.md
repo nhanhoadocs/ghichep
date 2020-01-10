@@ -1025,6 +1025,7 @@ cat << EOF >> /etc/neutron/neutron.conf
 [DEFAULT]
 core_plugin = ml2
 service_plugins = router
+allow_overlapping_ips = true
 transport_url = rabbit://openstack:Welcome123@10.10.11.171
 auth_strategy = keystone
 notify_nova_on_port_status_changes = true

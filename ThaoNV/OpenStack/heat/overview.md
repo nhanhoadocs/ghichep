@@ -1,4 +1,4 @@
-# Tổng quan về heat 
+# Tổng quan về heat
 
 Heat là OpenStack Orchestration program, mục tiêu của nó là tạo ra dịch vụ có thể quản lý toàn bộ vòng đời của hạ tầng cũng như app trên nền tảng OPS.
 
@@ -8,12 +8,12 @@ Heat sử dụng orchestration engine để chạy các cloud application dựa 
 
 - Heat sử dụng template để mô tả hạ tầng cho cloud app trong file text, file này có thể được đọc và viết bởi người vận hành
 - Các tài nguyên hạ tầng được mô tả ở đây là: server, volume, ...
-- Heat cũng có thể kết hợp với telemetry để cung cấp auto scale 
+- Heat cũng có thể kết hợp với telemetry để cung cấp auto scale
 - Các template cũng có thể định nghĩa mối quan hệ với nhau. Điều này giúp heat có thể gọi tới OPS API để tạo phần hạ tầng theo đúng thứ tự.
 - Heat control toàn bộ vòng đời của cloud app, vì thế nếu bạn cần thay đổi hạ tầng, bạn chỉ cần update template và dùng nó để update các stack được tạo ra.
 
 
-### Kiến trúc 
+### Kiến trúc
 
 <img src="https://i.imgur.com/PiCrE5h.png">
 
@@ -38,30 +38,30 @@ Tham khảo hướng dẫn cài đặt [tại đây](../install-openstack-train-
 
 -----------
 
-Cài đặt package 
+Cài đặt package
 
 `yum -y install openstack-heat-common openstack-heat-api openstack-heat-api-cfn openstack-heat-engine python-heatclient`
 
-Tạo user 
+Tạo user
 
 `openstack user create --domain default --project service --password Welcome123 heat`
 
-Add role admin 
+Add role admin
 
 `openstack role add --project service --user heat admin`
 
-Tạo role 
+Tạo role
 
 ```
 openstack role create heat_stack_owner
 openstack role create heat_stack_user
 ```
 
-Add admin role cho user heat owner 
+Add admin role cho user heat owner
 
 `openstack role add --project admin --user admin heat_stack_owner`
 
-Tạo service entry 
+Tạo service entry
 
 ```
 openstack service create --name heat --description "Openstack Orchestration" orchestration
@@ -79,19 +79,19 @@ openstack endpoint create --region RegionOne cloudformation internal http://10.1
 openstack endpoint create --region RegionOne cloudformation admin http://10.10.11.171:8000/v1
 ```
 
-Tạo Heat domain 
+Tạo Heat domain
 
 `openstack domain create --description "Stack projects and users" heat`
 
-Tạo heat_domain_admin 
+Tạo heat_domain_admin
 
 `openstack user create --domain heat --password Welcome123 heat_domain_admin`
 
-Add admin role 
+Add admin role
 
 `openstack role add --domain heat --user heat_domain_admin admin`
 
-Tạo db 
+Tạo db
 
 ```
 mysql -u root -pWelcome123
@@ -103,7 +103,7 @@ flush privileges;
 exit
 ```
 
-Backup cấu hình 
+Backup cấu hình
 
 `mv /etc/heat/heat.conf /etc/heat/heat.conf.org`
 
@@ -170,27 +170,27 @@ user_domain_name = default
 EOF
 ```
 
-Phân quyền 
+Phân quyền
 
 ```
 chgrp heat /etc/heat/heat.conf
 chmod 640 /etc/heat/heat.conf
 ```
 
-Populate db 
+Populate db
 
 ```
 su -s /bin/bash heat -c "heat-manage db_sync"
 ```
 
-Start service 
+Start service
 
 ```
 systemctl start openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
 systemctl enable openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
 ```
 
-### Sử dụng cơ bản 
+### Sử dụng cơ bản
 
 Tạo file `stack10.yml`
 
@@ -207,7 +207,43 @@ resources:
       - network: thao
 ```
 
-Tạo stack 
+```
+heat_template_version: 2018-08-31
+
+description: Heat Sample Template
+
+parameters:
+  ImageID:
+    type: string
+    description: Image used to boot a server
+  NetID:
+    type: string
+    description: Network ID for the server
+
+resources:
+  bootable_volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: 10
+      image: { get_param: ImageID }
+
+  server1:
+    type: OS::Nova::Server
+    depends_on: bootable_volume
+    properties:
+      name: "test"
+      flavor: "tiny"
+      networks:
+        - network: { get_param: NetID }
+      block_device_mapping: [{"device_name": "vda", "volume_id": { get_resource: bootable_volume }, "delete_on_termination": true}]
+
+outputs:
+  server1_private_ip:
+    description: IP address of the server in the private network
+    value: { get_attr: [ server1, first_address ] }
+```
+
+Tạo stack
 
 `openstack stack create -t stack10.yml s10`
 
