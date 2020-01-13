@@ -122,10 +122,14 @@ Trong phần `Dial-in`, lựa chọn `Allow access` cho cấu hình `Network Acc
 
 ## Bước 9: Kết nối VPN client
 
-Tham khảo hướng dẫn [tại đây]()
+Tham khảo hướng dẫn [tại đây](connect-l2tp-windows-client.md)
 
 ## Bước 10: Monitor vpn 
 
 Tìm kiếm `Remote Access Management Console`. Bạn sẽ thấy trạng thái cũng như các kết nối tới server
 
 <img src="https://i.imgur.com/C2glCkm.png">
+
+Link tham khảo:
+
+https://www.snel.com/support/how-to-set-up-an-l2tp-ipsec-vpn-on-windows-server-2019/
